@@ -1,6 +1,6 @@
 # WEB
 
-src_main____java__com.estsoft.codit.web__controller
+src_main____java__com.estsoft.codit.web__controller\r\n
         |                              |_vo
         |                              |_service
         |                              |_repository
