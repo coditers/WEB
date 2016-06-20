@@ -1,6 +1,6 @@
 # WEB
-
-src_main____java__com.estsoft.codit.web__controller\r\n
+"`
+src_main____java__com.estsoft.codit.web__controller
         |                              |_vo
         |                              |_service
         |                              |_repository
@@ -24,3 +24,4 @@ src_main____java__com.estsoft.codit.web__controller\r\n
                            |_dispatcher-servlet.xml
                            |
                            |_web.xml
+"`
