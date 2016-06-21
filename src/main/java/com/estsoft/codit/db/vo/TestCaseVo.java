@@ -1,9 +1,8 @@
-package com.estsoft.codit.core.vo;
+package com.estsoft.codit.db.vo;
 
-
-public class CartVo {
+public class TestCaseVo {
   int id;
-  int recruit_id;
+  String input;
   int problem_id;
 
   public int getId() {
@@ -14,12 +13,12 @@ public class CartVo {
     this.id = id;
   }
 
-  public int getRecruit_id() {
-    return recruit_id;
+  public String getInput() {
+    return input;
   }
 
-  public void setRecruit_id(int recruit_id) {
-    this.recruit_id = recruit_id;
+  public void setInput(String input) {
+    this.input = input;
   }
 
   public int getProblem_id() {
@@ -32,9 +31,9 @@ public class CartVo {
 
   @Override
   public String toString() {
-    return "CartVo{"
+    return "TestCaseVo{"
         + "id=" + id
-        + ", recruit_id=" + recruit_id
+        + ", input='" + input + '\''
         + ", problem_id=" + problem_id + '}';
   }
 }

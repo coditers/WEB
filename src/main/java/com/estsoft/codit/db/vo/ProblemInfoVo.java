@@ -1,6 +1,6 @@
-package com.estsoft.codit.core.vo;
+package com.estsoft.codit.db.vo;
 
-public class Problem_infoVo {
+public class ProblemInfoVo {
   int id;
   String name;
   String Text;
@@ -49,7 +49,7 @@ public class Problem_infoVo {
 
   @Override
   public String toString() {
-    return "Problem_infoVo{"
+    return "ProblemInfoVo{"
         + "id=" + id
         + ", name='" + name + '\''
         + ", Text='" + Text + '\''

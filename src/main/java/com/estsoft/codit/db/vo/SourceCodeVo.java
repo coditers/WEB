@@ -1,6 +1,6 @@
-package com.estsoft.codit.core.vo;
+package com.estsoft.codit.db.vo;
 
-public class Source_codeVo {
+public class SourceCodeVo {
   int id;
   String code;
   int applicant_id;
@@ -40,7 +40,7 @@ public class Source_codeVo {
 
   @Override
   public String toString() {
-    return "Source_codeVo{"
+    return "SourceCodeVo{"
         + "id=" + id
         + ", code='" + code + '\''
         + ", applicant_id=" + applicant_id

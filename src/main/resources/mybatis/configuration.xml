@@ -2,16 +2,16 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
   <typeAliases>
-    <typeAlias type="com.estsoft.codit.core.vo.ApplicantVo" alias="applicantvo" />
-    <typeAlias type="com.estsoft.codit.core.vo.CartVo" alias="cartvo" />
-    <typeAlias type="com.estsoft.codit.core.vo.ClientVo" alias="clientvo" />
-    <typeAlias type="com.estsoft.codit.core.vo.LanguageVo" alias="languagevo" />
-    <typeAlias type="com.estsoft.codit.core.vo.ProblemInfoVo" alias="probleminfovo" />
-    <typeAlias type="com.estsoft.codit.core.vo.ProblemVo" alias="problemvo" />
-    <typeAlias type="com.estsoft.codit.core.vo.RecruitVo" alias="recruitvo" />
-    <typeAlias type="com.estsoft.codit.core.vo.ResultVo" alias="resultvo" />
-    <typeAlias type="com.estsoft.codit.core.vo.SourceCodeVo" alias="sourcecodevo" />
-    <typeAlias type="com.estsoft.codit.core.vo.TestCaseVo" alias="testcasevo" />
+    <typeAlias type="com.estsoft.codit.db.vo.ApplicantVo" alias="applicantvo" />
+    <typeAlias type="com.estsoft.codit.db.vo.CartVo" alias="cartvo" />
+    <typeAlias type="com.estsoft.codit.db.vo.ClientVo" alias="clientvo" />
+    <typeAlias type="com.estsoft.codit.db.vo.LanguageVo" alias="languagevo" />
+    <typeAlias type="com.estsoft.codit.db.vo.ProblemInfoVo" alias="probleminfovo" />
+    <typeAlias type="com.estsoft.codit.db.vo.ProblemVo" alias="problemvo" />
+    <typeAlias type="com.estsoft.codit.db.vo.RecruitVo" alias="recruitvo" />
+    <typeAlias type="com.estsoft.codit.db.vo.ResultVo" alias="resultvo" />
+    <typeAlias type="com.estsoft.codit.db.vo.SourceCodeVo" alias="sourcecodevo" />
+    <typeAlias type="com.estsoft.codit.db.vo.TestCaseVo" alias="testcasevo" />
   </typeAliases>
   <mappers>
     <mapper resource="mybatis/mappers/applicant.xml" />
