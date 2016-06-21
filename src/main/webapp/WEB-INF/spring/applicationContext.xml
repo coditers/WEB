@@ -7,6 +7,8 @@
        xsi:schemaLocation="
        http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.w3.org/2001/XMLSchema-instance
+       http://www.w3.org/2001/XMLSchema-instance.xsd
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd
        ">

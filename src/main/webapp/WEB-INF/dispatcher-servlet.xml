@@ -25,11 +25,5 @@
 
 
   <context:annotation-config />
-  <context:component-scan base-package="com.estsoft.codit.web.controller" />
-
-
-  <!-- validator, conversionService, messageConverter를 자동으로 등록 -->
-  <mvc:annotation-driven />
-  <!-- 기본 뷰 리졸버 -->
 
 </beans>
