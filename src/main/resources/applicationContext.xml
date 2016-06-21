@@ -3,19 +3,16 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.
-       http://www.springframework.org/schema/aop/spring-aop.xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-       http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
-       http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
-       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
-       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
-       http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.1.xsd
-       http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring
-       http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring/ehcache-spring-1.1.xsd
-       http://www.springframework.org/schema/task
-       http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       ">
+
+
+  <!-- context schema -->
   <context:annotation-config/>
 
   <context:component-scan base-package="com.estsoft.codit.web">
@@ -32,3 +29,40 @@
 
 
 </beans>
+
+
+<!-- Introduction to application context
+
+  [DEFAULT]
+  >> beans xmlns="http://www.springframework.org/schema/beans"   <<
+  >>       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" <<
+  First of all, we need the main bean namespace since we are using XML to define
+  our bean definitions.
+
+  >> xmlns:context="http://www.springframework.org/schema/context" <<
+  We need the context namespace since we are using it to define <context:annotation-config />
+
+  >> xsi:schemaLocation="                                              <<
+  >> http://www.springframework.org/schema/beans                       <<
+  >> http://www.springframework.org/schema/beans/spring-beans.xsd      <<
+  >> http://www.springframework.org/schema/context                     <<
+  >> http://www.springframework.org/schema/context/spring-context.xsd" <<
+  This define the schema location for name spaces defined above.
+
+  [NO USAGE YET]
+  http://www.springframework.org/schema/aop
+  http://www.springframework.org/schema/aop/spring-aop.xsd
+  http://www.springframework.org/schema/jee
+  http://www.springframework.org/schema/jee/spring-jee.xsd
+  http://www.springframework.org/schema/lang
+  http://www.springframework.org/schema/lang/spring-lang.xsd
+  http://www.springframework.org/schema/tx
+  http://www.springframework.org/schema/tx/spring-tx.xsd
+  http://www.springframework.org/schema/util
+  http://www.springframework.org/schema/util/spring-util.xsd
+  http://www.springframework.org/schema/data/mongo
+  http://www.springframework.org/schema/data/mongo/spring-mongo-1.1.xsd
+  http://www.springframework.org/schema/task
+  http://www.springframework.org/schema/task/spring-task-3.0.xsd
+
+-->
