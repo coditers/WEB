@@ -10,7 +10,7 @@
          id="WebApp_ID" version="3.0">
 
   <display-name>codit-web</display-name>
-
+  <!-- WELCOME file
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
@@ -18,7 +18,7 @@
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
+  </welcome-file-list> -->
 
   <!-- Listener 등록 -->
   <context-param>
