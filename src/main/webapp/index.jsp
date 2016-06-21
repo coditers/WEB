@@ -11,7 +11,8 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.9.0.js"></script>
 </head>
 <body>
-<div class="center-content">
+<h2> Hello! </h2>
+<!--div class="center-content">
     <c:import url="/WEB-INF/views/include/main-header.jsp"/>
     <form class="login-form" action = "${pageContext.request.contextPath}/user/login" method = "POST">
         <c:if test='${ loginfail == true}'>
@@ -21,6 +22,6 @@
         <label>패스워드</label> <input type="password" name="password">
         <input type="submit" value="로그인">
     </form>
-</div>
+</div-->
 </body>
 </html>
