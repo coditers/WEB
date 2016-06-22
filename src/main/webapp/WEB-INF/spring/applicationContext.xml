@@ -33,24 +33,24 @@
 
   </context:component-scan>
 
-  <!-- Connection Pool DataSource
+  <!-- Connection Pool DataSource-->
   <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
     <property name="driverClassName" value="com.mysql.jdbc.Driver" />
     <property name="url" value="jdbc:mysql://localhost:3306/[DB_NAME_HERE]" />
     <property name="username" value="[USER_NAME_HERE]" />
     <property name="password" value="[PASSWORD_HERE]" />
-  </bean> -->
+  </bean>
 
-  <!-- MyBatis SqlSessionFactoryBean
+  <!-- MyBatis SqlSessionFactoryBean -->
   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
     <property name="dataSource" ref="dataSource" />
     <property name="configLocation" value="classpath:mybatis/configuration.xml" />
-  </bean> -->
+  </bean>
 
-  <!-- MyBatis SqlSessionTemplate
+  <!-- MyBatis SqlSessionTemplate -->
   <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
     <constructor-arg index="0" ref="sqlSessionFactory" />
-  </bean> -->
+  </bean>
 
   <!-- Auto Proxy -->
   <aop:aspectj-autoproxy />
