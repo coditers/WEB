@@ -7,18 +7,19 @@
 <html>
 <head>
     <title>codit</title>
+    <!--Link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css"-->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
 
 <a href="#">
-    <button type="button">SignIn</button>
+    <button type="button">로그인</button>
 </a>
 <a href="#">
-    <button type="button">SignUp</button>
+    <button type="button">회원가입</button>
 </a>
 
-<c:if test='${false}'>
+<c:if test='${true}'>
 <table>
     <tr>
         <th> <a href="#"> + 새로운 채용</a> </th>
