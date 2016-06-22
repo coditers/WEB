@@ -16,9 +16,9 @@
 <body>
 <table>
     <tr>
-        <th>문제 번호</th>
-        <th>정답률</th>
-        <th>점수 분포</th>
+        <th>문제 번호<img src=""></th>
+        <th>정답률<img src=""></th>
+        <th>점수 분포<img src=""></th>
         <th>&nbsp;</th>
     </tr>
     <tr>
@@ -32,9 +32,9 @@
             그래프 그림
         </td>
         <td>
-            <input type="selectbox" name="chk_info" value="종합점수">
-            <input type="selectbox" name="chk_info" value="Time Usage">
-            <input type="selectbox" name="chk_info" value="Memory Usage">
+            <input type="checkbox" name="a" value="totalScore">종합점수
+            <input type="checkbox" name="b" value="timeUsage">TimeUsage
+            <input type="checkbox" name="c" value="memoryUsage">MemoryUsage
         </td>
     </tr>
 </table>

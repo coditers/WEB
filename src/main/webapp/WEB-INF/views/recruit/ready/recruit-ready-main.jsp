@@ -58,7 +58,7 @@
                 <label> 시작일 : </label>
             </td>
             <td>
-                <input type = "text" > <input type="text">
+                <input type = "text" value="2016/07/08"> <input type="text" value="23:59">
             </td>
         </tr>
         <tr>
@@ -66,7 +66,7 @@
                 <label> 종료일 : </label>
             </td>
             <td>
-                <input type = "text" > <input type="text">
+                <input type = "text" value="2016/07/08"> <input type="text" value="23:59">
             </td>
         </tr>
         <tr>
@@ -74,7 +74,7 @@
                 <label> 티켓 발행일 : </label>
             </td>
             <td>
-                <input type = "text" > <input type="text">
+                <input type = "text" value="2016/07/08"> <input type="text" value="23:59">
             </td>
         </tr>
         <tr>
@@ -82,7 +82,7 @@
                 <label> 총기간 : </label>
             </td>
             <td>
-                <input type = "text" >
+                <input type = "text" value="7일">
             </td>
         </tr>
         <button>저장</button>

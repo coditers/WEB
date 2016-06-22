@@ -17,6 +17,11 @@
 <!-- 문제 리스트 테이블-->
 <table>
     <tr>
+        <th>문제 목록</th>
+        <th>&nbsp</th>
+        <th>&nbsp</th>
+    </tr>
+    <tr>
         <td>prob-name</td>
         <td>prob-level</td>
         <td>estimated-time</td>
