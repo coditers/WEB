@@ -6,21 +6,24 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>JBlog</title>
+    <title>Codit</title>
     <!--Link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css"-->
     <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.9.0.js"></script>
 </head>
 <body>
-<div class="center-content">
-    <c:import url="/WEB-INF/views/include/main-header.jsp"/>
-    <form class="login-form" action = "${pageContext.request.contextPath}/user/login" method = "POST">
-        <c:if test='${ loginfail == true}'>
-            <p style="color:red"> 다시 입력해주십시오 </p>
-        </c:if>
-        <label>아이디</label> <input type="text" name="id">
-        <label>패스워드</label> <input type="password" name="password">
+<h1>로그인</h1>
+<div>
+    <form action = "#" method = "POST">
+        <label>이메일</label> <input type="text" name="email">
+        <label>비밀번호</label> <input type="password" name="password">
         <input type="submit" value="로그인">
     </form>
+</div>
+<div>
+    <h1>Codit의 사용자가 아니신가요?</h1>
+    <a href="#">
+        <button type="button">회원가입</button>
+    </a>
 </div>
 </body>
 </html>
