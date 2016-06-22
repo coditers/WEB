@@ -1,5 +1,5 @@
 # WEB
-"`
+
 src_main____java__com.estsoft.codit.web__controller
         |                              |_vo
         |                              |_service
@@ -24,14 +24,17 @@ src_main____java__com.estsoft.codit.web__controller
                            |_dispatcher-servlet.xml
                            |
                            |_web.xml
+
 "`
 
+<<<<<<< HEAD
 # git clone <remote repo name> <dir name>
 
 # cd ..
 # cd <dir name>
 
 # ls -la 
+estsoft@ǻó▒▒1 MINGW64 /c/IdeaProjects/project-codit
 
 # git status -> check branch
 
@@ -74,3 +77,38 @@ src_main____java__com.estsoft.codit.web__controller
 # git push origin master
 
 ##### git push <remote repo alias> <branch name>
+
+#######
+
+
+## It will be conflict. ## GOOD
+
+# branch add commit merge
+
+### create new branch and checkout   [branch : master --> branch-test]
+# git branch 'branch-test'        +
+# git checkout branch-test        = > git checkout -b 'branch-test'
+
+### add and commit
+# git add README.md         ( or git add . )
+# git commit -m 'readme.md branch test'
+
+### back to master branch
+# git checkout master
+
+#"  ++THREE WAY MERGE++
+# git add <some file name to be added>
+# git commit -m 'commit some master feature'
+#
+# git pull origin master
+#"
+
+# git merge 'branch-test'
+
+# WARNING
+# both modified
+
+### push commits
+# git push origin master
+
+>>>>>>> branch-test
