@@ -33,7 +33,7 @@ public class ClientController {
   @RequestMapping("/signupform")
   public String signupform() {
 
-    return "/client/signupform";
+    return "client/signupform";
   }
 
   /** Sign up method with back-end validation */
@@ -74,9 +74,9 @@ public class ClientController {
     model.addAttribute( "clientVo", clientVo );
 
     if (clientVo != null) {
-      return "/client/signup-success";
+      return "client/signup-success";
     } else {
-      return "/client/signup-fail";
+      return "client/signup-fail";
     }
   }
 
