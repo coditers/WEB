@@ -13,6 +13,6 @@ public class MainController {
 
   @RequestMapping("/")
   public String index() {
-    return "recruit/ready/recruit-ready-selectProb";
+    return "recruit/ready/recruit-ready-probselectform";
   }
 }
