@@ -4,7 +4,11 @@
 <mapper namespace="recruit">
   <select id="selectAll" resultType="recruitvo">
     <![CDATA[
-      SELECT *
+      SELECT id        AS id,
+             title     AS title,
+             from_date AS from_date,
+             to_date   AS to_date,
+             client_id AS client_id
         FROM recruit
     ]]>
   </select>
@@ -20,11 +24,18 @@
     </selectKey>
   </insert>
 
+  <!-- TODO - date formatting -->
   <select id="selectById" resultType="recruitvo" parameterType="int">
     <![CDATA[
-      SELECT *
+      SELECT id        AS id,
+             title     AS title,
+             from_date AS from_date,
+             to_date   AS to_date,
+             client_id AS client_id
         FROM recruit
        WHERE id=#{id }
     ]]>
   </select>
+
+
 </mapper>

@@ -13,15 +13,15 @@ public class RecruitRepository {
   @Autowired
   private SqlSession sqlSession;
 
-  public List<RecruitVo> getList(){
+  public List<RecruitVo> getList() {
     return sqlSession.selectList("recruit.selectAll");
   }
 
-  public int insert(){
+  public int insert() {
     return sqlSession.insert("recruit.insert");
   }
 
-  public RecruitVo get(int id){
+  public RecruitVo get(int id) {
     return sqlSession.selectOne("recruit.selectById", id);
   }
 
