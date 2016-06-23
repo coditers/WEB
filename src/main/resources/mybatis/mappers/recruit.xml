@@ -3,17 +3,28 @@
 
 <mapper namespace="recruit">
   <select id="selectAll" resultType="recruitvo">
-    <![CDATA[ SELECT * FROM recruit ]]>
+    <![CDATA[
+      SELECT *
+        FROM recruit
+    ]]>
   </select>
 
   <insert id="insert" parameterType="recruitvo">
-    <![CDATA[ insert into recruit value(null, 'estsoft 2016 하반기 공채', now(), now(), 1); ]]>
+    <![CDATA[
+      INSERT
+        INTO recruit
+      VALUES (NULL, 'estsoft 2016 하반기 공채', now(), now(), 1)
+    ]]>
     <selectKey keyProperty="id" resultType="int">
       SELECT LAST_INSERT_ID()
     </selectKey>
   </insert>
 
   <select id="selectById" resultType="recruitvo" parameterType="int">
-    <![CDATA[  SELECT * FROM recruit WHERE id=#{id } ]]>
+    <![CDATA[
+      SELECT *
+        FROM recruit
+       WHERE id=#{id }
+    ]]>
   </select>
 </mapper>
