@@ -36,9 +36,9 @@
   <!-- Connection Pool DataSource-->
   <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
     <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-    <property name="url" value="jdbc:mysql://localhost:3306/[DB_NAME_HERE]" />
-    <property name="username" value="[USER_NAME_HERE]" />
-    <property name="password" value="[PASSWORD_HERE]" />
+    <property name="url" value="jdbc:mysql://localhost:3306/codit" />
+    <property name="username" value="#{ systemEnvironment['DBusername']}" />
+    <property name="password" value="#{ systemEnvironment['DBpassword']}" />
   </bean>
 
   <!-- MyBatis SqlSessionFactoryBean -->
