@@ -1,9 +1,12 @@
 package com.estsoft.codit.web.controller;
 
+import com.estsoft.codit.db.vo.RecruitVo;
 import com.estsoft.codit.web.service.RecruitService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -30,21 +33,7 @@ public class MainController {
     return "";
   }
 
-  @RequestMapping("/makerecruit")
-  public String makeRecruit(){
 
 
-    return "";
-  }
-
-  @RequestMapping("/viewrecruit")
-  public String viewRecruit(){
-
-    // 1. expired recruit
-    // 2. creating recruit
-    // 3. on-going recruit
-
-    return "";
-  }
 
 }
