@@ -2,6 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="recruit">
+
+  <!--need to check-->
   <select id="selectAll" resultType="recruitvo">
     <![CDATA[
       SELECT id        AS id,
@@ -13,18 +15,32 @@
     ]]>
   </select>
 
+  <!--need to check-->
+  <select id="selectListByClientId" resultType="recruitvo" parameterType="recruitvo">
+    <![CDATA[
+      SELECT id        AS id,
+             title     AS title,
+             from_date AS from_date,
+             to_date   AS to_date,
+             client_id AS client_id
+        FROM recruit
+        WHERE client_id = #{client_id}
+    ]]>
+  </select>
+
   <insert id="insert" parameterType="recruitvo">
     <![CDATA[
       INSERT
         INTO recruit
-      VALUES (NULL, 'estsoft 2016 하반기 공채', now(), now(), 1)
+      VALUES (NULL, '${title}', NULL, NULL, ${client_id})
     ]]>
     <selectKey keyProperty="id" resultType="int">
       SELECT LAST_INSERT_ID()
     </selectKey>
   </insert>
 
-  <!-- TODO - date formatting -->
+
+  <!--need to check-->
   <select id="selectById" resultType="recruitvo" parameterType="int">
     <![CDATA[
       SELECT id        AS id,

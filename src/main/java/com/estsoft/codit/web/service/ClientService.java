@@ -21,7 +21,7 @@ public class ClientService {
    * If signup failed, return false. Also succeeded, true.
    * @return true if succeed.
    */
-  public ClientVo getUserInfo(int id) {
+  public ClientVo getVoById(int id) {
     //Check whether the client info exists.
     return clientRepository.get(id);
   }

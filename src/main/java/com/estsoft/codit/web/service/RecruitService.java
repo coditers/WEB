@@ -20,4 +20,6 @@ public class RecruitService {
   public RecruitVo getVo(int id) {
     return recruitRepository.get(id);
   }
+
+  public int insert(RecruitVo recruitVo){ return recruitRepository.insert(recruitVo);}
 }

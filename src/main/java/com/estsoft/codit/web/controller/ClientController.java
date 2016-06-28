@@ -64,7 +64,7 @@ public class ClientController {
   @RequestMapping("/signupsuccess/{id}")
   public String signupsuccess( @PathVariable("id") int id, Model model ) {
 
-    ClientVo clientVo = clientService.getUserInfo(id);
+    ClientVo clientVo = clientService.getVoById(id);
 
     model.addAttribute( "clientVo", clientVo );
 
@@ -86,15 +86,14 @@ public class ClientController {
   public String signin(@ModelAttribute ClientVo clientVo, HttpServletRequest request, Model model) {
 
     // Get authenticate user with username and password using a database.
-    clientService.validsignin( clientVo );
-
+    clientVo = clientService.validsignin( clientVo );
     // Check authenticate user
     if(clientVo == null) {
       // auth failed
       model.addAttribute("auth", false); //jsp 에서 auth fail이면 다시 입력하라는 문구 출력
       return "client/signinform";
     }
-
+    System.out.println("\n\n\n\n\n\n\n\n sign in clientVo : " + clientVo);
     //auth success
     HttpSession session = request.getSession(true);
     session.setAttribute("authClient", clientVo);
