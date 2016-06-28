@@ -2,9 +2,9 @@ package com.estsoft.codit.db.vo;
 
 
 public class CartVo {
-  int id;
-  int recruit_id;
-  int problem_id;
+  private int id;
+  private int recruit_id;
+  private int problem_id;
 
   public int getId() {
     return id;
@@ -32,9 +32,10 @@ public class CartVo {
 
   @Override
   public String toString() {
-    return "CartVo{"
-        + "id=" + id
-        + ", recruit_id=" + recruit_id
-        + ", problem_id=" + problem_id + '}';
+    return "CartVo{" +
+        "id=" + id +
+        ", recruit_id=" + recruit_id +
+        ", problem_id=" + problem_id +
+        '}';
   }
 }

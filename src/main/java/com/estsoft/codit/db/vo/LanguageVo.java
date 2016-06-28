@@ -2,8 +2,8 @@ package com.estsoft.codit.db.vo;
 
 
 public class LanguageVo {
-  int id;
-  String name;
+  private int id;
+  private String name;
 
   public int getId() {
     return id;
@@ -23,9 +23,9 @@ public class LanguageVo {
 
   @Override
   public String toString() {
-    return "LanguageVo{"
-        + "id=" + id
-        + ", name='"
-        + name + '\'' + '}';
+    return "LanguageVo{" +
+        "id=" + id +
+        ", name='" + name + '\'' +
+        '}';
   }
 }

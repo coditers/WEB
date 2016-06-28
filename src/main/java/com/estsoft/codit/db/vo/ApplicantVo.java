@@ -1,13 +1,13 @@
 package com.estsoft.codit.db.vo;
 
 public class ApplicantVo {
-  int id;
-  String name;
-  String email;
-  String ticket;
-  String start_time;
-  String submit_time;
-  int recruit_id;
+  private int id;
+  private String name;
+  private String email;
+  private String ticket;
+  private String start_time;
+  private String submit_time;
+  private int recruit_id;
 
   public int getId() {
     return id;
@@ -67,13 +67,14 @@ public class ApplicantVo {
 
   @Override
   public String toString() {
-    return "ApplicantVo{"
-        + "id=" + id
-        + ", name='" + name + '\''
-        + ", email='" + email + '\''
-        + ", ticket='" + ticket + '\''
-        + ", start_time='" + start_time + '\''
-        + ", submit_time='" + submit_time + '\''
-        + ", recruit_id=" + recruit_id + '}';
+    return "ApplicantVo{" +
+        "id=" + id +
+        ", name='" + name + '\'' +
+        ", email='" + email + '\'' +
+        ", ticket='" + ticket + '\'' +
+        ", start_time='" + start_time + '\'' +
+        ", submit_time='" + submit_time + '\'' +
+        ", recruit_id=" + recruit_id +
+        '}';
   }
 }

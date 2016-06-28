@@ -1,11 +1,11 @@
 package com.estsoft.codit.db.vo;
 
 public class RecruitVo {
-  int id;
-  String title;
-  String from_date;
-  String to_date;
-  int client_id;
+  private int id;
+  private String title;
+  private String from_date;
+  private String to_date;
+  private int client_id;
 
   public int getId() {
     return id;
@@ -49,11 +49,12 @@ public class RecruitVo {
 
   @Override
   public String toString() {
-    return "RecruitVo{"
-        + "id=" + id
-        + ", title='" + title + '\''
-        + ", from_date='" + from_date + '\''
-        + ", to_date='" + to_date + '\''
-        + ", client_id=" + client_id + '}';
+    return "RecruitVo{" +
+        "id=" + id +
+        ", title='" + title + '\'' +
+        ", from_date='" + from_date + '\'' +
+        ", to_date='" + to_date + '\'' +
+        ", client_id=" + client_id +
+        '}';
   }
 }

@@ -2,10 +2,10 @@ package com.estsoft.codit.db.vo;
 
 
 public class ClientVo {
-  int id;
-  String name;
-  String email;
-  String password;
+  private int id;
+  private String name;
+  private String email;
+  private String password;
 
   public int getId() {
     return id;
@@ -41,11 +41,11 @@ public class ClientVo {
 
   @Override
   public String toString() {
-    return "ClientVo{"
-        + "id=" + id
-        + ", name='" + name + '\''
-        + ", email='" + email + '\''
-        + ", password='" + password + '\'' + '}';
-
+    return "ClientVo{" +
+        "id=" + id +
+        ", name='" + name + '\'' +
+        ", email='" + email + '\'' +
+        ", password='" + password + '\'' +
+        '}';
   }
 }

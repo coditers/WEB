@@ -1,9 +1,9 @@
 package com.estsoft.codit.db.vo;
 
 public class TestCaseVo {
-  int id;
-  String input;
-  int problem_id;
+  private int id;
+  private String input;
+  private int problem_id;
 
   public int getId() {
     return id;
@@ -31,9 +31,10 @@ public class TestCaseVo {
 
   @Override
   public String toString() {
-    return "TestCaseVo{"
-        + "id=" + id
-        + ", input='" + input + '\''
-        + ", problem_id=" + problem_id + '}';
+    return "TestCaseVo{" +
+        "id=" + id +
+        ", input='" + input + '\'' +
+        ", problem_id=" + problem_id +
+        '}';
   }
 }
