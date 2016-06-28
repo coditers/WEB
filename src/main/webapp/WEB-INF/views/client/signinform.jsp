@@ -13,7 +13,7 @@
 <body>
 <h1>로그인</h1>
 <div>
-    <form action = "#" method = "POST">
+    <form action = "${pageContext.request.contextPath}/client/signin" method = "POST">
         <table>
             <tr><td>
                     <label>이메일</label> <input type="text" name="email"> <button>중복확인</button>

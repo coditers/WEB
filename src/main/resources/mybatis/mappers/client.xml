@@ -15,7 +15,7 @@
     <![CDATA[
       INSERT
         INTO client
-      VALUES (null, #{name}, #{email}, #{password});
+      VALUES (null, #{name}, #{email}, password(#{password }));
     ]]>
     <selectKey keyProperty="id" resultType="int">
       SELECT LAST_INSERT_ID()

@@ -12,14 +12,14 @@
 </head>
 <body>
 
-<a href="#">
+<a href="${pageContext.request.contextPath}/client/signinform">
     <button type="button">로그인</button>
 </a>
-<a href="#">
+<a href="${pageContext.request.contextPath}/client/signupform">
     <button type="button">회원가입</button>
 </a>
 
-<c:if test='${true}'>
+<c:if test='${authClient != null}'>
 <table>
     <tr>
         <th> <a href="#"> + 새로운 채용</a> </th>

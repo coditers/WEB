@@ -13,8 +13,8 @@
 <body>
 <div>
     <h1>회원가입</h1>
-    <form action = "#" method = "POST">
-        <label>대표 이메일</label> <input type="text" name="id"><br>
+    <form action = "${pageContext.request.contextPath}/client/signup" method = "POST">
+        <label>대표 이메일</label> <input type="text" name="email"><br>
         <label>비밀번호</label> <input type="password" name="password"><br>
         <label>비밀번호 확인</label> <input type="password" name="re-password"><br><br>
 

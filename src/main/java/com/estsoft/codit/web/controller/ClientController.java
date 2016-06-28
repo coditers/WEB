@@ -14,14 +14,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-/**
- * A user controller manages incoming requests with path {@code /client}
- * and redirect to proper response.<p/>
- *
- * Created by JisungLim on 2016-06-20.
- */
+
 @Controller
 @RequestMapping("/client")
 public class ClientController {
@@ -36,9 +32,8 @@ public class ClientController {
     return "client/signupform";
   }
 
-  /** Sign up method with back-end validation */
   @RequestMapping(value = "/signup", method = RequestMethod.POST)
-  public String signup(@ModelAttribute ClientVo clientVo) {
+  public String signup( @ModelAttribute ClientVo clientVo) {
 
     /* TODO - Back-end validation Using Hibernate validator '@valid'
     public String signup(@ModelAttribute @Valid ClientVo clientVo,
@@ -57,8 +52,8 @@ public class ClientController {
     }
      */
 
-    int id = clientService.signup(clientVo);
-
+    clientService.signup(clientVo);
+    int id = clientVo.getId();
     return "redirect:/client/signupsuccess/" + id;
   }
 
@@ -86,50 +81,37 @@ public class ClientController {
     return "client/signinform";
   }
 
-  /**
-   * If the valid is failed, it forward signinform.jsp again including attribute
-   * called 'auth' whose value is false.
-   * <p/>
-   * On the other hand, if the valid succeed, it will get to the main page by means
-   * of redirecting request. At that time it uploads auth object on the session scope.
-   * <p/>
-   * @param clientVo A client VO includes email and password passed from the form.
-   * @param session A session scope.
-   * @param model Model.
-   */
+
   @RequestMapping(value = "/signin", method = RequestMethod.POST)
-  public String signin(@ModelAttribute ClientVo clientVo, HttpSession session, Model model) {
+  public String signin(@ModelAttribute ClientVo clientVo, HttpServletRequest request, Model model) {
 
     // Get authenticate user with username and password using a database.
-    ClientVo authClient = clientService.validsignin( clientVo );
+    clientService.validsignin( clientVo );
 
     // Check authenticate user
-    if(authClient == null) {
+    if(clientVo == null) {
       // auth failed
-      model.addAttribute("auth", false);
+      model.addAttribute("auth", false); //jsp 에서 auth fail이면 다시 입력하라는 문구 출력
       return "client/signinform";
     }
 
     //auth success
-    session.setAttribute("authClient", authClient);
+    HttpSession session = request.getSession(true);
+    session.setAttribute("authClient", clientVo);
     return "redirect:/main/";
   }
 
-  /**
-   * Sign out process. Removes auth object on the session.
-   *
-   * @param session A session scope.
-   */
+
   @RequestMapping("/signout")
-  public String signout( HttpSession session ) {
-    ClientVo authClient = (ClientVo) session.getAttribute("authClient");
-    if (authClient != null) {
-      session.removeAttribute( "authClient" );
+  public String signout( HttpServletRequest request ) {
+
+    HttpSession session = request.getSession();
+
+    if( session != null){
+      session.removeAttribute( "authUser" );
       session.invalidate();
     }
-
     return "redirect:/main/";
-
   }
 
   /**
