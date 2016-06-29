@@ -23,7 +23,7 @@
             지원자 정보 입력
         </td>
         <td colspan="4">
-            <button> > </button>
+            <a href="${pageContext.request.contextPath}/recruit/${recruitId}/appregform"><button> > </button></a>
         </td>
     </tr>
     <tr>

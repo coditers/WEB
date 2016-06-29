@@ -1,6 +1,6 @@
 package com.estsoft.codit.web.controller;
 
-import com.estsoft.codit.db.vo.ClientVo;
+import com.estsoft.codit.db.vo.ApplicantVo;
 import com.estsoft.codit.db.vo.RecruitVo;
 import com.estsoft.codit.web.service.RecruitService;
 
@@ -9,89 +9,89 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
+import java.util.List;
 
 
 @Controller
-@RequestMapping("/recruit")
+@RequestMapping("/recruit/{recruitId}")
 public class RecruitController {
+
 
   @Autowired
   RecruitService recruitService;
 
-  //@Auth
-  @RequestMapping("/makerecruit")
-  public String makeRecruit(HttpServletRequest request){ // @ModelAttribute RecruitVo recruitVo
-
-    int id = ((ClientVo)(request.getSession().getAttribute("authClient"))).getId();
-    System.out.println( (ClientVo)(request.getSession().getAttribute("authClient")) );
-    /*=========temporal code=========*/
-    RecruitVo recruitVo = new RecruitVo();
-    recruitVo.setClient_id(id);
-    recruitVo.setTitle("2016 last semester");
-    /*===============================*/
-    recruitService.insert(recruitVo);
-
-    return "redirect:/recruit/main/" + recruitVo.getId();
-  }
-
   // Todo non-auth user access deny
-  @RequestMapping("main/{recruitId}")
-  public String main(@PathVariable("recruitId") int id,
-                     HttpServletRequest request) {
+  @RequestMapping("main")
+  public String main(@PathVariable("recruitId") int id, Model model) {
 
+    // Valid check
     RecruitVo recruitVo = recruitService.getVo(id);
-    if(recruitVo == null){
+    if (recruitVo == null) {
       return "redirect:/main";
     }
 
+    model.addAttribute("recruitId", id);
     //get server time
     long time = System.currentTimeMillis();
-    SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+    SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     String current_date = dayTime.format(new Date(time));
 
-    System.out.println("\n\n\n\n==============current time ============> " + current_date);
-    //// TODO: 2016-06-28 need to synchronize java time format and mysql time format
 
-    if( recruitVo.getFrom_date() == null || current_date.compareTo( recruitVo.getFrom_date() ) < 0 ) {   //ready recruit
+    if (recruitVo.getFrom_date() == null || current_date.compareTo(recruitVo.getFrom_date()) < 0) {   //ready recruit
 
       return "recruit/ready/recruit-ready-main";
 
-    }else if( current_date.compareTo( recruitVo.getFrom_date() ) > 0 ) {// expired or on-going recruit
+    } else if (current_date.compareTo(recruitVo.getFrom_date()) > 0) {// expired or on-going recruit
 
       if (current_date.compareTo(recruitVo.getTo_date()) > 0) {//expired recruit
         //enable expired flag
       }
       // 3. on-going recruit
       return "recruit/started/recruit-started-main";
-    }else{
-       return "redirect:/main";
+    } else {
+      return "redirect:/main";
     }
   }
 
   // MODULE - READY - APPLICANT REGISTER
-//  @RequestMapping("/appregform")
-//  public String applicantregisterform(@PathVariable("id") int id,
-//                                      HttpSession session) {
+  @RequestMapping("/appregform")
+  public String applicantregisterform(@PathVariable("recruitId") int id, Model model) {
 //    //Auth
 //    if ( !authRecruit(id, session) ) {
 //      return "redirect:/main/";
 //    }
-//
-//    return "recruit/ready/recruit-ready-appregform";
-//  }
 
-  @RequestMapping("/ajax-appreg")
-  public String applicantregister() {
-    // TODO - Application Register
-    return null;
+    model.addAttribute("recruitVo", recruitService.getVo(id));
+
+    return "recruit/ready/recruit-ready-appregform";
   }
+
+  /**
+   * get excel file and save parsed data as applicant into DB
+   * */
+  @RequestMapping("/appreg")
+  public String applicantregister(@PathVariable("recruitId") int id, @RequestParam("excel-file") MultipartFile file, Model model) {
+
+    String filePath = recruitService.saveMultiPartFile(file);
+    List<ApplicantVo> list = null;
+
+    if(filePath != null) {
+      list = recruitService.parseExcel(filePath, id);
+
+      if(list != null) recruitService.insertApplicantList(list);
+
+      model.addAttribute("applicantList", list);
+    }
+    model.addAttribute("recruitVo", recruitService.getVo(id));
+    return "recruit/ready/recruit-ready-appregform";
+  }
+
+
 
   //// MODULE - READY - PROBLEM SELECTION
 //  @RequestMapping("/probselect")
@@ -143,7 +143,7 @@ public class RecruitController {
 
   @RequestMapping("/ajax-probstat")
   public String problemstat() {
-  // TODO - Problem Statistic
+    // TODO - Problem Statistic
     return null;
   }
 

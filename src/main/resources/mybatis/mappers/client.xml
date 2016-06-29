@@ -32,7 +32,7 @@
              email AS email,
              password AS password
         FROM client
-       WHERE email = '${email}'
+       WHERE email = #{email}
          AND password = PASSWORD(${password})
     ]]>
   </select>

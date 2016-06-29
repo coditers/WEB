@@ -8,7 +8,7 @@
   </select>
 
   <insert id="insert" parameterType="applicantvo">
-    <![CDATA[ insert into applicant value(null, 'jisung', 'jisung@gmail.com', 'ijijijijij', now(), null, 1); ]]>
+    <![CDATA[ insert into applicant value(null, '${name}', '${email}', password(#{ticket}), #{start_time}, #{submit_time}, #{recruit_id}); ]]>
     <selectKey keyProperty="id" resultType="int">
       SELECT LAST_INSERT_ID()
     </selectKey>

@@ -12,11 +12,10 @@
 </head>
 <body>
 
-<form method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data" action ="${pageContext.request.contextPath}/recruit/${recruitVo.id}/appreg">
     <table>
         <tr>
-            <td><input type="text" size="40" name="recruit-name"
-                       value="지원자 정보 입력"></td>
+            <td><p>${recruitVo.title}</p></td>
         </tr>
         <tr>
             <td><input type="file" name="excel-file"></td>

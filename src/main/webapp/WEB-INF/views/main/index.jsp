@@ -22,7 +22,7 @@
 <c:if test='${authClient != null}'>
 <table>
     <tr>
-        <th> <a href="${pageContext.request.contextPath}/recruit/makerecruit"> + 새로운 채용</a> </th>
+        <th> <a href="${pageContext.request.contextPath}/main/makerecruit"> + 새로운 채용</a> </th>
     </tr>
     <tr>
         <td>2016 하반기</td>
