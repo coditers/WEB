@@ -4,11 +4,11 @@
 <!--need to check-->
 <mapper namespace="applicant">
   <select id="selectAll" resultType="applicantvo">
-    <![CDATA[ SELECT * FROM applicant ]]>
+    <![CDATA[ SELECT id, name, email, ticket, start_time as startTime, submit_time as submitTime, recruit_id  FROM applicant ]]>
   </select>
 
   <insert id="insert" parameterType="applicantvo">
-    <![CDATA[ insert into applicant value(null, '${name}', '${email}', password(#{ticket}), #{start_time}, #{submit_time}, #{recruit_id}); ]]>
+    <![CDATA[ insert into applicant value(null, '${name}', '${email}', password(#{ticket}), #{startTime}, #{submitTime}, #{recruitId}); ]]>
     <selectKey keyProperty="id" resultType="int">
       SELECT LAST_INSERT_ID()
     </selectKey>

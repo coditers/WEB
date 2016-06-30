@@ -4,7 +4,7 @@
 <!--need to check-->
 <mapper namespace="testcase">
   <select id="selectAll" resultType="testcasevo">
-    <![CDATA[ SELECT * FROM test_case ]]>
+    <![CDATA[ SELECT  id, input, problem_info_id as problemInfoId  FROM test_case ]]>
   </select>
 
   <insert id="insert" parameterType="testcasevo">
@@ -15,6 +15,6 @@
   </insert>
 
   <select id="selectById" resultType="testcasevo" parameterType="int">
-    <![CDATA[  SELECT * FROM test_case WHERE id=#{id } ]]>
+    <![CDATA[  SELECT  id, input, problem_info_id as problemInfoId  FROM test_case WHERE id=#{id } ]]>
   </select>
 </mapper>

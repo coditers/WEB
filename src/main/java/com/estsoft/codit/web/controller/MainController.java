@@ -41,7 +41,7 @@ public class MainController {
     System.out.println( (ClientVo)(request.getSession().getAttribute("authClient")) );
     /*=========temporal code=========*/
     RecruitVo recruitVo = new RecruitVo();
-    recruitVo.setClient_id(id);
+    recruitVo.setClientId(id);
     recruitVo.setTitle("2016 last semester");
     /*===============================*/
     recruitService.insert(recruitVo);

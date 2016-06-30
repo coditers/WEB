@@ -158,7 +158,7 @@ public class RecruitService {
               applicantVo.setEmail(value);
             }
           }
-          applicantVo.setRecruit_id(recruitId);
+          applicantVo.setRecruitId(recruitId);
           applicantVo.setTicket(applicantVo.getName() + applicantVo.getEmail()); //// TODO: 2016-06-29 any good method? 
           list.add(applicantVo);
         }

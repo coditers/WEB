@@ -42,13 +42,13 @@ public class RecruitController {
     String current_date = dayTime.format(new Date(time));
 
 
-    if (recruitVo.getFrom_date() == null || current_date.compareTo(recruitVo.getFrom_date()) < 0) {   //ready recruit
+    if (recruitVo.getFromDate() == null || current_date.compareTo(recruitVo.getFromDate()) < 0) {   //ready recruit
 
       return "recruit/ready/recruit-ready-main";
 
-    } else if (current_date.compareTo(recruitVo.getFrom_date()) > 0) {// expired or on-going recruit
+    } else if (current_date.compareTo(recruitVo.getFromDate()) > 0) {// expired or on-going recruit
 
-      if (current_date.compareTo(recruitVo.getTo_date()) > 0) {//expired recruit
+      if (current_date.compareTo(recruitVo.getToDate()) > 0) {//expired recruit
         //enable expired flag
       }
       // 3. on-going recruit
