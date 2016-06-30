@@ -91,6 +91,15 @@ public class RecruitController {
     return "recruit/ready/recruit-ready-appregform";
   }
 
+  @RequestMapping("set-recruit-date")
+  public String setRecruitDate(){
+    return null;
+  }
+
+  @RequestMapping("send-tickets")
+  public String sendTickets(){
+    return null;
+  }
 
 
   //// MODULE - READY - PROBLEM SELECTION

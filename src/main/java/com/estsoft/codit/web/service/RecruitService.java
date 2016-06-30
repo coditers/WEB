@@ -17,8 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.net.URLEncoder;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -121,15 +119,15 @@ public class RecruitService {
       //get sheet[0]
       Sheet sheet = workbook.getSheetAt(0);
       //# of rows
-      int rows = sheet.getPhysicalNumberOfRows();
+      int nRow = sheet.getPhysicalNumberOfRows();
       //from index 1
-      for (rowindex = 1; rowindex < rows; rowindex++) {
+      for (rowindex = 1; rowindex < nRow; rowindex++) {
         ApplicantVo applicantVo = new ApplicantVo();
         //get row
         Row row = sheet.getRow(rowindex);
         if (row != null) {
-          int cells = row.getPhysicalNumberOfCells();
-          for (columnindex = 0; columnindex <= cells; columnindex++) {
+          int nCell = row.getPhysicalNumberOfCells();
+          for (columnindex = 0; columnindex <= nCell; columnindex++) {
             //get cell
             Cell cell = row.getCell(columnindex);
             String value = "";

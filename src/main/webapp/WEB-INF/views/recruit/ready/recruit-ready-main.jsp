@@ -29,7 +29,7 @@
     <tr>
         <td colspan="4">문제 선택</td>
         <td>
-            <button> > </button>
+            <a href="${pageContext.request.contextPath}/recruit/${recruitId}/ajax-probselec"><button> > </button></a>
         </td>
     </tr>
     <tr>
@@ -50,8 +50,18 @@
     </tr>
 </table>
 
+<!-- todo
+ 시험기간 설정 onclick 달력 보이기
+ 저장 request 보내면, 시작일, 종료일을
+ "{pageContext.request.contextPath}/recruit/{recruitId}/set-recruit-date"
+ 로 보내줘
+
+ 티켓 발행은
+ "{pageContext.request.contextPath}/recruit/{recruitId}/send-tickets"
+ $쓰면 주석 안먹어서 빼놓고 적어놨어~
+-->
 <button>시험 기간 설정</button>
-<p>달력</p>
+<p>여기에 달력을 놔줘</p>
     <table>
         <tr>
             <td>
@@ -71,23 +81,15 @@
         </tr>
         <tr>
             <td>
-                <label> 티켓 발행일 : </label>
-            </td>
-            <td>
-                <input type = "text" value="2016/07/08"> <input type="text" value="23:59">
-            </td>
-        </tr>
-        <tr>
-            <td>
                 <label> 총기간 : </label>
             </td>
             <td>
-                <input type = "text" value="7일">
+                <p>날짜선택하면 javascript로 날짜 표시</p>
             </td>
         </tr>
         <button>저장</button>
     </table>
-
+        <button>티켓 발행</button>
 </body>
 
 </html>
