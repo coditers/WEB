@@ -32,7 +32,7 @@
     <![CDATA[
       INSERT
         INTO recruit
-      VALUES (NULL, '${title}', NULL, NULL, ${clientId})
+      VALUES (NULL, #{title}, #{fromDate}, #{toDate}, ${clientId})
     ]]>
     <selectKey keyProperty="id" resultType="int">
       SELECT LAST_INSERT_ID()

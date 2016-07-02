@@ -4,7 +4,7 @@ package com.estsoft.codit.db.vo;
 public class CartVo {
   private int id;
   private int recruitId;
-  private int problemId;
+  private int problemInfoId;
 
   public int getId() {
     return id;
@@ -22,12 +22,12 @@ public class CartVo {
     this.recruitId = recruitId;
   }
 
-  public int getProblemId() {
-    return problemId;
+  public int getProblemInfoId() {
+    return problemInfoId;
   }
 
-  public void setProblemId(int problemId) {
-    this.problemId = problemId;
+  public void setProblemInfoId(int problemInfoId) {
+    this.problemInfoId = problemInfoId;
   }
 
   @Override
@@ -35,7 +35,7 @@ public class CartVo {
     return "CartVo{" +
         "id=" + id +
         ", recruitId=" + recruitId +
-        ", problemId=" + problemId +
+        ", problemInfoId=" + problemInfoId +
         '}';
   }
 }
