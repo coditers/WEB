@@ -23,8 +23,8 @@ public class MainController {
 
     // 1. check logged in or not -> view the table or not -> job for .jsp
 
-    return "main/index";
-    //return "main/_index";
+    //return "main/index";
+    return "main/_index";
   }
 
   @RequestMapping("/makerecruitform")
