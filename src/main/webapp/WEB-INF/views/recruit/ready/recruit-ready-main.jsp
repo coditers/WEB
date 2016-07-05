@@ -29,7 +29,7 @@
     <tr>
         <td colspan="4">문제 선택</td>
         <td>
-            <a href="${pageContext.request.contextPath}/recruit/${recruitId}/ajax-probselec"><button> > </button></a>
+            <a href="${pageContext.request.contextPath}/recruit/${recruitId}/probselectform"><button> > </button></a>
         </td>
     </tr>
     <tr>

@@ -1,8 +1,10 @@
 package com.estsoft.codit.web.service;
 
 import com.estsoft.codit.db.repository.ApplicantRepository;
+import com.estsoft.codit.db.repository.ProblemInfoRepository;
 import com.estsoft.codit.db.repository.RecruitRepository;
 import com.estsoft.codit.db.vo.ApplicantVo;
+import com.estsoft.codit.db.vo.ProblemInfoVo;
 import com.estsoft.codit.db.vo.RecruitVo;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -29,11 +31,13 @@ public class RecruitService {
   RecruitRepository recruitRepository;
   @Autowired
   ApplicantRepository applicantRepository;
+  @Autowired
+  ProblemInfoRepository problemInfoRepository;
 
   private static final String FILE_SAVE_PATH = "/temp/";
 
 
-  public RecruitVo getVo(int id) {
+  public RecruitVo getRecruitVo(int id) {
     return recruitRepository.get(id);
   }
 
@@ -171,6 +175,10 @@ public class RecruitService {
 
   public void insertApplicantList(List<ApplicantVo> list){
     applicantRepository.insertList(list);
+  }
+
+  public List<ProblemInfoVo> getProblemInfoVoList( ){
+    return problemInfoRepository.getList();
   }
 
 }

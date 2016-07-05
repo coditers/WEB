@@ -1,15 +1,20 @@
 package com.estsoft.codit.web.controller;
 
 import com.estsoft.codit.db.vo.ApplicantVo;
+import com.estsoft.codit.db.vo.ProblemInfoVo;
 import com.estsoft.codit.db.vo.RecruitVo;
 import com.estsoft.codit.web.service.RecruitService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.text.SimpleDateFormat;
@@ -21,7 +26,6 @@ import java.util.List;
 @RequestMapping("/recruit/{recruitId}")
 public class RecruitController {
 
-
   @Autowired
   RecruitService recruitService;
 
@@ -30,7 +34,7 @@ public class RecruitController {
   public String main(@PathVariable("recruitId") int id, Model model) {
 
     // Valid check
-    RecruitVo recruitVo = recruitService.getVo(id);
+    RecruitVo recruitVo = recruitService.getRecruitVo(id);
     if (recruitVo == null) {
       return "redirect:/main";
     }
@@ -66,7 +70,7 @@ public class RecruitController {
 //      return "redirect:/main/";
 //    }
 
-    model.addAttribute("recruitVo", recruitService.getVo(id));
+    model.addAttribute("recruitVo", recruitService.getRecruitVo(id));
 
     return "recruit/ready/recruit-ready-appregform";
   }
@@ -87,20 +91,35 @@ public class RecruitController {
 
       model.addAttribute("applicantList", list);
     }
-    model.addAttribute("recruitVo", recruitService.getVo(id));
+    model.addAttribute("recruitVo", recruitService.getRecruitVo(id));
     return "recruit/ready/recruit-ready-appregform";
   }
 
-  @RequestMapping("set-recruit-date")
+  @RequestMapping("setrecruitdate")
   public String setRecruitDate(){
     return null;
   }
 
-  @RequestMapping("send-tickets")
+  @RequestMapping("sendticket")
   public String sendTickets(){
+    //isApplicantRegisted();
+    //isRecruitDateSet();
+    //isProblemSelected();
+
     return null;
   }
 
+  @RequestMapping("probselectform")
+  public String problemSelectForm( @PathVariable("recruitId") int id, Model model){
+
+    //view prob info
+    List<ProblemInfoVo> problemInfoVoList = recruitService.getProblemInfoVoList();
+
+    model.addAttribute("problemInfoVoList", problemInfoVoList);
+    model.addAttribute("recruitId", id);
+
+    return "recruit/ready/recruit-ready-probselectform";
+  }
 
   //// MODULE - READY - PROBLEM SELECTION
 //  @RequestMapping("/probselect")
@@ -114,10 +133,11 @@ public class RecruitController {
 //    return "recruit/ready/recruit-ready-probselectform";
 //  }
 
-  @RequestMapping("/ajax-probselec")
-  public String problemselect() {
-    // TODO - Problem Selection
-    return null;
+  @RequestMapping("/selectproblem")
+  public String selectProblem(@PathVariable("recruitId") int id , @RequestParam(value= "arr") String str){
+    System.out.println("Im called =====================\n\n\n" + str);
+
+    return "recruit/ready/recruit-ready-main";
   }
 
   //// MODULE - STARTED - APPLICANT STATISTICS

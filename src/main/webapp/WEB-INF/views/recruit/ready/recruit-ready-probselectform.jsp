@@ -10,49 +10,73 @@
     <!--Link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css"-->
     <script type="text/javascript"
             src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.9.0.js"></script>
+
+    <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/List.js"></script>
+
+    <script type="text/javascript">
+
+        var list = new List();
+        //onclick problem tr, add and remove problem id into list
+        var addOnList = function( id ){
+            if( list.isExist(id) == false){
+                $("#"+id).css({"backgroundColor": "#287fc2"});
+                list.push(id);
+                console.log( list.arr.join(","));
+            }else{
+                $("#"+id).css({"backgroundColor": "#ffffff"});
+                list.eliminate(id);
+            }
+        }
+
+        //submit the problem id list
+        var submitList = function(){
+            console.log("===>");
+            console.log("" + JSON.stringify(list.arr));
+            console.log("" + list.arr.join(""));
+            console.log("<===");
+
+            <%--$.ajax({--%>
+                       <%--url: "${pageContext.request.contextPath}/recruit/${recruitId}/selectproblem",--%>
+                       <%--type:"POST",--%>
+                       <%--data: "arr="+list.arr.join(" "),--%>
+<%--//                       data: JSON.stringify(list.arr) ,--%>
+<%--//                       contentType:"application/json; charset=utf-8",--%>
+                       <%--dataType:"json",--%>
+                       <%--success: function(){--%>
+
+                       <%--},--%>
+                       <%--error: function(){--%>
+
+                       <%--}--%>
+                   <%--})--%>
+            $.post(
+                    "${pageContext.request.contextPath}/recruit/${recruitId}/selectproblem",
+                    {arr : list.arr.join(" ")},
+                    function(data) { //success handler
+                        window.location = "${pageContext.request.contextPath}/recruit/${recruitId}/main";
+                    }
+            );
+        }
+    </script>
+
 </head>
 
 <body>
 <h2> recruit-title </h2>
 <!-- 문제 리스트 테이블-->
 <table>
+    <c:forEach items = "${ problemInfoVoList}" var = "vo">
     <tr>
         <th>문제 목록</th>
         <th>&nbsp</th>
         <th>&nbsp</th>
     </tr>
-    <tr>
-        <td>prob-name</td>
-        <td>prob-level</td>
-        <td>estimated-time</td>
+    <tr id="${vo.id}" onclick="addOnList(${vo.id})">
+        <td>"${vo.name}"</td>
+        <td>"${vo.description}"</td>
+        <td>"${vo.estimatedTime}"</td>
     </tr>
-    <tr>
-        <td>
-            problem description
-        </td>
-        <td>
-            &nbsp;
-        </td>
-        <td>
-            <button>카트에 담기</button>
-        </td>
-    </tr>
-    <tr>
-        <td>prob-name</td>
-        <td>prob-level</td>
-        <td>estimated-time</td>
-    </tr>
-    <tr>
-        <td>
-            problem description
-        </td>
-        <td>
-            &nbsp;
-        </td>
-        <td>
-            <button>카트에 담기</button>
-        </td>
-    </tr>
+    </c:forEach>
 </table>
 <button>카트 보기</button>
 
@@ -81,7 +105,7 @@
     </tr>
 </table>
 <!-- cart에 담긴 문제리스트 제출 -->
-<button>제출</button>
+<button onclick="submitList()">제출</button>
 <button>메인으로</button>
 </body>
 
