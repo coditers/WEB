@@ -3,12 +3,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<header class="header clearfix">
-    <img class="favicon"
-         src="${pageContext.request.contextPath}/assets/images/0630_favicon_beige.png">
+<header class="header-light clearfix">
+    <img class="favicon-brown"
+         src="${pageContext.request.contextPath}/assets/images/favicon_brown.png">
     <c:choose>
         <c:when test="${authUserClient != null}">
-            <a href="${pageContext.request.contextPath}/client/---">
+            <a href="${pageContext.request.contextPath}/client/signout">
                 <button class="white_noback signup">SIGN OUT</button>
             </a>
         </c:when>

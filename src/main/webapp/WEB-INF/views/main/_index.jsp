@@ -7,20 +7,32 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0">
-    <title>codit</title>
-    <link href="http://fonts.googleapis.com/css?family=Cabin:600,400|Raleway:100,700|Noto+Sans:400"
-          rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/standardize.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/ind-grid.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/_index.css">
-    <meta charset="utf-8"/>
-</head>
-<body class="body page-ind clearfix">
-<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
-<h1 class="catchphrase">Hire Faster, Hire easier</h1>
-<h2 class="shortdesc">Online Coding Test Platform</h2>
-<div class="logo"></div>
+    <link rel="icon" href="${pageContext.request.contextPath}/assets/icon/0630_favicon_beige.ico">
 
+    <title>main index</title>
+    <link href="http://fonts.googleapis.com/css?family=Cabin:600,400|Raleway:100,700|Noto+Sans:400" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/standardize.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/grid.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/codit.css">
+    <meta charset = "utf-8"/>
+</head>
+<body class="body-dark clearfix">
+
+<header id="header-dark" class="header clearfix">
+    <img class="sublogo" src="${pageContext.request.contextPath}/assets/images/sublogo-beige.png">
+    <button id="signin-brown" class="headerbutton">SIGN IN</button>
+    <a href="${pageContext.request.contextPath}/client/signupform">
+    <button id="signup-brown" class="headerbutton">SIGN UP</button>
+    </a>
+</header>
+
+<div id="main-centercontent" class="center-content clearfix">
+    <div class="container clearfix">
+        <h1 id="catchphrase" class="center-content">Hire Faster, Hire easier</h1>
+        <h2 id="shortdesc" class="center-content">Online Coding Test Platform</h2>
+    </div>
+    <img id="mainlogo-beige" class="center-content" src="${pageContext.request.contextPath}/assets/images/mainlogo-beige.png">
+</div>
 
 <c:if test='${authClient != null}'>
     <table>
@@ -45,6 +57,8 @@
 -->
 </body>
 </html>
+
+
 
 
 

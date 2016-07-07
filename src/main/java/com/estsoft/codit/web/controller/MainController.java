@@ -23,8 +23,13 @@ public class MainController {
 
     // 1. check logged in or not -> view the table or not -> job for .jsp
 
-    //return "main/index";
     return "main/_index";
+     }
+
+  @RequestMapping("/signupform")
+  public String signupform() {
+
+    return "client/_signupform";
   }
 
   @RequestMapping("/makerecruitform")
