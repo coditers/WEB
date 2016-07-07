@@ -27,7 +27,8 @@ public class ClientController {
   @RequestMapping("/signupform")
   public String signupform() {
 
-    return "client/signupform";
+    return "client/_signupform";
+
   }
 
   @RequestMapping(value = "/signup", method = RequestMethod.POST)
@@ -76,7 +77,7 @@ public class ClientController {
   /** Forwards signinform.jsp to user. */
   @RequestMapping("/signinform")
   public String signinform() {
-    return "client/signinform";
+    return "client/_signinform";
   }
 
 
@@ -89,7 +90,7 @@ public class ClientController {
     if(clientVo == null) {
       // auth failed
       model.addAttribute("auth", false); //jsp 에서 auth fail이면 다시 입력하라는 문구 출력
-      return "client/signinform";
+      return "client/_signinform";
     }
     System.out.println("\n\n\n\n\n\n\n\n sign in clientVo : " + clientVo);
     //auth success
