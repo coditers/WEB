@@ -8,8 +8,6 @@ import com.estsoft.codit.db.vo.ApplicantVo;
 import com.estsoft.codit.db.vo.CartVo;
 import com.estsoft.codit.db.vo.ProblemInfoVo;
 import com.estsoft.codit.db.vo.RecruitVo;
-import com.sun.xml.internal.org.jvnet.mimepull.MIMEMessage;
-
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -25,9 +23,6 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Properties;
-
-import javax.jms.Session;
 
 
 @Service

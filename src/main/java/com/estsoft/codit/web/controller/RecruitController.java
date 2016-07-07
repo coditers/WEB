@@ -88,7 +88,8 @@ public class RecruitController {
     if(filePath != null) {
       list = recruitService.parseExcel(filePath, id);
 
-      if(list != null) recruitService.insertApplicantList(list);
+      if(list != null)
+        recruitService.insertApplicantList(list);
 
       model.addAttribute("applicantList", list);
     }
@@ -139,16 +140,15 @@ public class RecruitController {
   @RequestMapping("/selectproblem")
   public String selectProblem(@PathVariable("recruitId") int id , @RequestParam(value= "probIdList") String probIdList){
 
-    //===========temporal code==============
-    String [] probIds = probIdList.split(" ");
+    String [] probIds = probIdList.split(",");
     for ( String s : probIds){
       CartVo vo = new CartVo();
       vo.setProblemInfoId( Integer.parseInt(s));
       vo.setRecruitId(id);
       recruitService.insertCart( vo );
     }
-    //======================================
     return "recruit/ready/recruit-ready-main";
+
   }
 
   //// MODULE - STARTED - APPLICANT STATISTICS

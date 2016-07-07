@@ -28,13 +28,23 @@
             }
         }
 
-        //submit the problem id list
+        //dynamically generate form tag, and submit the problem-Id list
         var submitList = function(){
-            console.log("===>");
-            console.log("" + JSON.stringify(list.arr));
-            console.log("" + list.arr.join(""));
-            console.log("<===");
 
+            var formTag = document.createElement("form");
+            formTag.method = "post";
+            formTag.action = "${pageContext.request.contextPath}/recruit/${recruitId}/selectproblem";
+
+            for( var i = 0 ; i < list.arr.length; i++ ){
+                var input = document.createElement("input");
+                input.type = "hidden";
+                input.name = "probIdList";
+                input.value = "" + list.arr[i];
+                formTag.insertBefore(input, null);
+            }
+            document.body.insertBefore(formTag,null);
+            formTag.submit();
+        }
             <%--$.ajax({--%>
                        <%--url: "${pageContext.request.contextPath}/recruit/${recruitId}/selectproblem",--%>
                        <%--type:"POST",--%>
@@ -49,14 +59,15 @@
 
                        <%--}--%>
                    <%--})--%>
-            $.post(
-                    "${pageContext.request.contextPath}/recruit/${recruitId}/selectproblem",
-                    {probIdList : list.arr.join(" ")},
-                    function(data) { //success handler
-                        window.location = "${pageContext.request.contextPath}/recruit/${recruitId}/main";
-                    }
-            );
-        }
+
+            <%--$.post(--%>
+                    <%--"${pageContext.request.contextPath}/recruit/${recruitId}/selectproblem",--%>
+                    <%--{probIdList : list.arr.join(" ")},--%>
+                    <%--function(data) { //success handler--%>
+                        <%--window.location = "${pageContext.request.contextPath}/recruit/${recruitId}/main";--%>
+                    <%--}--%>
+            <%--);--%>
+
     </script>
 
 </head>
@@ -104,6 +115,8 @@
         <td> 5개</td>
     </tr>
 </table>
+
+
 <!-- cart에 담긴 문제리스트 제출 -->
 <button onclick="submitList()">제출</button>
 <button>메인으로</button>
