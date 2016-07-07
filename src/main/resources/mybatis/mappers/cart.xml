@@ -3,19 +3,10 @@
 
 <!--need to check-->
 <mapper namespace="cart">
-  <select id="selectAll" resultType="cartvo">
-    <![CDATA[ SELECT id, recruit_id as recruitId, problem_info_id as problemInfoId FROM cart ]]>
-  </select>
-
   <insert id="insert" parameterType="cartvo">
-    <![CDATA[ insert into cart value(null, 1, 1); ]]>
+    <![CDATA[ insert into cart value(null, #{recruitId}, #{problemInfoId}); ]]>
     <selectKey keyProperty="id" resultType="int">
       SELECT LAST_INSERT_ID()
     </selectKey>
   </insert>
-
-  <select id="selectById" resultType="cartvo" parameterType="int">
-    <![CDATA[  SELECT * FROM cart WHERE id=#{id } ]]>
-  </select>
-
 </mapper>

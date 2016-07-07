@@ -13,15 +13,8 @@ public class CartRepository {
   @Autowired
   private SqlSession sqlSession;
 
-  public List<CartVo> getList(){
-    return sqlSession.selectList("cart.selectAll");
+  public int insert( CartVo vo){
+    return sqlSession.insert("cart.insert", vo);
   }
 
-  public int insert(){
-    return sqlSession.insert("cart.insert");
-  }
-
-  public CartVo get(int id){
-    return sqlSession.selectOne("cart.selectById", id);
-  }
 }

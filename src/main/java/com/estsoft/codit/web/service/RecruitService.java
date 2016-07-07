@@ -1,11 +1,14 @@
 package com.estsoft.codit.web.service;
 
 import com.estsoft.codit.db.repository.ApplicantRepository;
+import com.estsoft.codit.db.repository.CartRepository;
 import com.estsoft.codit.db.repository.ProblemInfoRepository;
 import com.estsoft.codit.db.repository.RecruitRepository;
 import com.estsoft.codit.db.vo.ApplicantVo;
+import com.estsoft.codit.db.vo.CartVo;
 import com.estsoft.codit.db.vo.ProblemInfoVo;
 import com.estsoft.codit.db.vo.RecruitVo;
+import com.sun.xml.internal.org.jvnet.mimepull.MIMEMessage;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -22,6 +25,9 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Properties;
+
+import javax.jms.Session;
 
 
 @Service
@@ -33,6 +39,10 @@ public class RecruitService {
   ApplicantRepository applicantRepository;
   @Autowired
   ProblemInfoRepository problemInfoRepository;
+  @Autowired
+  CartRepository cartRepository;
+
+
 
   private static final String FILE_SAVE_PATH = "/temp/";
 
@@ -181,4 +191,11 @@ public class RecruitService {
     return problemInfoRepository.getList();
   }
 
+  public void insertCart( CartVo vo){
+    cartRepository.insert( vo );
+  }
+
+  public void sendTickets( int recruitId ){
+
+  }
 }

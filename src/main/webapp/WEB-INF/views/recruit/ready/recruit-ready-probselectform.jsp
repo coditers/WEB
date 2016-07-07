@@ -51,7 +51,7 @@
                    <%--})--%>
             $.post(
                     "${pageContext.request.contextPath}/recruit/${recruitId}/selectproblem",
-                    {arr : list.arr.join(" ")},
+                    {probIdList : list.arr.join(" ")},
                     function(data) { //success handler
                         window.location = "${pageContext.request.contextPath}/recruit/${recruitId}/main";
                     }

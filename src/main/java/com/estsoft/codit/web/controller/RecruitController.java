@@ -1,6 +1,7 @@
 package com.estsoft.codit.web.controller;
 
 import com.estsoft.codit.db.vo.ApplicantVo;
+import com.estsoft.codit.db.vo.CartVo;
 import com.estsoft.codit.db.vo.ProblemInfoVo;
 import com.estsoft.codit.db.vo.RecruitVo;
 import com.estsoft.codit.web.service.RecruitService;
@@ -101,12 +102,13 @@ public class RecruitController {
   }
 
   @RequestMapping("sendticket")
-  public String sendTickets(){
-    //isApplicantRegisted();
+  public String sendTickets(@PathVariable("recruitId") int id){
+    //isApplicantRegistered();
     //isRecruitDateSet();
     //isProblemSelected();
+    recruitService.sendTickets(id);
 
-    return null;
+    return "main/index";
   }
 
   @RequestMapping("probselectform")
@@ -133,10 +135,19 @@ public class RecruitController {
 //    return "recruit/ready/recruit-ready-probselectform";
 //  }
 
+  //todo return...? how to get array from javascript with synchronous request.
   @RequestMapping("/selectproblem")
-  public String selectProblem(@PathVariable("recruitId") int id , @RequestParam(value= "arr") String str){
-    System.out.println("Im called =====================\n\n\n" + str);
+  public String selectProblem(@PathVariable("recruitId") int id , @RequestParam(value= "probIdList") String probIdList){
 
+    //===========temporal code==============
+    String [] probIds = probIdList.split(" ");
+    for ( String s : probIds){
+      CartVo vo = new CartVo();
+      vo.setProblemInfoId( Integer.parseInt(s));
+      vo.setRecruitId(id);
+      recruitService.insertCart( vo );
+    }
+    //======================================
     return "recruit/ready/recruit-ready-main";
   }
 
