@@ -39,7 +39,7 @@
                 var input = document.createElement("input");
                 input.type = "hidden";
                 input.name = "probIdList";
-                input.value = "" + list.arr[i];
+                input.value = list.arr[i];
                 formTag.insertBefore(input, null);
             }
             document.body.insertBefore(formTag,null);
