@@ -18,13 +18,7 @@
 </head>
 <body class="body-dark clearfix">
 
-<header id="header-dark" class="header clearfix">
-    <img class="sublogo" src="${pageContext.request.contextPath}/assets/images/sublogo-beige.png">
-    <button id="signin-brown" class="headerbutton">SIGN IN</button>
-    <a href="${pageContext.request.contextPath}/client/signupform">
-    <button id="signup-brown" class="headerbutton">SIGN UP</button>
-    </a>
-</header>
+<jsp:include page="/WEB-INF/views/include/header_dark.jsp"></jsp:include>
 
 <div id="main-centercontent" class="center-content clearfix">
     <div class="container clearfix">

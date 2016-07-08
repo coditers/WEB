@@ -12,23 +12,39 @@
     <title>signin</title>
     <link href="http://fonts.googleapis.com/css?family=Cabin:700,400,600|Raleway:100,700|Noto+Sans:400" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/standardize.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/client/signin-grid.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/client/signin.css">
-    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/grid.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/codit.css">
+    <meta charset = "utf-8"/>
 </head>
-<body class="body page-signin clearfix">
+<body class="body-light clearfix">
+
 <jsp:include page="/WEB-INF/views/include/header_light.jsp"></jsp:include>
-<div class="signin-form signin-form-1 clearfix">
-    <div class="signin-form"></div>
-    <h1 class="text-signin">Sign in</h1>
-    <input class="useremail" placeholder="User email" type="text">
-    <input class="password" placeholder="Password" type="text">
-    <button class="signin">Sign in</button>
-</div>
-<div class="not-codit-user clearfix">
-    <div class="notacodituser"></div>
-    <h1 class="text-notcodituser">Not a Codit user?</h1>
-    <button class="tryusnow">Try us now!</button>
+
+<div id = "signup-form-div" class="center-content clearfix">
+    <h1 class="text-signup">Sign in</h1>
+    <form method = "post" id="signup-form" >
+        <table id="signup-form-table">
+            <tbody>
+            <tr>
+                <td class = "tablelable">
+                    <h2>Business email:</h2>
+                </td>
+                <td class = "tableinput">
+                    <input id="email" class="tableinput tableinput-1" name="email" type="email">
+                </td>
+            </tr>
+            <tr>
+                <td class = "tablelable">
+                    <h2 for="password">Password:</h2>
+                </td>
+                <td class = "tableinput">
+                    <input id="password" class="tableinput tableinput-1" name="password" type="password">
+                </td>
+            </tr>
+            <tr><td class="tablebutton" colspan="2"><button id="btn-signin" class="submitbutton">Sign in</button></td></tr>
+            </tbody>
+        </table>
+    </form>
 </div>
 </body>
 </html>

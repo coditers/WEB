@@ -18,13 +18,10 @@
 </head>
 <body class="body-light clearfix">
 
-<header id = "header-light" class="header clearfix">
-    <img class="sublogo" src="${pageContext.request.contextPath}/assets/images/sublogo-brown.png">
-    <button id="signin-beige" class="headerbutton">SIGN IN</button>
-    <button id="signup-beige" class="headerbutton">SIGN UP</button>
-</header>
+<jsp:include page="/WEB-INF/views/include/header_light.jsp"></jsp:include>
 
 <div id = "signup-form-div" class="center-content clearfix">
+    <div class="container clearfix">
     <h1 class="text-signup">Sign up</h1>
     <form method = "post" id="signup-form" >
         <table id="signup-form-table">
@@ -79,8 +76,10 @@
             <input id="chk-agreement" class="checkbox" type="checkbox">
         </label>
         <h3 class="text-agreement">I agree to offer information to Codit</h3>
+
     </div>
-    <button id="btn-signup" class="submitbutton">Sign up</button>
+        <button id="btn-signup" class="submitbutton">Sign up</button>
+    </div>
 </div>
 </body>
 </html>
