@@ -118,6 +118,8 @@ public class RecruitController {
     //view prob info
     List<ProblemInfoVo> problemInfoVoList = recruitService.getProblemInfoVoList();
 
+    //todo cart list view
+
     model.addAttribute("problemInfoVoList", problemInfoVoList);
     model.addAttribute("recruitId", id);
 
@@ -138,12 +140,14 @@ public class RecruitController {
 
   //todo return...? how to get array from javascript with synchronous request.
   @RequestMapping("/selectproblem")
-  public String selectProblem(@PathVariable("recruitId") int id , @RequestParam(value= "probIdList") String probIdList){
+  public String selectProblem(@PathVariable("recruitId") int id , @RequestParam(value= "probIdList") int [] probIdList){
 
-    String [] probIds = probIdList.split(",");
-    for ( String s : probIds){
+    //todo if carts are already stored delete carts.
+
+    for ( int i : probIdList){
+      System.out.println(i);
       CartVo vo = new CartVo();
-      vo.setProblemInfoId( Integer.parseInt(s));
+      vo.setProblemInfoId( i );
       vo.setRecruitId(id);
       recruitService.insertCart( vo );
     }
