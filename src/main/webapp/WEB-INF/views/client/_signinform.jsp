@@ -15,6 +15,19 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/grid.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/codit.css">
     <meta charset = "utf-8"/>
+
+    <%--=============================temporal code==============================--%>
+    <script type="text/javascript">
+
+        var submitForm = function( ){
+            var formTag = document.getElementById("signup-form");
+            formTag.action = "${pageContext.request.contextPath}/client/signin";
+            formTag.submit();
+        }
+
+    </script>
+    <%--========================================================================--%>
+
 </head>
 <body class="body-light clearfix">
 
@@ -41,7 +54,7 @@
                     <input id="password" class="tableinput tableinput-1" name="password" type="password">
                 </td>
             </tr>
-            <tr><td class="tablebutton" colspan="2"><button id="btn-signin" class="submitbutton">Sign in</button></td></tr>
+            <tr><td class="tablebutton" colspan="2"><button id="btn-signin" class="submitbutton" onclick="submitForm()">Sign in</button></td></tr>
             </tbody>
         </table>
     </form>

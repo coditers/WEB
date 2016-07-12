@@ -14,8 +14,8 @@ public class ApplicantRepository {
   @Autowired
   private SqlSession sqlSession;
 
-  public List<ApplicantVo> getList(){
-    return sqlSession.selectList("applicant.selectAll");
+  public List<ApplicantVo> getListByRecruitId( int recruitId){
+    return sqlSession.selectList("applicant.selectListByRecruitId", recruitId);
   }
 
   public int insert( ApplicantVo vo ){

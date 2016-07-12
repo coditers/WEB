@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!--need to check-->
+
 <mapper namespace="applicant">
-  <select id="selectAll" resultType="applicantvo">
-    <![CDATA[ SELECT id, name, email, ticket, start_time as startTime, submit_time as submitTime, recruit_id  FROM applicant ]]>
+  <select id="selectListByRecruitId" parameterType="int" resultType="applicantvo">
+    <![CDATA[ SELECT id, name, email, ticket, start_time as startTime, submit_time as submitTime, recruit_id as recruitId
+              FROM applicant
+              WHERE recruit_id = #{recruitId}]]>
   </select>
 
   <insert id="insert" parameterType="applicantvo">
@@ -14,6 +16,7 @@
     </selectKey>
   </insert>
 
+  <!--need to check-->
   <select id="selectById" resultType="applicantvo" parameterType="int">
     <![CDATA[  SELECT * FROM applicant WHERE id=#{id } ]]>
   </select>

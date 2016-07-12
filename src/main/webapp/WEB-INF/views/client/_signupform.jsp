@@ -15,6 +15,18 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/grid.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/codit.css">
     <meta charset = "utf-8"/>
+
+    <%--=============================temporal code==============================--%>
+    <script type="text/javascript">
+
+        var submitForm = function( ){
+            var formTag = document.getElementById("signup-form");
+            formTag.action = "${pageContext.request.contextPath}/client/signup";
+            formTag.submit();
+        }
+
+    </script>
+    <%--========================================================================--%>
 </head>
 <body class="body-light clearfix">
 
@@ -78,7 +90,7 @@
         <h3 class="text-agreement">I agree to offer information to Codit</h3>
 
     </div>
-        <button id="btn-signup" class="submitbutton">Sign up</button>
+        <button id="btn-signup" class="submitbutton" onclick="submitForm()">Sign up</button>
     </div>
 </div>
 </body>

@@ -18,11 +18,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.activation.DataHandler;
+import javax.activation.FileDataSource;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Properties;
 
 
 @Service
@@ -191,6 +201,47 @@ public class RecruitService {
   }
 
   public void sendTickets( int recruitId ){
+    String link = "127.0.0.1:8080/main";//"192.168.230.17:8080/?ticket=";
+    List<ApplicantVo> appList = applicantRepository.getListByRecruitId( recruitId );
+//    for ( ApplicantVo vo : appList){
+//      //todo mail content!
+//      sendMail( vo.getEmail(), link + vo.getTicket());
+//    }
+      sendMail("joonhoyeom@gmail.com", link);
+  }
 
+  //todo convert to spring api, get message from user, content generateion function
+  public void sendMail( String toAddr, String content){// String companyName
+
+    Properties props = System.getProperties();
+    props.setProperty("mail.smtp.host", "115.68.116.235");
+
+    Session session = Session.getDefaultInstance(props);
+    MimeMessage msg = new MimeMessage(session);
+
+    try {
+      msg.setFrom(new InternetAddress("noreply@codit.com", "estsoft"));
+      msg.addRecipient(Message.RecipientType.TO, new InternetAddress( toAddr, "joon-ho"));
+      msg.setSubject("제목이 이러저러합니다");
+//      MimeMultipart multipart = new MimeMultipart();
+//
+//      MimeBodyPart part = new MimeBodyPart();
+//      part.setContent( "<a href>"+ content + "</a>", "text/html; charset=utf-8");
+//      multipart.addBodyPart(part);
+
+//      part = new MimeBodyPart();
+//      FileDataSource fds = new FileDataSource("파일 경로");
+//      part.setDataHandler(new DataHandler(fds));
+//      part.setFileName("파일명");
+//      multipart.addBodyPart(part);
+
+//      msg.setContent(multipart);
+      msg.setContent("http://115.68.116.235:8080/", "text/html; charset=utf-8");
+
+      Transport.send(msg);
+    } catch (Exception e) {
+      System.out.println(e);
+      System.out.println("error : mail send fail");
+    }
   }
 }
