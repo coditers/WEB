@@ -17,6 +17,8 @@ public class ClientRepository {
     return sqlSession.insert("client.insert", clientVo);
   }
 
+  public ClientVo get(int id) { return sqlSession.selectOne("client.selectById", id); }
+
   public ClientVo selectByEmailPassword( ClientVo clientVo ) {
     return sqlSession.selectOne("client.selectByEmailPassword", clientVo);
   }
