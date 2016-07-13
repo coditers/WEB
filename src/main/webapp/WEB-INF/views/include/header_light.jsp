@@ -6,7 +6,7 @@
 <header id="header-light" class="header clearfix">
     <img class="sublogo" src="${pageContext.request.contextPath}/assets/images/sublogo-brown.png">
     <c:choose>
-        <c:when test="${authUserClient != null}">
+        <c:when test="${authClient != null}">
             <a href="${pageContext.request.contextPath}/client/signout">
                 <button id="signout-beige" class="headerbutton">SIGN OUT</button>
             </a>

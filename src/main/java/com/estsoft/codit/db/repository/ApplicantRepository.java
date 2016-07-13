@@ -22,10 +22,6 @@ public class ApplicantRepository {
     return sqlSession.insert("applicant.insert", vo);
   }
 
-  public ApplicantVo get(int id){
-    return sqlSession.selectOne("applicant.selectById", id);
-  }
-
   public void insertList( List<ApplicantVo> list){
     for( ApplicantVo vo : list){
       insert(vo);

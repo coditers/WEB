@@ -4,19 +4,7 @@
 <mapper namespace="recruit">
 
   <!--need to check-->
-  <select id="selectAll" resultType="recruitvo">
-    <![CDATA[
-      SELECT id        AS id,
-             title     AS title,
-             from_date AS fromDate,
-             to_date   AS toDate,
-             client_id AS clientId
-        FROM recruit
-    ]]>
-  </select>
-
-  <!--need to check-->
-  <select id="selectListByClientId" resultType="recruitvo" parameterType="recruitvo">
+  <select id="selectListByClientId" resultType="recruitvo" parameterType="int">
     <![CDATA[
       SELECT id        AS id,
              title     AS title,

@@ -16,8 +16,4 @@
     </selectKey>
   </insert>
 
-  <!--need to check-->
-  <select id="selectById" resultType="applicantvo" parameterType="int">
-    <![CDATA[  SELECT * FROM applicant WHERE id=#{id } ]]>
-  </select>
 </mapper>

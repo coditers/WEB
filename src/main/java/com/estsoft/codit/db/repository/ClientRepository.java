@@ -13,16 +13,8 @@ public class ClientRepository {
   @Autowired
   private SqlSession sqlSession;
 
-  public List<ClientVo> getList() {
-    return sqlSession.selectList("client.selectAll");
-  }
-
   public int insert(ClientVo clientVo) {
     return sqlSession.insert("client.insert", clientVo);
-  }
-
-  public ClientVo get(int id) {
-    return sqlSession.selectOne("client.selectById", id);
   }
 
   public ClientVo selectByEmailPassword( ClientVo clientVo ) {

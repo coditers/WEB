@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -77,9 +76,8 @@ public class ClientController {
   /** Forwards signinform.jsp to user. */
   @RequestMapping("/signinform")
   public String signinform() {
-    return "client/_signinform";
+    return "client/signinform";
   }
-
 
   @RequestMapping(value = "/signin", method = RequestMethod.POST)
   public String signin(@ModelAttribute ClientVo clientVo, HttpServletRequest request, Model model) {
@@ -90,15 +88,14 @@ public class ClientController {
     if(clientVo == null) {
       // auth failed
       model.addAttribute("auth", false); //jsp 에서 auth fail이면 다시 입력하라는 문구 출력
-      return "client/_signinform";
+      return "client/signinform";
     }
     System.out.println("\n\n\n\n\n\n\n\n sign in clientVo : " + clientVo);
     //auth success
     HttpSession session = request.getSession(true);
     session.setAttribute("authClient", clientVo);
-    return "redirect:/main/";
+    return "redirect:/";
   }
-
 
   @RequestMapping("/signout")
   public String signout( HttpServletRequest request ) {
@@ -109,16 +106,6 @@ public class ClientController {
       session.removeAttribute( "authUser" );
       session.invalidate();
     }
-    return "redirect:/main/";
+    return "redirect:/";
   }
-
-  /**
-   * Response Body Test.
-   */
-  @RequestMapping( "/hello" )
-  @ResponseBody
-  public String hello() {
-    return "Hello, Codit.";
-  }
-
 }
