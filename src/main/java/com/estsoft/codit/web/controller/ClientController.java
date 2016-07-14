@@ -68,9 +68,9 @@ public class ClientController {
     model.addAttribute( "clientVo", clientVo );
 
     if (clientVo != null) {
-      return "client/signup-success";
+      return "client/_signup-success";
     } else {
-      return "client/signup-fail";
+      return "client/_signup-fail";
     }
   }
 
@@ -83,7 +83,7 @@ public class ClientController {
 
   @RequestMapping(value = "/signin", method = RequestMethod.POST)
   public String signin(@ModelAttribute ClientVo clientVo, HttpServletRequest request, Model model) {
-
+    System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ClientController 86: "+clientVo);
     // Get authenticate user with username and password using a database.
     clientVo = clientService.validsignin( clientVo );
     // Check authenticate user

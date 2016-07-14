@@ -9,10 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="icon" href="${pageContext.request.contextPath}/assets/icon/0630_favicon_beige.ico">
-    <title>sign in
-
-
-    </title>
+    <title>sign up: fail</title>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/materialize/css/materialize.min.css"/>
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/materialize/css/materialize-custom.css"  media="screen,projection"/>
@@ -26,29 +23,19 @@
     <div class="row ">
         <div class="col s6 offset-s3">
             <div class="card-panel white">
-                <h4 class="header center black-text bold">Sign in</h4>
+                <h4 class="header center black-text bold">Sorry, an error occured</h4>
                 <br>
-                <div class="row">
-                    <div class="col s8 offset-s2">
-                        <form id="signform" action = "${pageContext.request.contextPath}/client/signin" method = "POST">
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input name="email" id="email" type="email" class="validate">
-                                    <label for="email">Company Email</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input name="password" id="password" type="password" class="validate">
-                                    <label for="password">Password</label>
-                                </div>
-                            </div>
-                            <br>
-                            <br>
-                            <div class="row center ">
-                            <button type="submit" class="waves-effect waves-light btn btn-block center-block brown text-white">Submit</button>
-                            </div>
-                        </form>
+                <br>
+                <div class="row center">
+                    <div class="col s3 center offset-s3">
+                        <a href="${pageContext.request.contextPath}/main">
+                        <button class="waves-effect waves-light btn btn-block center-block brown text-white">Go to main</button>
+                            </a>
+                    </div>
+                    <div class="col s3 center ">
+                        <a href="${pageContext.request.contextPath}/client/signupform">
+                        <button class="waves-effect waves-light btn btn-block center-block brown text-white">Sign up</button>
+                            </a>
                     </div>
                 </div>
             </div>

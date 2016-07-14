@@ -8,7 +8,7 @@
     <![CDATA[
       INSERT
         INTO client
-      VALUES (null, #{firstName}, #{lastName}, #{email}, password(#{password }));
+      VALUES (null, #{firstName}, #{lastName}, #{email}, password(#{passwd }));
     ]]>
     <selectKey keyProperty="id" resultType="int">
       SELECT LAST_INSERT_ID()
@@ -31,10 +31,10 @@
              first_name AS firstName,
              last_name AS lastName,
              email AS email,
-             password AS password
+             passwd AS passwd
         FROM client
        WHERE email = #{email}
-         AND password = PASSWORD(${password})
+         AND passwd = PASSWORD(${passwd})
     ]]>
   </select>
 

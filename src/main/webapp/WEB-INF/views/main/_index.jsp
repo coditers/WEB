@@ -2,57 +2,43 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!doctype html>
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="icon" href="${pageContext.request.contextPath}/assets/icon/0630_favicon_beige.ico">
-
-    <title>main index</title>
-    <link href="http://fonts.googleapis.com/css?family=Cabin:600,400|Raleway:100,700|Noto+Sans:400" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/standardize.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/grid.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/codit.css">
-    <meta charset = "utf-8"/>
+    <title>main</title>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/materialize/css/materialize-custom.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/materialize/css/materialize.min.css"/>
 </head>
-<body class="body-dark clearfix">
 
-<jsp:include page="/WEB-INF/views/include/header_dark.jsp"></jsp:include>
-
-<div id="main-centercontent" class="center-content clearfix">
-    <div class="container clearfix">
-        <h1 id="catchphrase" class="center-content">Hire Faster, Hire easier</h1>
-        <h2 id="shortdesc" class="center-content">Online Coding Test Platform</h2>
+<body class="brown darken-3">
+    <nav class="brown darken-4" role="navigation">
+        <div class="nav-wrapper container">
+            <a href="${pageContext.request.contextPath}/main">
+            <img id="sublogo" src="${pageContext.request.contextPath}/assets/images/sublogo-beige.png">
+            </a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="${pageContext.request.contextPath}/client/signinform">sign in</a></li>
+                <li><a href="${pageContext.request.contextPath}/client/signupform">sign up</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="section no-pad-bot" id="index-banner">
+        <h3 id ="center-firstblock" class="header center white-text bold">Hire Faster, Hire Easier</h3>
+        <div class="row center clearfix">
+            <h5 id="catchphrase" class="header col s12 light bold">Online coding test platform</h5>
+        </div>
+        <div class="row center clearfix">
+            <img id="mainlogo" src="${pageContext.request.contextPath}/assets/images/mainlogo-beige.png">
+        </div>
     </div>
-    <img id="mainlogo-beige" class="center-content" src="${pageContext.request.contextPath}/assets/images/mainlogo-beige.png">
-</div>
 
-<c:if test='${authClient != null}'>
-    <table>
-        <tr>
-            <th><a href="${pageContext.request.contextPath}/main/makerecruit"> + 새로운 채용</a></th>
-        </tr>
-        <tr>
-            <td>2016 하반기</td>
-            <td><a href="#">></a></td>
-        </tr>
-        <tr>
-            <td>2016 상반기</td>
-            <td><a href="#">></a></td>
-        </tr>
-    </table>
-</c:if>
-
-<!-- jQuery (necessary for Bootstrap's Javascript plugins) jQuery  호출
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<!-- Include all compiled plugins, or include individual files as needed  자바 스크립트 호출
-<script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
--->
+<!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/materialize/js/materialize.min.js"></script>
 </body>
 </html>
-
-
-
-
-
