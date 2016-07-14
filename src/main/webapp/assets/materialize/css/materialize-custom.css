@@ -1,25 +1,44 @@
+/*
+1. For all
+2. header
+3. main page
+4. card
+5. form
+6. collections
+7. icons
+*/
+
+/* 1. For all*/
 *{ font-family: "Segoe UI"}
-
-#catchphrase{color: #c3614d}
-#mainlogo{margin-left: 7rem; width: 600px; height: auto;}
-#center-firstblock{ margin-top: 8%;}
-#sublogo{margin: 7px 0; width: 50px; height: auto;}
-#formcard{margin: 5rem auto 0 auto}
-#signform{margin-right: auto; margin-left: auto;}
-
 .bold{font-family: "Segoe UI Semibold"}
 
 
-/* label focus color */
+/* 2. header*/
+#sublogo{margin: 7px 0; width: 50px; height: auto;}
+
+
+/* 3. main page*/
+#catchphrase{color: #c3614d}
+#mainlogo{margin-left: 7rem; width: 600px; height: auto;}
+#center-firstblock{ margin-top: 8%;}
+
+
+/* 4. card*/
+#formcard{margin: 5rem auto 0 auto}
+
+
+/* 5. form*/
+#signform{margin-right: auto; margin-left: auto;}
+
 .input-field input[type=text]:focus + label {
     color: #c3614d;
 }
-/* label underline focus color */
+
 .input-field input[type=text]:focus {
     border-bottom: 1px solid #c3614d;
     box-shadow: 0 1px 0 0 #000;
 }
-/* valid color */
+
 .input-field input[type=text].valid {
     border-bottom: 1px solid #c3614d;
     box-shadow: 0 1px 0 0 #000;
@@ -28,12 +47,12 @@
 .input-field input[type=email]:focus + label {
     color: #c3614d;
 }
-/* label underline focus color */
+
 .input-field input[type=email]:focus {
     border-bottom: 1px solid #c3614d;
     box-shadow: 0 1px 0 0 #000;
 }
-/* valid color */
+
 .input-field input[type=email].valid {
     border-bottom: 1px solid #c3614d;
     box-shadow: 0 1px 0 0 #000;
@@ -51,6 +70,30 @@
 .input-field input[type=password].valid {
     border-bottom: 1px solid #c3614d;
     box-shadow: 0 1px 0 0 #000;
+}
+
+/*6. Collections*/
+#new-recruit{
+    font-size: x-large;
+}
+.collection .collection-item {
+    color: black;
+    line-height: 4rem;
+    font-size: large;
+}
+
+.collection a.collection-item{
+    color: black;
+}
+
+/*7. icons*/
+#back-icon{
+    padding-left: 0;
+    padding-right: 0;
+}
+.material-icons{
+    padding-left: 1rem;
+    padding-right: 30px;
 }
 
 

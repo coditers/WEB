@@ -18,7 +18,7 @@ public class MainController {
   RecruitService recruitService;
 
   //main
-  @RequestMapping("/")
+  @RequestMapping("")
   public String index() {
 
     // 1. check logged in or not -> view the table or not -> job for .jsp
