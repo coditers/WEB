@@ -33,6 +33,7 @@ public class ClientService {
    * @return 1 if sign up process is succeed.
    */
   public int signup( ClientVo clientVo ) {
+
     return clientRepository.insert( clientVo );
   }
 
@@ -40,7 +41,7 @@ public class ClientService {
    * Valid the client's email and password.
    */
   public ClientVo validsignin( ClientVo clientVo ) {
-
+    System.out.println("*************************************************************Client Service 44: "+clientVo);
     return clientRepository.selectByEmailPassword( clientVo );
   }
 

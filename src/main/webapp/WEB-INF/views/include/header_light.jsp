@@ -3,21 +3,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<header id="header-light" class="header clearfix">
-    <img class="sublogo" src="${pageContext.request.contextPath}/assets/images/sublogo-brown.png">
-    <c:choose>
-        <c:when test="${authClient != null}">
-            <a href="${pageContext.request.contextPath}/client/signout">
-                <button id="signout-beige" class="headerbutton">SIGN OUT</button>
-            </a>
-        </c:when>
-        <c:otherwise>
-            <a href="${pageContext.request.contextPath}/client/signinform">
-                <button id="signin-beige" class="headerbutton">SIGN IN</button>
-            </a>
-            <a href="${pageContext.request.contextPath}/client/signupform">
-                <button id="signup-beige" class="headerbutton">SIGN UP</button>
-            </a>
-        </c:otherwise>
-    </c:choose>
-</header>
+<nav class="orange lighten-3" role="navigation">
+    <div class="nav-wrapper container">
+        <a href="${pageContext.request.contextPath}/main">
+        <img id="sublogo" src="${pageContext.request.contextPath}/assets/images/sublogo-brown.png">
+        </a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a class="brown-text bold" href="${pageContext.request.contextPath}/client/signinform">sign in</a></li>
+            <li><a class="brown-text bold" href="${pageContext.request.contextPath}/client/signupform">sign up</a></li>
+        </ul>
+    </div>
+</nav>

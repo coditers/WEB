@@ -2,62 +2,62 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!doctype html>
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="icon" href="${pageContext.request.contextPath}/assets/icon/0630_favicon_beige.ico">
+    <title>sign in
 
-    <title>signin</title>
-    <link href="http://fonts.googleapis.com/css?family=Cabin:700,400,600|Raleway:100,700|Noto+Sans:400" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/standardize.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/grid.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/codit.css">
-    <meta charset = "utf-8"/>
 
-    <%--=============================temporal code==============================--%>
-    <script type="text/javascript">
-
-        var submitForm = function( ){
-            var formTag = document.getElementById("signup-form");
-            formTag.action = "${pageContext.request.contextPath}/client/signin";
-            formTag.submit();
-        }
-
-    </script>
-    <%--========================================================================--%>
-
+    </title>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/materialize/css/materialize.min.css"/>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/materialize/css/materialize-custom.css"  media="screen,projection"/>
 </head>
-<body class="body-light clearfix">
 
+<body class="orange lighten-5 flexbody">
 <jsp:include page="/WEB-INF/views/include/header_light.jsp"></jsp:include>
-
-<div id = "signup-form-div" class="center-content clearfix">
-    <h1 class="text-signup">Sign in</h1>
-    <form method = "post" id="signup-form" >
-        <table id="signup-form-table">
-            <tbody>
-            <tr>
-                <td class = "tablelable">
-                    <h2>Business email:</h2>
-                </td>
-                <td class = "tableinput">
-                    <input id="email" class="tableinput tableinput-1" name="email" type="email">
-                </td>
-            </tr>
-            <tr>
-                <td class = "tablelable">
-                    <h2 for="password">Password:</h2>
-                </td>
-                <td class = "tableinput">
-                    <input id="password" class="tableinput tableinput-1" name="password" type="password">
-                </td>
-            </tr>
-            <tr><td class="tablebutton" colspan="2"><button id="btn-signin" class="submitbutton" onclick="submitForm()">Sign in</button></td></tr>
-            </tbody>
-        </table>
-    </form>
+<div class="section no-pad-bot" id="index-banner">
+    <br>
+    <br>
+    <div class="row ">
+        <div class="col s6 offset-s3">
+            <div class="card-panel white">
+                <h4 class="header center black-text bold">Sign in</h4>
+                <br>
+                <div class="row">
+                    <div class="col s8 offset-s2">
+                        <form id="signform" action = "${pageContext.request.contextPath}/client/signin" method = "POST">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input name="email" id="email" type="email" class="validate">
+                                    <label for="email">Company Email</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input name="password" id="password" type="password" class="validate">
+                                    <label for="password">Password</label>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="row center ">
+                            <button type="submit" class="waves-effect waves-light btn btn-block center-block brown text-white">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/materialize/js/materialize.min.js"></script>
 </body>
 </html>

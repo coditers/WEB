@@ -34,7 +34,7 @@
              password AS password
         FROM client
        WHERE email = #{email}
-         AND password = PASSWORD(${password})
+         AND password = PASSWORD(#{password})
     ]]>
   </select>
 

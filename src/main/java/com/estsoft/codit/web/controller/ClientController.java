@@ -26,7 +26,7 @@ public class ClientController {
   @RequestMapping("/signupform")
   public String signupform() {
 
-    return "client/_signupform";
+    return "client/signupform";
 
   }
 
@@ -81,7 +81,7 @@ public class ClientController {
 
   @RequestMapping(value = "/signin", method = RequestMethod.POST)
   public String signin(@ModelAttribute ClientVo clientVo, HttpServletRequest request, Model model) {
-
+    System.out.println("*************************************************************Client Controller 84: "+clientVo);
     // Get authenticate user with username and password using a database.
     clientVo = clientService.validsignin( clientVo );
     // Check authenticate user

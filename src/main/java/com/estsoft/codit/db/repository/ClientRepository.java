@@ -20,6 +20,7 @@ public class ClientRepository {
   public ClientVo get(int id) { return sqlSession.selectOne("client.selectById", id); }
 
   public ClientVo selectByEmailPassword( ClientVo clientVo ) {
+    System.out.println("*************************************************************ClientRepository 23: "+clientVo);
     return sqlSession.selectOne("client.selectByEmailPassword", clientVo);
   }
 
