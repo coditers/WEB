@@ -51,6 +51,26 @@ public class RecruitService {
     return recruitRepository.get(id);
   }
 
+  public List<RecruitVo> getRecruitListByClientId(int clientId){ return recruitRepository.getListByClientId(clientId);}
+
+  public List<ProblemInfoVo> getProblemInfoVoList( ){
+    return problemInfoRepository.getList();
+  }
+
+
+  public int insert(RecruitVo recruitVo) {
+    return recruitRepository.insert(recruitVo);
+  }
+
+  public void insertApplicantList(List<ApplicantVo> list){
+    applicantRepository.insertList(list);
+  }
+
+  public void insertCart( CartVo vo){
+    cartRepository.insert( vo );
+  }
+
+
   public boolean isContained(int recruitId, int clientId){
 
     RecruitVo vo = recruitRepository.getByIdClientId(recruitId, clientId);
@@ -58,10 +78,6 @@ public class RecruitService {
       return true;
 
     return false;
-  }
-
-  public int insert(RecruitVo recruitVo) {
-    return recruitRepository.insert(recruitVo);
   }
 
   /**
@@ -190,18 +206,6 @@ public class RecruitService {
       e.printStackTrace();
     }
     return list;
-  }
-
-  public void insertApplicantList(List<ApplicantVo> list){
-    applicantRepository.insertList(list);
-  }
-
-  public List<ProblemInfoVo> getProblemInfoVoList( ){
-    return problemInfoRepository.getList();
-  }
-
-  public void insertCart( CartVo vo){
-    cartRepository.insert( vo );
   }
 
   public void sendTickets( int recruitId ){

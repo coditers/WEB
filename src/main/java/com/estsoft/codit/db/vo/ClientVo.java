@@ -1,11 +1,21 @@
 package com.estsoft.codit.db.vo;
 
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class ClientVo {
   private int id;
+  @NotEmpty
   private String firstName;
+  @NotEmpty
   private String lastName;
+
+  @NotEmpty
+  @Email
   private String email;
+
+  @NotEmpty
   private String password;
 
   public int getId() {

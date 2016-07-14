@@ -42,12 +42,12 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s6">
-                                    <input name="first-name" id="first-name" type="text"
+                                    <input name="firstName" id="first-name" type="text"
                                            class="validate">
                                     <label for="first-name">First Name</label>
                                 </div>
                                 <div class="input-field col s6">
-                                    <input name="last-name" id="last-name" type="text" class="validate">
+                                    <input name="lastName" id="last-name" type="text" class="validate">
                                     <label for="last-name">Last Name</label>
                                 </div>
                             </div>

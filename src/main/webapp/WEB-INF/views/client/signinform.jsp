@@ -43,6 +43,9 @@
                                     <label for="password">Password</label>
                                 </div>
                             </div>
+                            <c:if test="${auth == false}">
+                                Incorrect identification - 나중에 디자인 해줘!
+                            </c:if>
                             <br>
                             <br>
                             <div class="row center ">

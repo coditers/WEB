@@ -18,12 +18,19 @@
 <body class="brown darken-3">
     <nav class="brown darken-4" role="navigation">
         <div class="nav-wrapper container">
-            <a href="${pageContext.request.contextPath}/main">
+            <a href="${pageContext.request.contextPath}">
             <img id="sublogo" src="${pageContext.request.contextPath}/assets/images/sublogo-beige.png">
             </a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="${pageContext.request.contextPath}/client/signinform">sign in</a></li>
-                <li><a href="${pageContext.request.contextPath}/client/signupform">sign up</a></li>
+                <c:choose>
+                    <c:when test='${empty authClient}'>
+                        <li><a href="${pageContext.request.contextPath}/client/signinform">sign in</a></li>
+                        <li><a href="${pageContext.request.contextPath}/client/signupform">sign up</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li><a href="${pageContext.request.contextPath}/client/signout">sign out</a></li>
+                    </c:otherwise>
+                </c:choose>
             </ul>
         </div>
     </nav>
@@ -36,7 +43,7 @@
             <img id="mainlogo" src="${pageContext.request.contextPath}/assets/images/mainlogo-beige.png">
         </div>
     </div>
-
+<%--temporal code--%>
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/materialize/js/materialize.min.js"></script>
