@@ -59,13 +59,7 @@ public class RecruitController {
 
   @RequestMapping("/appregform")
   public String applicantregisterform(@PathVariable("recruitId") int id, Model model) {
-//    //Auth
-//    if ( !authRecruit(id, session) ) {
-//      return "redirect:/main/";
-//    }
-
     model.addAttribute("recruitVo", recruitService.getRecruitVo(id));
-
     return "recruit/ready/recruit-ready-appregform";
   }
 
@@ -132,17 +126,6 @@ public class RecruitController {
     return "recruit/ready/recruit-ready-probselectform";
   }
 
-  //// MODULE - READY - PROBLEM SELECTION
-//  @RequestMapping("/probselect")
-//  public String problemselectform(@PathVariable("id") int id,
-//                                  HttpSession session) {
-//    //Auth
-//    if ( !authRecruit(id, session) ) {
-//      return "redirect:/main/";
-//    }
-//
-//    return "recruit/ready/recruit-ready-probselectform";
-//  }
 
   @RequestMapping("/selectproblem")
   public String selectProblem(@PathVariable("recruitId") int id , @RequestParam(value= "probIdList") int [] probIdList){
@@ -160,57 +143,19 @@ public class RecruitController {
 
   }
 
-  //// MODULE - STARTED - APPLICANT STATISTICS
-//  @RequestMapping("/appstat")
-//  public String applicantstatform(@PathVariable("id") int id,
-//                                  HttpSession session) {
-//    //Auth
-//    if ( !authRecruit(id, session) ) {
-//      return "redirect:/main/";
-//    }
-//
-//    return "recruit/started/recruit-started-appstatform";
-//  }
-
-  @RequestMapping("/ajax-appstat")
-  public String applicantstat() {
-    // TODO - Application Statistic
-    return null;
+  @RequestMapping("/applicantstatform")
+  public String applicantStatForm() {
+    //어려우니 나중으로
+    return "recruit/started/recruit-started-appstatform";
   }
 
-  //// MODULE - STARTED - PROBLEM STATISTICS
-//  @RequestMapping("/probstat")
-//  public String problemstatform(@PathVariable("id") int id,
-//                                HttpSession session) {
-//    //Auth
-//    if ( !authRecruit(id, session) ) {
-//      return "redirect:/main/";
-//    }
-//
-//    return "recruit/started/recruit-started-probstatform";
-//  }
-
-  @RequestMapping("/ajax-probstat")
-  public String problemstat() {
-    // TODO - Problem Statistic
-    return null;
+  @RequestMapping("/problemstatform")
+  public String problemStatForm() {
+    return "recruit/started/recruit-started-probstatform";
   }
 
-  //// MODULE - STARTED - OVERALL REPORT
-//  @RequestMapping("/report")
-//  public String overallreportform(@PathVariable("id") int id,
-//                                  HttpSession session) {
-//    //Auth
-//    if ( !authRecruit(id, session) ) {
-//      return "redirect:/main/";
-//    }
-//
-//    return "recruit/started/recruit-started-overallreportform";
-//  }
-
-  @RequestMapping("/ajax-overallreport")
-  public String overallreport() {
-    // TODO - Overall Report
-    return null;
+  @RequestMapping("/overallreportform")
+  public String overallReportForm() {
+    return "recruit/started/recruit-started-overallreportform";
   }
 }

@@ -6,6 +6,7 @@ import com.estsoft.codit.web.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 
 @Controller
@@ -31,24 +33,12 @@ public class ClientController {
   }
 
   @RequestMapping(value = "/signup", method = RequestMethod.POST)
-  public String signup( @ModelAttribute ClientVo clientVo) {
+  public String signup(@ModelAttribute @Valid ClientVo clientVo, BindingResult result, Model model) {
 
-    /* TODO - Back-end validation Using Hibernate validator '@valid'
-    public String signup(@ModelAttribute @Valid ClientVo clientVo,
-                         BindingResult result,
-                         Model model) {
-
-      //ERROR -> error
-      if (result.hasErrors()) {
-
-        model.addAllAttributes( result.getMode() );
-        return "/client/signupform";
-      }
-
-      int id = clientService.signup( clientVo );
-      return "redirect:/client/signupsuccess/" + id;
+    if (result.hasErrors()) {
+      model.addAllAttributes( result.getModel() );
+      return "/client/signupform";
     }
-     */
 
     clientService.signup(clientVo);
     int id = clientVo.getId();
@@ -81,8 +71,6 @@ public class ClientController {
 
   @RequestMapping(value = "/signin", method = RequestMethod.POST)
   public String signin(@ModelAttribute ClientVo clientVo, HttpServletRequest request, Model model) {
-    System.out.println("*************************************************************Client Controller 84: "+clientVo);
-    // Get authenticate user with username and password using a database.
     clientVo = clientService.validsignin( clientVo );
     // Check authenticate user
     if(clientVo == null) {
@@ -90,7 +78,6 @@ public class ClientController {
       model.addAttribute("auth", false); //jsp 에서 auth fail이면 다시 입력하라는 문구 출력
       return "client/signinform";
     }
-    System.out.println("\n\n\n\n\n\n\n\n sign in clientVo : " + clientVo);
     //auth success
     HttpSession session = request.getSession(true);
     session.setAttribute("authClient", clientVo);

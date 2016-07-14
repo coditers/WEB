@@ -7,9 +7,13 @@ import com.estsoft.codit.web.service.RecruitService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class MainController {
@@ -19,32 +23,31 @@ public class MainController {
 
   //main
   @RequestMapping("")
-  public String index() {
-
-    // 1. check logged in or not -> view the table or not -> job for .jsp
-
-    return "main/index";
-     }
+  public String index() { return "main/index"; }
 
   @RequestMapping("/makerecruitform")
-  public String makeRecruitForm(){
+  public String makeRecruitForm(HttpServletRequest request, Model model){
 
-    //get recruit name
+    int id = ((ClientVo)(request.getSession().getAttribute("authClient"))).getId();
+    List<RecruitVo> recruitList = recruitService.getRecruitListByClientId( id );
+
+    model.addAttribute("recruitList", recruitList);
 
     return "";
   }
 
   @Auth
-  @RequestMapping("/makerecruit")
-  public String makeRecruit(HttpServletRequest request){ // @ModelAttribute RecruitVo recruitVo
+  @RequestMapping(value = "/makerecruit", method= RequestMethod.POST)
+  public String makeRecruit(HttpServletRequest request, @ModelAttribute RecruitVo recruitVo){
 
     int id = ((ClientVo)(request.getSession().getAttribute("authClient"))).getId();
-    System.out.println( (ClientVo)(request.getSession().getAttribute("authClient")) );
     /*=========temporal code=========*/
-    RecruitVo recruitVo = new RecruitVo();
-    recruitVo.setClientId(id);
-    recruitVo.setTitle("2016 last semester");
+//    RecruitVo recruitVo = new RecruitVo();
+//    recruitVo.setClientId(id);
+//    recruitVo.setTitle("2016 last semester");
     /*===============================*/
+
+    recruitVo.setClientId(id);
     recruitService.insert(recruitVo);
 
     return "redirect:/recruit/"+ recruitVo.getId() + "/main";
