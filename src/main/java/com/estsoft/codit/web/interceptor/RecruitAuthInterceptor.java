@@ -38,7 +38,7 @@ public class RecruitAuthInterceptor extends HandlerInterceptorAdapter {
         int index = url.indexOf("recruit/");
         String recruitId = url.substring(index).split("/")[1];
 
-        if(recruitService.isContained( authUser.getId(), Integer.parseInt(recruitId) ) == false){
+        if(recruitService.isContained( Integer.parseInt(recruitId), authUser.getId() ) == false){
             response.sendRedirect( request.getContextPath() + "/");
             return false;
         }

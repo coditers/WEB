@@ -27,10 +27,7 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 
 @Service
@@ -54,12 +51,12 @@ public class RecruitService {
     return recruitRepository.get(id);
   }
 
-  public boolean isContained(int clientId, int recruitId){
-    List<RecruitVo> recruitList = recruitRepository.getListByClientId( clientId );
-    for ( RecruitVo vo : recruitList){
-      if(vo.getId() == recruitId)
-        return true;
-    }
+  public boolean isContained(int recruitId, int clientId){
+
+    RecruitVo vo = recruitRepository.getByIdClientId(recruitId, clientId);
+    if(vo != null)
+      return true;
+
     return false;
   }
 
