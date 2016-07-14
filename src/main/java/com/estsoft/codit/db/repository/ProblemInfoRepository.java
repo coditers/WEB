@@ -1,7 +1,6 @@
 package com.estsoft.codit.db.repository;
 
 import com.estsoft.codit.db.vo.ProblemInfoVo;
-import com.estsoft.codit.db.vo.ProblemVo;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +17,4 @@ public class ProblemInfoRepository {
     return sqlSession.selectList("probleminfo.selectAll");
   }
 
-  public int insert(){
-    return sqlSession.insert("probleminfo.insert");
-  }
-
-  public ProblemInfoVo get(int id){
-    return sqlSession.selectOne("probleminfo.selectById", id);
-  }
 }

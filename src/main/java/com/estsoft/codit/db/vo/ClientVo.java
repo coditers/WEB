@@ -6,7 +6,7 @@ public class ClientVo {
   private String firstName;
   private String lastName;
   private String email;
-  private String passwd;
+  private String password;
 
   public int getId() {
     return id;
@@ -41,11 +41,11 @@ public class ClientVo {
   }
 
   public String getPassword() {
-    return passwd;
+    return password;
   }
 
   public void setPassword(String password) {
-    this.passwd = password;
+    this.password = password;
   }
 
   @Override
@@ -55,7 +55,7 @@ public class ClientVo {
         ", firstName='" + firstName + '\'' +
         ", lastName='" + lastName + '\'' +
         ", email='" + email + '\'' +
-        ", passwd='" + passwd + '\'' +
+        ", password='" + password + '\'' +
         '}';
   }
 }

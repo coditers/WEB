@@ -45,28 +45,6 @@
             document.body.insertBefore(formTag,null);
             formTag.submit();
         }
-            <%--$.ajax({--%>
-                       <%--url: "${pageContext.request.contextPath}/recruit/${recruitId}/selectproblem",--%>
-                       <%--type:"POST",--%>
-                       <%--data: "arr="+list.arr.join(" "),--%>
-<%--//                       data: JSON.stringify(list.arr) ,--%>
-<%--//                       contentType:"application/json; charset=utf-8",--%>
-                       <%--dataType:"json",--%>
-                       <%--success: function(){--%>
-
-                       <%--},--%>
-                       <%--error: function(){--%>
-
-                       <%--}--%>
-                   <%--})--%>
-
-            <%--$.post(--%>
-                    <%--"${pageContext.request.contextPath}/recruit/${recruitId}/selectproblem",--%>
-                    <%--{probIdList : list.arr.join(" ")},--%>
-                    <%--function(data) { //success handler--%>
-                        <%--window.location = "${pageContext.request.contextPath}/recruit/${recruitId}/main";--%>
-                    <%--}--%>
-            <%--);--%>
 
     </script>
 

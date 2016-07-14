@@ -1,37 +1,63 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Codit</title>
-    <!--Link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css"-->
-    <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.9.0.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0">
+    <link rel="icon" href="${pageContext.request.contextPath}/assets/icon/0630_favicon_beige.ico">
+
+    <title>signin</title>
+    <link href="http://fonts.googleapis.com/css?family=Cabin:700,400,600|Raleway:100,700|Noto+Sans:400" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/standardize.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/grid.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/codit.css">
+    <meta charset = "utf-8"/>
+
+    <%--=============================temporal code==============================--%>
+    <script type="text/javascript">
+
+        var submitForm = function( ){
+            var formTag = document.getElementById("signup-form");
+            formTag.action = "${pageContext.request.contextPath}/client/signin";
+            formTag.submit();
+        }
+
+    </script>
+    <%--========================================================================--%>
+
 </head>
-<body>
-<h1>로그인</h1>
-<div>
-    <form action = "${pageContext.request.contextPath}/client/signin" method = "POST">
-        <table>
-            <tr><td>
-                    <label>이메일</label> <input type="text" name="email"> <button>중복확인</button>
-            </td></tr>
-            <tr><td>
-                <label>비밀번호</label> <input type="password" name="password">
-            </td></tr>
-            <tr><td>
-                <input type="submit" value="로그인">
-            </td></tr>
+<body class="body-light clearfix">
+
+<jsp:include page="/WEB-INF/views/include/header_light.jsp"></jsp:include>
+
+<div id = "signup-form-div" class="center-content clearfix">
+    <h1 class="text-signup">Sign in</h1>
+    <form method = "post" id="signup-form" >
+        <table id="signup-form-table">
+            <tbody>
+            <tr>
+                <td class = "tablelable">
+                    <h2>Business email:</h2>
+                </td>
+                <td class = "tableinput">
+                    <input id="email" class="tableinput tableinput-1" name="email" type="email">
+                </td>
+            </tr>
+            <tr>
+                <td class = "tablelable">
+                    <h2 for="password">Password:</h2>
+                </td>
+                <td class = "tableinput">
+                    <input id="password" class="tableinput tableinput-1" name="password" type="password">
+                </td>
+            </tr>
+            <tr><td class="tablebutton" colspan="2"><button id="btn-signin" class="submitbutton" onclick="submitForm()">Sign in</button></td></tr>
+            </tbody>
         </table>
     </form>
-</div>
-<div>
-    <h1>Codit의 사용자가 아니신가요?</h1>
-    <a href="#">
-        <button>회원가입</button>
-    </a>
 </div>
 </body>
 </html>

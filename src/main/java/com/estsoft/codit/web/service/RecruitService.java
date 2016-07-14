@@ -20,19 +20,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
-import javax.mail.Message;
-import javax.mail.Session;
-import javax.mail.Transport;
+import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 
 @Service
@@ -48,12 +43,21 @@ public class RecruitService {
   CartRepository cartRepository;
 
 
-
-  private static final String FILE_SAVE_PATH = "/temp/";
-
+//  directory path in server environment
+  private static final String FILE_SAVE_PATH = "./multipartData";
+//  private static final String FILE_SAVE_PATH = "/temp";
 
   public RecruitVo getRecruitVo(int id) {
     return recruitRepository.get(id);
+  }
+
+  public boolean isContained(int recruitId, int clientId){
+
+    RecruitVo vo = recruitRepository.getByIdClientId(recruitId, clientId);
+    if(vo != null)
+      return true;
+
+    return false;
   }
 
   public int insert(RecruitVo recruitVo) {
@@ -211,16 +215,18 @@ public class RecruitService {
   }
 
   //todo convert to spring api, get message from user, content generateion function
-  public void sendMail( String toAddr, String content){// String companyName
+  private void sendMail( String toAddr, String content){// String companyName
 
     Properties props = System.getProperties();
-    props.setProperty("mail.smtp.host", "115.68.116.235");
+    props.setProperty("mail.smtp.host", "localhost.localdomain");
 
-    Session session = Session.getDefaultInstance(props);
-    MimeMessage msg = new MimeMessage(session);
+    Session session = Session.getInstance(props, null);
 
     try {
+      MimeMessage msg = new MimeMessage(session);
       msg.setFrom(new InternetAddress("noreply@codit.com", "estsoft"));
+//      InternetAddress[] address = {new InternetAddress(toAddr)};
+//      msg.setRecipients(Message.RecipientType.TO, address);
       msg.addRecipient(Message.RecipientType.TO, new InternetAddress( toAddr, "joon-ho"));
       msg.setSubject("제목이 이러저러합니다");
 //      MimeMultipart multipart = new MimeMultipart();
@@ -239,9 +245,8 @@ public class RecruitService {
       msg.setContent("http://115.68.116.235:8080/", "text/html; charset=utf-8");
 
       Transport.send(msg);
-    } catch (Exception e) {
-      System.out.println(e);
-      System.out.println("error : mail send fail");
+    } catch (Exception ex) {
+      System.out.println( ex );
     }
   }
 }

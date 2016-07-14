@@ -2,6 +2,7 @@ package com.estsoft.codit.web.controller;
 
 import com.estsoft.codit.db.vo.ClientVo;
 import com.estsoft.codit.db.vo.RecruitVo;
+import com.estsoft.codit.web.Annotation.Auth;
 import com.estsoft.codit.web.service.RecruitService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,26 +12,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping("/main")
 public class MainController {
 
   @Autowired
   RecruitService recruitService;
 
   //main
-  @RequestMapping("")
+  @RequestMapping("/")
   public String index() {
 
     // 1. check logged in or not -> view the table or not -> job for .jsp
 
-    return "main/_index";
+    return "main/index";
      }
-
-  @RequestMapping("/signupform")
-  public String signupform() {
-
-    return "client/_signupform";
-  }
 
   @RequestMapping("/makerecruitform")
   public String makeRecruitForm(){
@@ -40,6 +34,7 @@ public class MainController {
     return "";
   }
 
+  @Auth
   @RequestMapping("/makerecruit")
   public String makeRecruit(HttpServletRequest request){ // @ModelAttribute RecruitVo recruitVo
 

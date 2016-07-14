@@ -9,18 +9,17 @@ import com.estsoft.codit.web.service.RecruitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -30,21 +29,16 @@ public class RecruitController {
   @Autowired
   RecruitService recruitService;
 
-  // Todo non-auth user access deny
   @RequestMapping("main")
   public String main(@PathVariable("recruitId") int id, Model model) {
 
-    // Valid check
     RecruitVo recruitVo = recruitService.getRecruitVo(id);
-    if (recruitVo == null) {
-      return "redirect:/main";
-    }
 
-    model.addAttribute("recruitId", id);
     //get server time
     long time = System.currentTimeMillis();
     SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     String current_date = dayTime.format(new Date(time));
+    model.addAttribute("recruitId", id);
 
 
     if (recruitVo.getFromDate() == null || current_date.compareTo(recruitVo.getFromDate()) < 0) {   //ready recruit
@@ -59,11 +53,10 @@ public class RecruitController {
       // 3. on-going recruit
       return "recruit/started/recruit-started-main";
     } else {
-      return "redirect:/main";
+      return "redirect:/";
     }
   }
 
-  // MODULE - READY - APPLICANT REGISTER
   @RequestMapping("/appregform")
   public String applicantregisterform(@PathVariable("recruitId") int id, Model model) {
 //    //Auth
@@ -102,13 +95,26 @@ public class RecruitController {
     return null;
   }
 
+  /**
+   * todo ajax 처리
+   * */
   @RequestMapping("sendticket")
-  public String sendTickets(@PathVariable("recruitId") int id){
-    //isApplicantRegistered();
-    //isRecruitDateSet();
-    //isProblemSelected();
-    recruitService.sendTickets(id);
+//  @ResponseBody
+  public Object sendTickets(@PathVariable("recruitId") int id){
 
+//    boolean applicantFlag = recruitService.isApplicantRegistered( id );
+//    boolean dateSetFlag = recruitService.isRecruitDateSet( id );
+//    boolean probSelectFlag = recruitService.isProblemSelected( id );
+//
+//
+//    Map<String, Object> map = new HashMap<String, Object>();
+//    map.put("applicantFlag", applicantFlag);
+//    map.put("dateSetFlag", dateSetFlag);
+//    map.put("probSelectFlag", probSelectFlag);
+//
+//    if(applicantFlag == true && dateSetFlag == true && probSelectFlag == true)
+      recruitService.sendTickets(id);
+//    return map;
     return "main/index";
   }
 
@@ -138,7 +144,6 @@ public class RecruitController {
 //    return "recruit/ready/recruit-ready-probselectform";
 //  }
 
-  //todo return...? how to get array from javascript with synchronous request.
   @RequestMapping("/selectproblem")
   public String selectProblem(@PathVariable("recruitId") int id , @RequestParam(value= "probIdList") int [] probIdList){
 

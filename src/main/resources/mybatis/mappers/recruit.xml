@@ -3,8 +3,7 @@
 
 <mapper namespace="recruit">
 
-  <!--need to check-->
-  <select id="selectAll" resultType="recruitvo">
+  <select id="selectByIdClientId" resultType="recruitvo" parameterType="hashmap">
     <![CDATA[
       SELECT id        AS id,
              title     AS title,
@@ -12,11 +11,12 @@
              to_date   AS toDate,
              client_id AS clientId
         FROM recruit
+       WHERE id=#{recruitId }
+       AND client_id=#{clientId}
     ]]>
   </select>
 
-  <!--need to check-->
-  <select id="selectListByClientId" resultType="recruitvo" parameterType="recruitvo">
+  <select id="selectListByClientId" resultType="recruitvo" parameterType="int">
     <![CDATA[
       SELECT id        AS id,
              title     AS title,
@@ -27,6 +27,7 @@
         WHERE client_id = #{clientId}
     ]]>
   </select>
+
 
   <insert id="insert" parameterType="recruitvo">
     <![CDATA[
