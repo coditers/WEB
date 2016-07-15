@@ -61,7 +61,6 @@
                                 <c:forEach items="${recruitList }" var="vo">
                                     <a href="${pageContext.request.contextPath}/recruit/${vo.id}/main" class="collection-item bold">${vo.title}</a>
                                 </c:forEach>
-                                <a href="#!" class="collection-item bold disabled">2016상반기</a>
                             </div>
                         </div>
                         <br>
