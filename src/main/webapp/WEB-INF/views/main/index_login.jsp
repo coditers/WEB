@@ -37,7 +37,7 @@
                         <div class="row center">
                             <div class="collection">
                                 <div id="new-recruit" class="collection-item bold orange accent-1">Add new recruitment!
-                                    <a class="btn-floating btn-large waves-effect waves-light orange darken-3 right modal-trigger" href="#modal1">
+                                    <a class="btn-floating btn-large waves-effect waves-light orange darken-3 right modal-trigger" href="${pageContext.request.contextPath}/makerecruit">
                                         <i class="material-icons">add</i></a>
                                 </div>
                                 <!-- Modal Structure -->
@@ -58,11 +58,9 @@
                         </div>
                         <div class="row">
                             <div class="collection">
-                                <a href="#!" class="collection-item bold">2016상반기</a>
-                                <a href="#!" class="collection-item bold">2016상반기</a>
-                                <a href="#!" class="collection-item bold">2016상반기</a>
-                                <a href="#!" class="collection-item bold">2016상반기</a>
-                                <a href="#!" class="collection-item bold">2016상반기</a>
+                                <c:forEach items="${recruitList }" var="vo">
+                                    <a href="${pageContext.request.contextPath}/recruit/${vo.id}/main" class="collection-item bold">${vo.title}</a>
+                                </c:forEach>
                                 <a href="#!" class="collection-item bold disabled">2016상반기</a>
                             </div>
                         </div>

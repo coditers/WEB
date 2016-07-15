@@ -23,28 +23,26 @@ public class MainController {
 
   //main
   @RequestMapping("")
-  public String index() { return "main/index"; }
-
-  @RequestMapping("/makerecruitform")
-  public String makeRecruitForm(HttpServletRequest request, Model model){
-
-    int id = ((ClientVo)(request.getSession().getAttribute("authClient"))).getId();
-    List<RecruitVo> recruitList = recruitService.getRecruitListByClientId( id );
-
-    model.addAttribute("recruitList", recruitList);
-
-    return "";
+  public String index(HttpServletRequest request, Model model) {
+    ClientVo vo = null;
+    if(( vo = (ClientVo)(request.getSession().getAttribute("authClient"))) != null){
+      List<RecruitVo> recruitList = recruitService.getRecruitListByClientId( vo.getId() );
+      model.addAttribute("recruitList", recruitList);
+      return "main/index_login";
+    }
+    else
+      return "main/index";
   }
 
   @Auth
-  @RequestMapping(value = "/makerecruit", method= RequestMethod.POST)
-  public String makeRecruit(HttpServletRequest request, @ModelAttribute RecruitVo recruitVo){
+  @RequestMapping(value = "/makerecruit")//, method= RequestMethod.POST)
+  public String makeRecruit(HttpServletRequest request){//@ModelAttribute RecruitVo recruitVo){
 
     int id = ((ClientVo)(request.getSession().getAttribute("authClient"))).getId();
     /*=========temporal code=========*/
-//    RecruitVo recruitVo = new RecruitVo();
-//    recruitVo.setClientId(id);
-//    recruitVo.setTitle("2016 last semester");
+    RecruitVo recruitVo = new RecruitVo();
+    recruitVo.setClientId(id);
+    recruitVo.setTitle("2016 last semester");
     /*===============================*/
 
     recruitVo.setClientId(id);
