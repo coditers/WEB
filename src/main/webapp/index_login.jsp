@@ -1,11 +1,3 @@
-<!-- Backend
-
-line #51 modal의 버튼 누르면 action="${pageContext.request.contextPath}/makerecruit" method="POST" 으로 넘어가게 해두었습니다~
-
-
-
-
--->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -21,6 +13,14 @@ line #51 modal의 버튼 누르면 action="${pageContext.request.contextPath}/ma
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/materialize/css/materialize.min.css"/>
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/materialize/css/materialize-custom.css" media="screen,projection"/>
+
+    <script>
+        $(document).ready(function(){
+            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+            $('.modal-trigger').leanModal();
+        });
+    </script>
+
 </head>
 
 <body class="orange lighten-5 flexbody">
@@ -37,33 +37,17 @@ line #51 modal의 버튼 누르면 action="${pageContext.request.contextPath}/ma
                         <div class="row center">
                             <div class="collection">
                                 <div id="new-recruit" class="collection-item bold orange accent-1">Add new recruitment!
-                                    <button class="btn-floating btn-large waves-effect waves-light orange darken-3 right modal-trigger" data-target="modal1">
-                                        <i class="material-icons">add</i></button>
+                                    <a class="btn-floating btn-large waves-effect waves-light orange darken-3 right modal-trigger" href="${pageContext.request.contextPath}/makerecruit">
+                                        <i class="material-icons">add</i></a>
                                 </div>
                                 <!-- Modal Structure -->
                                 <div id="modal1" class="modal">
                                     <div class="modal-content">
-                                        <br>
-                                        <br>
-                                        <h4>Please input the title of recruitment</h4>
-                                        <div class="row">
-                                            <div class="col s6 offset-s3">
-                                                <form action="${pageContext.request.contextPath}/makerecruit" method="POST">
-                                                    <div class="row">
-                                                        <div class="input-field col s12">
-                                                            <input name="title" id="title" type="text" value="2016 하반기 채용" >
-                                                        </div>
-                                                    </div>
-                                                    <br>
-                                                    <div class="row center ">
-                                                        <button type="submit"
-                                                                class="waves-effect waves-light btn btn-block center-block brown text-white">
-                                                            Submit
-                                                        </button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
+                                        <h4>Modal Header</h4>
+                                        <p>A bunch of text</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
                                     </div>
                                 </div>
                             </div>
@@ -90,11 +74,5 @@ line #51 modal의 버튼 누르면 action="${pageContext.request.contextPath}/ma
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/materialize/js/materialize.min.js"></script>
-<script>
-    $(document).ready(function(){
-        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-        $('.modal-trigger').leanModal();
-    });
-</script>
 </body>
 </html>
