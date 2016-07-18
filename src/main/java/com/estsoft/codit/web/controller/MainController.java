@@ -36,18 +36,13 @@ public class MainController {
 
   @Auth
   @RequestMapping(value = "/makerecruit")//, method= RequestMethod.POST)
-  public String makeRecruit(HttpServletRequest request){//@ModelAttribute RecruitVo recruitVo){
+  public String makeRecruit(HttpServletRequest request, @ModelAttribute RecruitVo recruitVo){
 
     int id = ((ClientVo)(request.getSession().getAttribute("authClient"))).getId();
-    /*=========temporal code=========*/
-    RecruitVo recruitVo = new RecruitVo();
-    recruitVo.setClientId(id);
-    recruitVo.setTitle("2016 last semester");
-    /*===============================*/
 
     recruitVo.setClientId(id);
     recruitService.insert(recruitVo);
-
+    System.out.println("MainController 46: "+recruitVo.getTitle());
     return "redirect:/recruit/"+ recruitVo.getId() + "/main";
   }
 

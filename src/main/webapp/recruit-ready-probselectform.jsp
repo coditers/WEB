@@ -36,21 +36,36 @@
                             </div>
                             <ul class="collapsible" data-collapsible="accordion">
                                 <li>
-                                    <div class="collapsible-header">problem 1</div>
+                                    <div class="collapsible-header light-green lighten-5">problem 1
+                                        <a class="right btn-floating btn waves-effect waves-light red"><i class="material-icons">add</i></a>
+                                    </div>
                                     <div class="collapsible-body"><p>problem 1 description</p></div>
                                 </li>
                                 <li>
-                                    <div class="collapsible-header">problem 2</div>
+                                    <div class="collapsible-header light-green lighten-5">problem 2</div>
                                     <div class="collapsible-body"><p>problem 2 description</p></div>
                                 </li>
                                 <li>
-                                    <div class="collapsible-header">problem 3</div>
+                                    <div class="collapsible-header light-green lighten-5">problem 3</div>
                                     <div class="collapsible-body"><p>problem 3 description</p></div>
                                 </li>
                             </ul>
                         </div>
                         <br>
                     </div>
+                </div>
+            </div>
+            <!-- Modal Trigger -->
+            <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal bottom-sheet">
+                <div class="modal-content">
+                    <h4>Modal Header</h4>
+                    <p>A bunch of text</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
                 </div>
             </div>
         </div>
@@ -60,5 +75,11 @@
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/materialize/js/materialize.min.js"></script>
+<script>
+    $(document).ready(function(){
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('.modal-trigger').leanModal();
+    });
+</script>
 </body>
 </html>

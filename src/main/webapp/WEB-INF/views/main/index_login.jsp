@@ -55,7 +55,7 @@ line #51 modal의 버튼 누르면 action="${pageContext.request.contextPath}/ma
                                                         </div>
                                                     </div>
                                                     <br>
-                                                    <div class="row center ">
+                                                    <div class="row center">
                                                         <button type="submit"
                                                                 class="waves-effect waves-light btn btn-block center-block brown text-white">
                                                             Submit

@@ -24,7 +24,7 @@
         <div class="col s6 offset-s3">
             <div class="card-panel white">
                 <div class="row">
-                    <div class="col s6 offset-s3">
+                    <div class="col s8 offset-s2">
                         <br>
                         <div class="row center">
                             <h3>${recruitVo.title}</h3>
@@ -32,20 +32,36 @@
                         <br>
                         <div class="row">
                             <div class="collection">
-                                <a href="#!" class="collection-item bold "><i class="small material-icons">av_timer</i>Set periods</a>
-                                <a href="#!" class="collection-item bold "><i class="small material-icons">list</i>Select test problems</a>
-                                <a href="#!" class="collection-item bold "><i class="small material-icons">perm_identity</i>Enroll applicants</a>
-                                <a href="#!" class="collection-item bold "><i class="small material-icons">email</i>Write email format</a>
-                                <a href="#!" class="collection-item bold "><i class="small material-icons">trending_flat</i>Try test</a>
-                                <a href="#!" class="collection-item bold disabled "><i class="small material-icons">assessment</i> Report</a>
+                                <li id = "li-setperiods" class="collection-item bold"><i
+                                        class="small material-icons">av_timer</i>Set periods:
+                                    <form id="form-selectdate">
+                                    <input value="${recruitVo.fromDate}" id= "start_time" type="date" class="datepicker">
+                                    ~
+                                    <input value="${recruitVo.toDate}" id= "submit_time" type="date" class="datepicker">
+                                    <a id="btn-datesave" class="waves-effect waves-orange btn-flat">save</a>
+                                    </form>
+                                </li>
+                                <a href="${pageContext.request.contextPath}/recruit/${recruitId}/probselectform"
+                                   class="collection-item bold "><i class="small material-icons">list</i>Select
+                                    test problems</a>
+                                <a href="${pageContext.request.contextPath}/recruit/${recruitId}/appregform"
+                                   class="collection-item bold "><i class="small material-icons">perm_identity</i>Enroll
+                                    applicants</a>
+                                <a href="#!" class="collection-item bold "><i
+                                        class="small material-icons">email</i>Write email format</a>
+                                <a href="#!" class="collection-item bold "><i
+                                        class="small material-icons">trending_flat</i>Try test</a>
                             </div>
                         </div>
                         <br>
 
                         <div class="row center">
-                            <button class="btn-large waves-effect waves-light brown" type="submit" name="action">Send invitations!
-                                <i class="material-icons right">send</i>
-                            </button>
+                            <a href="${pageContext.request.contextPath}/recruit/${recruitId}/sendticket">
+                                <button class="btn-large waves-effect waves-light brown center"
+                                        type="submit" name="action">Send invitations!
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -57,5 +73,13 @@
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/materialize/js/materialize.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.datepicker').pickadate({
+         selectMonths: true, // Creates a dropdown to control month
+         selectYears: 15 // Creates a dropdown of 15 years to control year
+         });
+    });
+</script>
 </body>
 </html>

@@ -46,8 +46,8 @@
                                         <input class="file-path validate" type="text">
                                     </div>
                                 </div>
-                                <div class="row center">
-                                <button type="submit" class="waves-effect waves-light btn btn-block center-block brown text-white">submit</button>
+                                <div class="row">
+                                <button type="submit" class="waves-effect waves-light btn btn-block center-block orange accent-2 text-white">submit</button>
                                 </div>
                             </form>
                             </div>

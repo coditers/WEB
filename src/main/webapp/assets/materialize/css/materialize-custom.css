@@ -3,9 +3,14 @@
 2. header
 3. main page
 4. card
-5. form
+5. form & input
 6. collections
 7. icons
+8. modal
+9. li
+10. picker
+11. button
+
 */
 
 /* 1. For all*/
@@ -29,6 +34,7 @@
 
 /* 5. form*/
 #signform{margin-right: auto; margin-left: auto;}
+#form-selectdate{display: inline}
 
 .input-field input[type=text]:focus + label {
     color: #c3614d;
@@ -72,6 +78,18 @@
     box-shadow: 0 1px 0 0 #000;
 }
 
+#start_time{
+    height: 1rem;
+    width: 6rem;
+    font-size: 15px;
+}
+
+#submit_time{
+    height: 1rem;
+    width: 6rem;
+    font-size: 15px;
+}
+
 /*6. Collections*/
 #new-recruit{
     font-size: x-large;
@@ -96,4 +114,39 @@
     padding-right: 30px;
 }
 
+/*8. modals*/
+#modal-calender{
+    width: 35rem;
 
+}
+
+/*9. li*/
+#li-setperiods{
+    list-style: none;
+}
+
+/* 10. picker */
+.picker__weekday-display{
+    background-color: #e65100;
+}
+.picker__date-display {
+    background-color: #ef6c00;
+}
+.picker__close, .picker__today{
+    color: #ef6c00;
+}
+.picker__day.picker__day--today{
+    color:#ef6c00
+}
+
+.picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected{
+    background-color: #ef6c00;
+}
+
+/* 11. button */
+#btn-datesave{
+    width: 4rem;
+    height: 2rem;
+    font-size: 1rem;
+    padding: 0 0.8rem;
+}
