@@ -78,13 +78,13 @@
     box-shadow: 0 1px 0 0 #000;
 }
 
-#start_time{
+#fromDate{
     height: 1rem;
     width: 6rem;
     font-size: 15px;
 }
 
-#submit_time{
+#toDate{
     height: 1rem;
     width: 6rem;
     font-size: 15px;

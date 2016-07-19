@@ -38,8 +38,9 @@ public class RecruitController {
     long time = System.currentTimeMillis();
     SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     String current_date = dayTime.format(new Date(time));
-    model.addAttribute("recruitId", id);
+    model.addAttribute("recruitVo", recruitVo);
 
+    System.out.println("RecruitController 42: "+recruitVo);
 
     if (recruitVo.getFromDate() == null || current_date.compareTo(recruitVo.getFromDate()) < 0) {   //ready recruit
 

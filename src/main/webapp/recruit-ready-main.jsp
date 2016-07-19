@@ -34,17 +34,17 @@
                             <div class="collection">
                                 <li id = "li-setperiods" class="collection-item bold"><i
                                         class="small material-icons">av_timer</i>Set periods:
-                                    <form id="form-selectdate">
-                                    <input value="${recruitVo.fromDate}" id= "start_time" type="date" class="datepicker">
+                                    <form id="form-selectdate" action="${pageContext.request.contextPath}/recruit/${recruitVo.id}/set-recruit-date" method = "POST">
+                                    <input value="${recruitVo.fromDate}" name="fromDate" id= "fromDate" type="date" class="datepicker">
                                     ~
-                                    <input value="${recruitVo.toDate}" id= "submit_time" type="date" class="datepicker">
-                                    <a id="btn-datesave" class="waves-effect waves-orange btn-flat">save</a>
+                                    <input value="${recruitVo.toDate}" name = "toDate" id= "toDate" type="date" class="datepicker">
+                                    <button type="submit" id="btn-datesave" class="waves-effect waves-orange white btn-flat">save</button>
                                     </form>
                                 </li>
-                                <a href="${pageContext.request.contextPath}/recruit/${recruitId}/probselectform"
+                                <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/probselectform"
                                    class="collection-item bold "><i class="small material-icons">list</i>Select
                                     test problems</a>
-                                <a href="${pageContext.request.contextPath}/recruit/${recruitId}/appregform"
+                                <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/appregform"
                                    class="collection-item bold "><i class="small material-icons">perm_identity</i>Enroll
                                     applicants</a>
                                 <a href="#!" class="collection-item bold "><i

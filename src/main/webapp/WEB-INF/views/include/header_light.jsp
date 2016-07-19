@@ -5,7 +5,7 @@
 
 <nav class="orange lighten-3" role="navigation">
     <div class="nav-wrapper container">
-        <a href="${pageContext.request.contextPath}/main">
+        <a href="${pageContext.request.contextPath}">
             <img id="sublogo" src="${pageContext.request.contextPath}/assets/images/sublogo-brown.png">
         </a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
