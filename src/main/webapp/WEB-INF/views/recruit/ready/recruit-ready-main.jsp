@@ -61,7 +61,7 @@
                         <br>
 
                         <div class="row center">
-                            <a href="${pageContext.request.contextPath}/recruit/${recruitId}/sendticket">
+                            <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/sendticket">
                                 <button class="btn-large waves-effect waves-light brown center"
                                         type="submit" name="action">Send invitations!
                                     <i class="material-icons right">send</i>

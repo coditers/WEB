@@ -1,85 +1,103 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<!doctype html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="icon" href="${pageContext.request.contextPath}/assets/icon/0630_favicon_beige.ico">
-    <title>problem selection</title>
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/materialize/css/materialize.min.css"/>
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/materialize/css/materialize-custom.css" media="screen,projection"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>codit</title>
+    <!--Link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css"-->
+    <script type="text/javascript"
+            src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.9.0.js"></script>
+
+    <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/List.js"></script>
+
+    <script type="text/javascript">
+
+        var list = new List();
+        //onclick problem tr, add and remove problem id into list
+        var addOnList = function( id ){
+            if( list.isExist(id) == false){
+                $("#"+id).css({"backgroundColor": "#287fc2"});
+                list.push(id);
+                console.log( list.arr.join(","));
+            }else{
+                $("#"+id).css({"backgroundColor": "#ffffff"});
+                list.eliminate(id);
+            }
+        }
+
+        //dynamically generate form tag, and submit the problem-Id list
+        var submitList = function(){
+
+            var formTag = document.createElement("form");
+            formTag.method = "post";
+            formTag.action = "${pageContext.request.contextPath}/recruit/${recruitId}/selectproblem";
+
+            for( var i = 0 ; i < list.arr.length; i++ ){
+                var input = document.createElement("input");
+                input.type = "hidden";
+                input.name = "probIdList";
+                input.value = list.arr[i];
+                formTag.insertBefore(input, null);
+            }
+            document.body.insertBefore(formTag,null);
+            formTag.submit();
+        }
+
+    </script>
+
 </head>
 
-<body class="orange lighten-5 flexbody">
-<jsp:include page="/WEB-INF/views/include/header_light.jsp"></jsp:include>
-<div class="section no-pad-bot" id="index-banner">
-    <br>
-    <br>
-    <div class="row">
-        <div class="col s6 offset-s3">
-            <div class="card-panel white">
-                <div class="row">
-                    <div class="col s8 offset-s2">
-                        <br>
-                        <div class="row center">
-                            <h3>${recruitVo.title}</h3>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="row">
-                                <h5 class="grey-text">Select problems</h5>
-                            </div>
-                            <ul class="collapsible" data-collapsible="accordion">
-                                <li>
-                                    <div class="collapsible-header light-green lighten-5">problem 1
-                                        <a class="right btn-floating btn waves-effect waves-light red"><i class="material-icons">add</i></a>
-                                    </div>
-                                    <div class="collapsible-body"><p>problem 1 description</p></div>
-                                </li>
-                                <li>
-                                    <div class="collapsible-header light-green lighten-5">problem 2</div>
-                                    <div class="collapsible-body"><p>problem 2 description</p></div>
-                                </li>
-                                <li>
-                                    <div class="collapsible-header light-green lighten-5">problem 3</div>
-                                    <div class="collapsible-body"><p>problem 3 description</p></div>
-                                </li>
-                            </ul>
-                        </div>
-                        <br>
-                    </div>
-                </div>
-            </div>
-            <!-- Modal Trigger -->
-            <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+<body>
+<h2> recruit-title </h2>
+<!-- 문제 리스트 테이블-->
+<table>
+    <c:forEach items = "${ problemInfoVoList}" var = "vo">
+    <tr>
+        <th>문제 목록</th>
+        <th>&nbsp</th>
+        <th>&nbsp</th>
+    </tr>
+    <tr id="${vo.id}" onclick="addOnList(${vo.id})">
+        <td>"${vo.name}"</td>
+        <td>"${vo.description}"</td>
+        <td>"${vo.estimatedTime}"</td>
+    </tr>
+    </c:forEach>
+</table>
+<button>카트 보기</button>
 
-            <!-- Modal Structure -->
-            <div id="modal1" class="modal bottom-sheet">
-                <div class="modal-content">
-                    <h4>Modal Header</h4>
-                    <p>A bunch of text</p>
-                </div>
-                <div class="modal-footer">
-                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- 문제 리스트 테이블-->
+<table>
+    <tr>
+        <td>prob-name</td>
+        <td>prob-level</td>
+        <td>estimated-time</td>
+        <td><button>삭제</button></td>
+    </tr>
+</table>
 
-<!--Import jQuery before materialize.js-->
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/materialize/js/materialize.min.js"></script>
-<script>
-    $(document).ready(function(){
-        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-        $('.modal-trigger').leanModal();
-    });
-</script>
+<table>
+    <tr>
+        <td>총 난이도</td>
+        <td> 67/100</td>
+    </tr>
+    <tr>
+        <td>총 예상 시간</td>
+        <td> 67min</td>
+    </tr>
+    <tr>
+        <td>총 문제수</td>
+        <td> 5개</td>
+    </tr>
+</table>
+
+
+<!-- cart에 담긴 문제리스트 제출 -->
+<button onclick="submitList()">제출</button>
+<button>메인으로</button>
 </body>
+
 </html>

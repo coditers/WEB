@@ -1,103 +1,111 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
-<!doctype html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>codit</title>
-    <!--Link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css"-->
-    <script type="text/javascript"
-            src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.9.0.js"></script>
-
-    <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/List.js"></script>
-
-    <script type="text/javascript">
-
-        var list = new List();
-        //onclick problem tr, add and remove problem id into list
-        var addOnList = function( id ){
-            if( list.isExist(id) == false){
-                $("#"+id).css({"backgroundColor": "#287fc2"});
-                list.push(id);
-                console.log( list.arr.join(","));
-            }else{
-                $("#"+id).css({"backgroundColor": "#ffffff"});
-                list.eliminate(id);
-            }
-        }
-
-        //dynamically generate form tag, and submit the problem-Id list
-        var submitList = function(){
-
-            var formTag = document.createElement("form");
-            formTag.method = "post";
-            formTag.action = "${pageContext.request.contextPath}/recruit/${recruitId}/selectproblem";
-
-            for( var i = 0 ; i < list.arr.length; i++ ){
-                var input = document.createElement("input");
-                input.type = "hidden";
-                input.name = "probIdList";
-                input.value = list.arr[i];
-                formTag.insertBefore(input, null);
-            }
-            document.body.insertBefore(formTag,null);
-            formTag.submit();
-        }
-
-    </script>
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="icon" href="${pageContext.request.contextPath}/assets/icon/0630_favicon_beige.ico">
+    <title>problem selection</title>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/materialize/css/materialize.min.css"/>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/materialize/css/materialize-custom.css" media="screen,projection"/>
 </head>
 
-<body>
-<h2> recruit-title </h2>
-<!-- 문제 리스트 테이블-->
-<table>
-    <c:forEach items = "${ problemInfoVoList}" var = "vo">
-    <tr>
-        <th>문제 목록</th>
-        <th>&nbsp</th>
-        <th>&nbsp</th>
-    </tr>
-    <tr id="${vo.id}" onclick="addOnList(${vo.id})">
-        <td>"${vo.name}"</td>
-        <td>"${vo.description}"</td>
-        <td>"${vo.estimatedTime}"</td>
-    </tr>
-    </c:forEach>
-</table>
-<button>카트 보기</button>
+<body class="orange lighten-5 flexbody">
+<jsp:include page="/WEB-INF/views/include/header_light.jsp"></jsp:include>
+<div class="section no-pad-bot" id="index-banner">
+    <br>
+    <br>
+    <div class="row">
+        <div class="col s6 offset-s3">
+            <div class="card-panel white">
+                <div class="row">
+                    <div class="col s8 offset-s2">
+                        <div class="row center">
+                            <h3>${recruitVo.title}</h3>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="row">
+                                <h5 class="grey-text">Select problems</h5>
+                            </div>
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th data-field="problem_name">Problem</th>
+                                    <th data-field="estimated time">Time</th>
+                                    <th data-field="description">Description</th>
+                                    <th data-field="add to cart?">Cart</th>
+                                </tr>
+                                </thead>
 
-<!-- 문제 리스트 테이블-->
-<table>
-    <tr>
-        <td>prob-name</td>
-        <td>prob-level</td>
-        <td>estimated-time</td>
-        <td><button>삭제</button></td>
-    </tr>
-</table>
+                                <tbody>
+                                <c:forEach items = "${problemInfoVoList}" var = "vo">
+                                <tr>
+                                    <td>${vo.name}</td>
+                                    <td>${vo.estimatedTime}min</td>
+                                    <td>${vo.description}</td>
+                                    <td> <button id="${vo.id}" onclick="addOnList(${vo.id})" class="btn red darken-4 right btn-addtocart">+ add to cart</button> </td>
+                                </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                        <br>
+                        <div class="row center">
+                            <button onclick="submitList()" class="btn brown white-text">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<table>
-    <tr>
-        <td>총 난이도</td>
-        <td> 67/100</td>
-    </tr>
-    <tr>
-        <td>총 예상 시간</td>
-        <td> 67min</td>
-    </tr>
-    <tr>
-        <td>총 문제수</td>
-        <td> 5개</td>
-    </tr>
-</table>
+<!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/materialize/js/materialize.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/List.js"></script>
+<script type="text/javascript">
 
+    var list = new List();
+    //onclick problem tr, add and remove problem id into list
+    var addOnList = function( id ){
+        if( list.isExist(id) == false){
+            var element = document.getElementById(id);
+            element.className = "btn disabled btn-addtocart";
+            list.push(id);
+            console.log( list.arr.join(","));
+        }else{
+            var element = document.getElementById(id);
+            element.className = "btn red darken-4 right btn-addtocart";
+            list.eliminate(id);
+            console.log( list.arr.join(","));
+        }
+    }
 
-<!-- cart에 담긴 문제리스트 제출 -->
-<button onclick="submitList()">제출</button>
-<button>메인으로</button>
+    //dynamically generate form tag, and submit the problem-Id list
+    var submitList = function(){
+
+        var formTag = document.createElement("form");
+        formTag.method = "post";
+        formTag.action = "${pageContext.request.contextPath}/recruit/${recruitVo.id}/selectproblem";
+
+        for( var i = 0 ; i < list.arr.length; i++ ){
+            var input = document.createElement("input");
+            input.type = "hidden";
+            input.name = "probIdList";
+            input.value = list.arr[i];
+            formTag.insertBefore(input, null);
+        }
+        document.body.insertBefore(formTag,null);
+        formTag.submit();
+    }
+
+</script>
 </body>
-
 </html>

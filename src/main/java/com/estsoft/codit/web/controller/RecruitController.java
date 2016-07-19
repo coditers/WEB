@@ -117,16 +117,16 @@ public class RecruitController {
     List<ProblemInfoVo> problemInfoVoList = recruitService.getProblemInfoVoList();
 
     //todo cart list view
-
+    RecruitVo recruitVo = recruitService.getRecruitVo(id);
+    model.addAttribute("recruitVo", recruitVo);
     model.addAttribute("problemInfoVoList", problemInfoVoList);
-    model.addAttribute("recruitId", id);
 
     return "recruit/ready/recruit-ready-probselectform";
   }
 
 
   @RequestMapping("/selectproblem")
-  public String selectProblem(@PathVariable("recruitId") int id , @RequestParam(value= "probIdList") int [] probIdList){
+  public String selectProblem(@PathVariable("recruitId") int id , Model model,  @RequestParam(value= "probIdList") int [] probIdList){
 
     //todo if carts are already stored delete carts.
 
@@ -137,8 +137,10 @@ public class RecruitController {
       vo.setRecruitId(id);
       recruitService.insertCart( vo );
     }
+    RecruitVo recruitVo = recruitService.getRecruitVo(id);
+    model.addAttribute("recruitVo", recruitVo);
+    System.out.println("RecruitController 142 : "+recruitVo);
     return "recruit/ready/recruit-ready-main";
-
   }
 
   @RequestMapping("/applicantstatform")
