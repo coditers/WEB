@@ -1,91 +1,90 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
-<!doctype html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>codit</title>
-    <!--Link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css"-->
-    <script type="text/javascript"
-            src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.9.0.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="icon" href="${pageContext.request.contextPath}/assets/icon/0630_favicon_beige.ico">
+    <title>dashboard: ready</title>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/materialize/css/materialize.min.css"/>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/materialize/css/materialize-custom.css" media="screen,projection"/>
 </head>
 
-<body>
-<table>
-    <tr>
-        <td><h2>2016년 하반기</h2></td>
-        <td>&nbsp</td>
-    </tr>
-    <tr>
-        <td colspan="4">
-            지원자 정보 입력
-        </td>
-        <td colspan="4">
-            <a href="${pageContext.request.contextPath}/recruit/${recruitId}/appregform"><button> > </button></a>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="4">문제 선택</td>
-        <td>
-            <a href="${pageContext.request.contextPath}/recruit/${recruitId}/probselectform"><button> > </button></a>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="4">
-            Report - Deactive
-        </td>
-        <td>
-            <button> > </button>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="4">
-            Test 해보기
-        </td>
-        <td>
-            <button> > </button>
-        </td>
-    </tr>
-</table>
-
+<body class="orange lighten-5 flexbody">
+<jsp:include page="/WEB-INF/views/include/header_light.jsp"></jsp:include>
+<div class="section no-pad-bot" id="index-banner">
+    <br>
+    <br>
+    <div class="row">
+        <div class="col s6 offset-s3">
+            <div class="card-panel white">
+                <div class="row">
+                    <div class="col s8 offset-s2">
+                        <br>
+                        <div class="row center">
+                            <h3>${recruitVo.title}</h3>
+                        </div>
+                        <div class="row">
+                            <div class="collection">
+                                <li id = "li-setperiods" class="collection-item bold"><i
+                                        class="small material-icons">av_timer</i>Set periods:
 <!-- todo
  시험기간 설정 onclick 달력 보이기
  저장 request 보내면, 시작일, 종료일을
  "{pageContext.request.contextPath}/recruit/{recruitId}/set-recruit-date"로
 
 -->
-<button>시험 기간 설정</button>
-<p>여기에 달력을 놔줘</p>
-    <table>
-        <tr>
-            <td>
-                <label> 시작일 : </label>
-            </td>
-            <td>
-                <input type = "text" value="2016/07/08"> <input type="text" value="23:59">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label> 종료일 : </label>
-            </td>
-            <td>
-                <input type = "text" value="2016/07/08"> <input type="text" value="23:59">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label> 총기간 : </label>
-            </td>
-            <td>
-                <p>날짜선택하면 javascript로 날짜 표시</p>
-            </td>
-        </tr>
-        <button>저장</button>
-    </table>
-        <a href="${pageContext.request.contextPath}/recruit/${recruitId}/sendticket"><button>티켓 발행</button></a>
-</body>
+                                    <form id="form-selectdate" action="${pageContext.request.contextPath}/recruit/${recruitVo.id}/set-recruit-date" method = "POST">
+                                    <input value="${recruitVo.fromDate}" name="fromDate" id= "fromDate" type="date" class="datepicker">
+                                    ~
+                                    <input value="${recruitVo.toDate}" name = "toDate" id= "toDate" type="date" class="datepicker">
+                                    <button type="submit" id="btn-datesave" class="waves-effect waves-orange white btn-flat">save</button>
+                                    </form>
+                                </li>
+                                <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/probselectform"
+                                   class="collection-item bold "><i class="small material-icons">list</i>Select
+                                    test problems</a>
+                                <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/appregform"
+                                   class="collection-item bold "><i class="small material-icons">perm_identity</i>Enroll
+                                    applicants</a>
+                                <a href="#!" class="collection-item bold "><i
+                                        class="small material-icons">email</i>Write email format</a>
+                                <a href="#!" class="collection-item bold "><i
+                                        class="small material-icons">trending_flat</i>Try test</a>
+                            </div>
+                        </div>
+                        <br>
 
+                        <div class="row center">
+                            <a href="${pageContext.request.contextPath}/recruit/${recruitId}/sendticket">
+                                <button class="btn-large waves-effect waves-light brown center"
+                                        type="submit" name="action">Send invitations!
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/materialize/js/materialize.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.datepicker').pickadate({
+         selectMonths: true, // Creates a dropdown to control month
+         selectYears: 15 // Creates a dropdown of 15 years to control year
+         });
+    });
+</script>
+</body>
 </html>
