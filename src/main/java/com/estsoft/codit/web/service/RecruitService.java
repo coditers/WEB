@@ -1,13 +1,7 @@
 package com.estsoft.codit.web.service;
 
-import com.estsoft.codit.db.repository.ApplicantRepository;
-import com.estsoft.codit.db.repository.CartRepository;
-import com.estsoft.codit.db.repository.ProblemInfoRepository;
-import com.estsoft.codit.db.repository.RecruitRepository;
-import com.estsoft.codit.db.vo.ApplicantVo;
-import com.estsoft.codit.db.vo.CartVo;
-import com.estsoft.codit.db.vo.ProblemInfoVo;
-import com.estsoft.codit.db.vo.RecruitVo;
+import com.estsoft.codit.db.repository.*;
+import com.estsoft.codit.db.vo.*;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -41,11 +35,12 @@ public class RecruitService {
   ProblemInfoRepository problemInfoRepository;
   @Autowired
   CartRepository cartRepository;
-
+  @Autowired
+  ResultRepository resultRepository;
 
 //  directory path in server environment
-  private static final String FILE_SAVE_PATH = "./multipartData";
-//  private static final String FILE_SAVE_PATH = "/temp";
+//  private static final String FILE_SAVE_PATH = "./multipartData";
+  private static final String FILE_SAVE_PATH = "C:/temp/";
 
   public RecruitVo getRecruitVo(int id) {
     return recruitRepository.get(id);
@@ -70,6 +65,17 @@ public class RecruitService {
     cartRepository.insert( vo );
   }
 
+  public List<ProblemInfoVo> getProblemInfoList( int recruitId ){
+    return problemInfoRepository.getProblemInfoList(recruitId);
+  }
+
+  public List<ApplicantVo> getApplicantList ( int  recruitId){
+    return applicantRepository.getListByRecruitId(recruitId);
+  }
+
+  public List<ResultVo> getResultList( int applicantId, int testCaseId ){
+    return resultRepository.getResultList( applicantId, testCaseId );
+  }
 
   public boolean isContained(int recruitId, int clientId){
 

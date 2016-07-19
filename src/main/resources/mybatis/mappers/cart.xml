@@ -3,7 +3,7 @@
 
 <mapper namespace="cart">
   <insert id="insert" parameterType="cartvo">
-    <![CDATA[ insert into cart value(null, #{recruitId}, #{problemInfoId}); ]]>
+    <![CDATA[ insert into cart value(#{recruitId}, #{problemInfoId}); ]]>
     <selectKey keyProperty="id" resultType="int">
       SELECT LAST_INSERT_ID()
     </selectKey>

@@ -1,9 +1,6 @@
 package com.estsoft.codit.web.controller;
 
-import com.estsoft.codit.db.vo.ApplicantVo;
-import com.estsoft.codit.db.vo.CartVo;
-import com.estsoft.codit.db.vo.ProblemInfoVo;
-import com.estsoft.codit.db.vo.RecruitVo;
+import com.estsoft.codit.db.vo.*;
 import com.estsoft.codit.web.service.RecruitService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.List;
+
+
+
 
 
 @Controller
@@ -131,7 +132,6 @@ public class RecruitController {
     //todo if carts are already stored delete carts.
 
     for ( int i : probIdList){
-      System.out.println(i);
       CartVo vo = new CartVo();
       vo.setProblemInfoId( i );
       vo.setRecruitId(id);
@@ -144,9 +144,32 @@ public class RecruitController {
   }
 
   @RequestMapping("/applicantstatform")
-  public String applicantStatForm() {
-    //어려우니 나중으로
+  public String applicantStatForm(@PathVariable("recruitId") int id , Model model) {
+
+    List<ApplicantVo> applicantList = recruitService.getApplicantList( id );
+    List<ProblemInfoVo> problemInfoList = recruitService.getProblemInfoList(id);
+    // todo 전체 정답률
+
+    System.out.println("=============applicant stat form==========");
+    System.out.println(applicantList);
+    System.out.println(problemInfoList);
+
+    model.addAttribute("applicantList", applicantList);
+    model.addAttribute("problemInfoList", problemInfoList);
+
     return "recruit/started/recruit-started-appstatform";
+  }
+
+  @RequestMapping("/ajax-viewpersonalresult")
+  @ResponseBody
+  public Object applicantStaorm(@PathVariable("recruitId") int id,
+                                @RequestParam("applicantId") int applicantId,
+                                @RequestParam("testCaseId") int testCaseId,
+                                Model model) {
+    //todo 통과율
+    List<ResultVo> resultList= recruitService.getResultList(applicantId, testCaseId);
+
+    return null;
   }
 
   @RequestMapping("/problemstatform")

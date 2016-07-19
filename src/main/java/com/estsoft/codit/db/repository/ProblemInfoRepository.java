@@ -17,4 +17,8 @@ public class ProblemInfoRepository {
     return sqlSession.selectList("probleminfo.selectAll");
   }
 
+  public List<ProblemInfoVo> getProblemInfoList(int recruitId){
+    return sqlSession.selectList("probleminfo.selectByReqruitId", recruitId);
+  }
+
 }

@@ -7,6 +7,7 @@
     <typeAlias type="com.estsoft.codit.db.vo.ClientVo" alias="clientvo" />
     <typeAlias type="com.estsoft.codit.db.vo.ProblemInfoVo" alias="probleminfovo" />
     <typeAlias type="com.estsoft.codit.db.vo.RecruitVo" alias="recruitvo" />
+    <typeAlias type="com.estsoft.codit.db.vo.ResultVo" alias="resultvo" />
   </typeAliases>
   <mappers>
     <mapper resource="mybatis/mappers/applicant.xml" />
@@ -14,5 +15,6 @@
     <mapper resource="mybatis/mappers/client.xml" />
     <mapper resource="mybatis/mappers/probleminfo.xml" />
     <mapper resource="mybatis/mappers/recruit.xml" />
+    <mapper resource="mybatis/mappers/result.xml" />
   </mappers>
 </configuration>
