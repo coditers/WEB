@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.text.SimpleDateFormat;
@@ -40,6 +41,7 @@ public class RecruitController {
 
     System.out.println("RecruitController 42: "+recruitVo);
 
+
     if (recruitVo.getFromDate() == null || current_date.compareTo(recruitVo.getFromDate()) < 0) {   //ready recruit
 
       return "recruit/ready/recruit-ready-main";
@@ -49,11 +51,14 @@ public class RecruitController {
       if (current_date.compareTo(recruitVo.getToDate()) > 0) {//expired recruit
         //enable expired flag
       }
+
       // 3. on-going recruit
       return "recruit/started/recruit-started-main";
-    } else {
+
+  } else {
       return "redirect:/";
     }
+
   }
 
   @RequestMapping("/appregform")
@@ -143,6 +148,16 @@ public class RecruitController {
     return "recruit/ready/recruit-ready-main";
   }
 
+  //// TODO: 2016-07-20 emailform으로 들어가는 method를 짰습니다
+
+  @RequestMapping("/writeemailform")
+  public String writeEmailForm(@PathVariable("recruitId") int id , Model model) {
+
+    model.addAttribute("recruitVo", recruitService.getRecruitVo(id));
+
+    return "recruit/ready/recruit-ready-writeemailform";
+  }
+
   @RequestMapping("/applicantstatform")
   public String applicantStatForm(@PathVariable("recruitId") int id , Model model) {
 
@@ -156,9 +171,11 @@ public class RecruitController {
 
     model.addAttribute("applicantList", applicantList);
     model.addAttribute("problemInfoList", problemInfoList);
+    model.addAttribute("recruitVo", recruitService.getRecruitVo(id));
 
     return "recruit/started/recruit-started-appstatform";
   }
+
 
   @RequestMapping("/ajax-viewpersonalresult")
   @ResponseBody

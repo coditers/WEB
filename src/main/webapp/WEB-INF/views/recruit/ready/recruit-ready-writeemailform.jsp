@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="icon" href="${pageContext.request.contextPath}/assets/icon/0630_favicon_beige.ico">
-    <title>report: by applicants</title>
+    <title>write email format</title>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/materialize/css/materialize.min.css"/>
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/materialize/css/materialize-custom.css" media="screen,projection"/>
@@ -21,60 +21,40 @@
     <br>
     <br>
     <div class="row">
-        <div class="col s8 offset-s2">
+        <div class="col s6 offset-s3">
             <div class="card-panel white">
                 <div class="row">
                     <div class="col s8 offset-s2">
                         <div class="row center">
                             <h3>${recruitVo.title}</h3>
                         </div>
-                        <br>
                         <div class="row">
                             <div class="row">
-                                <h5 class="grey-text">Report - sorted by applicants</h5>
+                                <h5 class="grey-text">Write email format</h5>
                             </div>
-
-                            <table>
-                                <thead>
-                                <tr>
-                                    <th data-field="applicant name">Name</th>
-
-                                    <!-- todo 문제 이름 뿌려줄 것 -->
-                                    <!--
-                                    <c:forEach items = "${problemInfoList}" var = "vo">
-                                    <th data-field="problem">${vo.name}</th>
-                                    </c:forEach>-->
-                                    <th data-field="problem">prob1</th>
-                                    <th data-field="problem">prob2</th>
-                                    <th data-field="problem">prob3</th>
-                                    <th data-field="total score">Total Score</th>
-                                </tr>
-                                </thead>
-
-                                <tbody>
-                                <c:forEach items = "${applicantList}" var = "applicantVo">
-                                    <tr>
-                                        <td>${applicantVo.name}</td>
-                                        <td>15</td>
-                                        <td>15 /td>
-                                        <td>30</td>
-                                        <td>60</td>
-                                    </tr>
-                                </c:forEach>
-                                </tbody>
-                            </table>
+                            <br>
+                            <form class="col s12" action ="" method="post">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <textarea id="textarea1" class="materialize-textarea" > 안녕하세요, 이스트소프트입니다. 지원해 주셔서 감사합니다. 아래 링크로 시험을 시작해 주세요.</textarea>
+                                        <label class="brown-text" for="textarea1">Email Format</label>
+                                    </div>
+                                    <div class="row center">
+                                        <button type="submit" class="btn brown white-text">submit</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        <br>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+</div>
 
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/materialize/js/materialize.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/List.js"></script>
 </body>
 </html>
