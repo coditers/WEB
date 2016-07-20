@@ -43,13 +43,13 @@
                                     <button type="submit" id="btn-datesave" class="waves-effect waves-orange white btn-flat">save</button>
                                     </form>
                                 </li>
-                                <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/probselectform"
-                                   class="collection-item bold "><i class="small material-icons">list</i>Select
-                                    test problems</a>
                                 <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/appregform"
                                    class="collection-item bold "><i class="small material-icons">perm_identity</i>Enroll
                                     applicants</a>
-                                <a href="#!" class="collection-item bold "><i
+                                <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/probselectform"
+                                   class="collection-item bold "><i class="small material-icons">list</i>Select
+                                    test problems</a>
+                                <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/writeemailform" class="collection-item bold "><i
                                         class="small material-icons">email</i>Write email format</a>
                                 <a href="#!" class="collection-item bold "><i
                                         class="small material-icons">trending_flat</i>Try test</a>

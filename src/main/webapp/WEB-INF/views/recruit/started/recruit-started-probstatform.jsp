@@ -1,47 +1,74 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
-<!doctype html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>codit</title>
-    <!--Link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css"-->
-    <script type="text/javascript"
-            src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.9.0.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="icon" href="${pageContext.request.contextPath}/assets/icon/0630_favicon_beige.ico">
+    <title>report: by problems</title>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/materialize/css/materialize.min.css"/>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/materialize/css/materialize-custom.css" media="screen,projection"/>
 </head>
 
-<body>
-<table>
-    <tr>
-        <th>문제 번호<img src=""></th>
-        <th>정답률<img src=""></th>
-        <th>점수 분포<img src=""></th>
-        <th>&nbsp;</th>
-    </tr>
-    <tr>
-        <td>
-            1
-        </td>
-        <td>
-            79%
-        </td>
-        <td>
-            그래프 그림
-        </td>
-        <td>
-            <input type="checkbox" name="a" value="totalScore">종합점수
-            <input type="checkbox" name="b" value="timeUsage">TimeUsage
-            <input type="checkbox" name="c" value="memoryUsage">MemoryUsage
-        </td>
-    </tr>
-</table>
-<button>메인으로</button>
-<c:if test="${true}">
-    <button>내보내기</button>
-</c:if>
-</body>
+<body class="orange lighten-5 flexbody">
+<jsp:include page="/WEB-INF/views/include/header_light.jsp"></jsp:include>
+<div class="section no-pad-bot" id="index-banner">
+    <br>
+    <br>
+    <div class="row">
+        <div class="col s8 offset-s2">
+            <div class="card-panel white">
+                <div class="row">
+                    <div class="col s8 offset-s2">
+                        <div class="row center">
+                            <h3>${recruitVo.title}</h3>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="row">
+                                <h5 class="grey-text">Report - sorted by problems</h5>
+                            </div>
 
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th data-field="problem">Problem</th>
+                                    <th data-field="rate">rate(correct answers)</th>
+                                    <th data-field="graph">graph</th>
+                                    <th data-field="testcase">Hard Test Case</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <!--
+                                <c:forEach items = "${vo}" var = "vo">
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </c:forEach>
+                                -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/materialize/js/materialize.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/List.js"></script>
+</body>
 </html>

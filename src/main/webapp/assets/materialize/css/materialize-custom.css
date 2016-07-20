@@ -10,6 +10,7 @@
 9. li
 10. picker
 11. button
+12. iframe
 
 */
 
@@ -72,6 +73,9 @@
     border-bottom: 1px solid #c3614d;
     box-shadow: 0 1px 0 0 #000;
 }
+
+.input-field textarea.materialize-textarea:focus:not([readonly]){border-bottom:1px solid brown;box-shadow:0 1px 0 0 brown}
+
 /* valid color */
 .input-field input[type=password].valid {
     border-bottom: 1px solid #c3614d;
@@ -158,3 +162,4 @@
     padding: 0 0;
     margin-top: 0.4rem;
 }
+
