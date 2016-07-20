@@ -15,5 +15,4 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
   </insert>
-
 </mapper>

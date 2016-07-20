@@ -27,5 +27,12 @@ public class RecruitRepository {
     map.put("recruitId", recruitId);
     return sqlSession.selectOne("recruit.selectByIdClientId", map);
   }
+  public void updateRecruitDate(int recruitId, String fromDate, String toDate){
+    Map<String, Object> map = new HashMap<String, Object>();
+    map.put("recruitId", recruitId);
+    map.put("fromDate", fromDate);
+    map.put("toDate", toDate);
+    sqlSession.update("recruit.updateDate", map);
+  }
 
 }

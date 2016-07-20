@@ -77,6 +77,27 @@ public class RecruitService {
     return resultRepository.getResultList( applicantId, testCaseId );
   }
 
+  public void setRecruitDate(int recruitId, String fromDate, String toDate){
+    recruitRepository.updateRecruitDate(recruitId, fromDate, toDate);
+  }
+
+  public boolean isApplicantRegistered( int recruitId){
+    return applicantRepository.getListByRecruitId( recruitId ).isEmpty() == false;
+  }
+
+  public boolean isRecruitDateSet( int recruitId){
+    RecruitVo vo = recruitRepository.get(recruitId);
+
+    if("".equals(vo.getFromDate()) || vo.getFromDate() == null)
+      return false;
+
+    return true;
+  }
+
+  public boolean isProblemSelected( int recruitId){
+    return cartRepository.getListByRecruitId(recruitId).isEmpty() == false;
+  }
+
   public boolean isContained(int recruitId, int clientId){
 
     RecruitVo vo = recruitRepository.getByIdClientId(recruitId, clientId);

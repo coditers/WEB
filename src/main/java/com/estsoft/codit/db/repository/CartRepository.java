@@ -17,4 +17,7 @@ public class CartRepository {
     return sqlSession.insert("cart.insert", vo);
   }
 
+  public List<CartVo> getListByRecruitId( int recruitId ){
+    return sqlSession.selectList("cart.selectListByRecruitId", recruitId);
+  }
 }

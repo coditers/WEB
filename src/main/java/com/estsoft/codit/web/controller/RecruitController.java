@@ -6,9 +6,7 @@ import com.estsoft.codit.web.service.RecruitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.text.SimpleDateFormat;
@@ -37,8 +35,6 @@ public class RecruitController {
     SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     String current_date = dayTime.format(new Date(time));
     model.addAttribute("recruitVo", recruitVo);
-
-    System.out.println("RecruitController 42: "+recruitVo);
 
     if (recruitVo.getFromDate() == null || current_date.compareTo(recruitVo.getFromDate()) < 0) {   //ready recruit
 
@@ -83,9 +79,20 @@ public class RecruitController {
     return "recruit/ready/recruit-ready-appregform";
   }
 
-  @RequestMapping("setrecruitdate")
-  public String setRecruitDate(){
-    return null;
+  @RequestMapping(value = "setrecruitdate", method= RequestMethod.POST)
+  public String setRecruitDate(@PathVariable("recruitId") int id, @RequestParam("fromDate") String fromDate, @RequestParam("toDate") String toDate){
+
+    //get server time
+    long time = System.currentTimeMillis();
+    SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    String currentDate = dayTime.format(new Date(time));
+
+    //invalid DateSetting
+    if(fromDate.compareTo(toDate) > 0 || fromDate.compareTo(currentDate) < 0)
+      return "redirect:main";
+
+    recruitService.setRecruitDate(id, fromDate, toDate);
+    return "redirect:main";
   }
 
   /**
@@ -93,22 +100,27 @@ public class RecruitController {
    * */
   @RequestMapping("sendticket")
 //  @ResponseBody
-  public Object sendTickets(@PathVariable("recruitId") int id){
+  public String sendTickets(@PathVariable("recruitId") int id, Model model){
 
-//    boolean applicantFlag = recruitService.isApplicantRegistered( id );
-//    boolean dateSetFlag = recruitService.isRecruitDateSet( id );
-//    boolean probSelectFlag = recruitService.isProblemSelected( id );
-//
-//
+    boolean applicantFlag = recruitService.isApplicantRegistered( id );
+    boolean dateSetFlag = recruitService.isRecruitDateSet( id );
+    boolean probSelectFlag = recruitService.isProblemSelected( id );
+
+//    model.addAttribute("applicantFlag", applicantFlag);
+//    model.addAttribute("dateSetFlag", dateSetFlag);
+//    model.addAttribute("probSelectFlag", probSelectFlag);
+
+
+
 //    Map<String, Object> map = new HashMap<String, Object>();
 //    map.put("applicantFlag", applicantFlag);
 //    map.put("dateSetFlag", dateSetFlag);
 //    map.put("probSelectFlag", probSelectFlag);
-//
-//    if(applicantFlag == true && dateSetFlag == true && probSelectFlag == true)
+
+    if(applicantFlag == true && dateSetFlag == true && probSelectFlag == true)
       recruitService.sendTickets(id);
 //    return map;
-    return "main/index";
+    return "redirect:main";
   }
 
   @RequestMapping("probselectform")
@@ -139,7 +151,6 @@ public class RecruitController {
     }
     RecruitVo recruitVo = recruitService.getRecruitVo(id);
     model.addAttribute("recruitVo", recruitVo);
-    System.out.println("RecruitController 142 : "+recruitVo);
     return "recruit/ready/recruit-ready-main";
   }
 

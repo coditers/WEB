@@ -34,12 +34,9 @@
                                 <li id = "li-setperiods" class="collection-item bold"><i
                                         class="small material-icons">av_timer</i>Set periods:
 <!-- todo
- 시험기간 설정 onclick 달력 보이기
- 저장 request 보내면, 시작일, 종료일을
- "{pageContext.request.contextPath}/recruit/{recruitId}/set-recruit-date"로
 
 -->
-                                    <form id="form-selectdate" action="${pageContext.request.contextPath}/recruit/${recruitVo.id}/set-recruit-date" method = "POST">
+                                    <form id="form-selectdate" action="${pageContext.request.contextPath}/recruit/${recruitVo.id}/setrecruitdate" method = "POST">
                                     <input value="${recruitVo.fromDate}" name="fromDate" id= "fromDate" type="date" class="datepicker">
                                     ~
                                     <input value="${recruitVo.toDate}" name = "toDate" id= "toDate" type="date" class="datepicker">
@@ -82,7 +79,8 @@
     $(document).ready(function(){
         $('.datepicker').pickadate({
          selectMonths: true, // Creates a dropdown to control month
-         selectYears: 15 // Creates a dropdown of 15 years to control year
+         selectYears: 15, // Creates a dropdown of 15 years to control year
+         format: 'yyyy-mm-dd'
          });
     });
 </script>

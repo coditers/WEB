@@ -54,5 +54,8 @@
     ]]>
   </select>
 
+  <update id="updateDate" parameterType = "hashmap">
+    <![CDATA[ UPDATE recruit set from_date = #{fromDate}, to_date = #{toDate} WHERE id = #{recruitId} ]]>
+  </update>
 
 </mapper>

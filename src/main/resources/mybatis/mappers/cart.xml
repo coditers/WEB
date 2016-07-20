@@ -8,4 +8,11 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
   </insert>
+
+  <select id="selectListByRecruitId" parameterType="int" resultType="cartvo">
+    <![CDATA[ SELECT recruit_id as recruitId, problem_info_id as problemInfoId
+              FROM cart
+              WHERE recruit_id = #{recruitId}]]>
+  </select>
+
 </mapper>
