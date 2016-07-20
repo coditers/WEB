@@ -28,7 +28,7 @@
                 <br>
                 <div class="row center">
                     <div class="col s3 center offset-s3">
-                        <a href="${pageContext.request.contextPath}">
+                        <a href="${pageContext.request.contextPath}/">
                         <button class="waves-effect waves-light btn btn-block center-block brown text-white">Go to main</button>
                         </a>
                     </div>

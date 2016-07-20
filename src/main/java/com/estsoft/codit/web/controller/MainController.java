@@ -45,6 +45,4 @@ public class MainController {
     System.out.println("MainController 46: "+recruitVo.getTitle());
     return "redirect:/recruit/"+ recruitVo.getId() + "/main";
   }
-
-
 }

@@ -173,7 +173,7 @@ public class RecruitController {
 
   @RequestMapping("/ajax-viewpersonalresult")
   @ResponseBody
-  public Object applicantStaorm(@PathVariable("recruitId") int id,
+  public Object ajaxViewPersonalResult(@PathVariable("recruitId") int id,
                                 @RequestParam("applicantId") int applicantId,
                                 @RequestParam("testCaseId") int testCaseId,
                                 Model model) {
