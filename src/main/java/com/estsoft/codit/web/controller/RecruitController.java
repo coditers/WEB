@@ -6,14 +6,14 @@ import com.estsoft.codit.web.service.RecruitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-<<<<<<< HEAD
+
 import org.springframework.web.bind.annotation.*;
-=======
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
->>>>>>> 0720_sun
+
 import org.springframework.web.multipart.MultipartFile;
 
 import java.text.SimpleDateFormat;
@@ -43,12 +43,6 @@ public class RecruitController {
     String current_date = dayTime.format(new Date(time));
     model.addAttribute("recruitVo", recruitVo);
 
-<<<<<<< HEAD
-=======
-    System.out.println("RecruitController 42: "+recruitVo);
-
-
->>>>>>> 0720_sun
     if (recruitVo.getFromDate() == null || current_date.compareTo(recruitVo.getFromDate()) < 0) {   //ready recruit
 
       return "recruit/ready/recruit-ready-main";

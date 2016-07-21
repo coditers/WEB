@@ -33,10 +33,11 @@
                                 <h5 class="grey-text">Write email format</h5>
                             </div>
                             <br>
+                            <p class="grey-text">*지원자 이름은 'XXX'로 표기해 주십시오.</p>
                             <form class="col s12" action ="" method="post">
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <textarea id="textarea1" class="materialize-textarea" > 안녕하세요, 이스트소프트입니다. 지원해 주셔서 감사합니다. 아래 링크로 시험을 시작해 주세요.</textarea>
+                                        <textarea id="textarea1" class="materialize-textarea" > 안녕하세요, XXX님. 이스트소프트입니다. 지원해 주셔서 감사합니다. 다음 링크로 시험을 시작해 주세요.</textarea>
                                         <label class="brown-text" for="textarea1">Email Format</label>
                                     </div>
                                     <div class="row center">

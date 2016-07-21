@@ -24,7 +24,7 @@
         <div class="col s6 offset-s3">
             <div class="card-panel white">
                 <div class="row">
-                    <div class="col s8 offset-s2">
+                    <div class="col s10 offset-s1">
                         <br>
                         <div class="row center">
                             <h3>${recruitVo.title}</h3>

@@ -84,13 +84,13 @@
 
 #fromDate{
     height: 1rem;
-    width: 6rem;
+    width: 10rem;
     font-size: 15px;
 }
 
 #toDate{
     height: 1rem;
-    width: 6rem;
+    width: 10rem;
     font-size: 15px;
 }
 
