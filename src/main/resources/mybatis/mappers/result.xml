@@ -5,7 +5,7 @@
 <mapper namespace="result">
     <select id="selectListByAppIdProbId" parameterType="hashmap" resultType="resultvo">
     <![CDATA[
-        SELECT rs.applicant_id, rs.test_case_id, rs.correctness, rs.used_memory, rs.running_time
+        SELECT rs.applicant_id as applicantId, rs.test_case_id as testCaseId, rs.correctness as correctness, rs.used_memory as usedMemory, rs.running_time as runningTime
         FROM result rs, test_case tc
         WHERE applicant_id = #{applicantId}
         AND rs.test_case_id = tc.id

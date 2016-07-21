@@ -35,4 +35,10 @@ public class RecruitRepository {
     sqlSession.update("recruit.updateDate", map);
   }
 
+  public void updateEmailFormat(int recruitId, String emailFormat){
+    Map<String, Object> map = new HashMap<String, Object>();
+    map.put("recruitId", recruitId);
+    map.put("emailFormat", emailFormat);
+    sqlSession.update("recruit.updateEmailFormat", map);
+  }
 }

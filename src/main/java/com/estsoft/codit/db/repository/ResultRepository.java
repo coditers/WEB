@@ -22,7 +22,6 @@ public class ResultRepository {
         Map<String, Integer> map = new HashMap<String, Integer>();
         map.put("applicantId", applicantId);
         map.put("problemInfoId", problemInfoId);
-
         return sqlSession.selectList("result.selectListByAppIdProbId", map);
     }
 }

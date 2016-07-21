@@ -118,6 +118,11 @@ public class RecruitService {
 
     return 12;
   }
+
+  public void saveEmail(int recruitId, String emailFormat){
+    recruitRepository.updateEmailFormat( recruitId, emailFormat );
+  }
+
   public boolean isContained(int recruitId, int clientId){
 
     RecruitVo vo = recruitRepository.getByIdClientId(recruitId, clientId);
@@ -256,13 +261,16 @@ public class RecruitService {
   }
 
   public void sendTickets( int recruitId ){
-    String link = "127.0.0.1:8080/main";//"192.168.230.17:8080/?ticket=";
-    List<ApplicantVo> appList = applicantRepository.getListByRecruitId( recruitId );
-//    for ( ApplicantVo vo : appList){
-//      //todo mail content!
-//      sendMail( vo.getEmail(), link + vo.getTicket());
-//    }
-      sendMail("joonhoyeom@gmail.com", link);
+    List<ApplicantVo> applicantList = applicantRepository.getListByRecruitId(recruitId);
+    RecruitVo recruitVo = recruitRepository.get(recruitId);
+    String emailContent = recruitVo.getEmailFormat();
+
+    for(ApplicantVo vo : applicantList){
+      emailContent.replace("#이름", vo.getName());
+      emailContent.replace("#링크", "127.0.0.1:8080/main");//"192.168.230.17:8080/?ticket=" + vo.getTicket() );
+
+      sendMail(vo.getEmail(), emailContent);
+    }
   }
 
   //todo convert to spring api, get message from user, content generateion function
@@ -275,11 +283,11 @@ public class RecruitService {
 
     try {
       MimeMessage msg = new MimeMessage(session);
-      msg.setFrom(new InternetAddress("noreply@codit.com", "estsoft"));
+      msg.setFrom(new InternetAddress("noreply@codit.com", "codit"));
 //      InternetAddress[] address = {new InternetAddress(toAddr)};
 //      msg.setRecipients(Message.RecipientType.TO, address);
       msg.addRecipient(Message.RecipientType.TO, new InternetAddress( toAddr, "joon-ho"));
-      msg.setSubject("제목이 이러저러합니다");
+      msg.setSubject("invitation from codit");
 //      MimeMultipart multipart = new MimeMultipart();
 //
 //      MimeBodyPart part = new MimeBodyPart();
@@ -293,7 +301,7 @@ public class RecruitService {
 //      multipart.addBodyPart(part);
 
 //      msg.setContent(multipart);
-      msg.setContent("http://115.68.116.235:8080/", "text/html; charset=utf-8");
+      msg.setContent(content, "text/html; charset=utf-8");
 
       Transport.send(msg);
     } catch (Exception ex) {

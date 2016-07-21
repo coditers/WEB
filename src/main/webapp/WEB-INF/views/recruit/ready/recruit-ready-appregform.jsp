@@ -11,8 +11,11 @@
     <link rel="icon" href="${pageContext.request.contextPath}/assets/icon/0630_favicon_beige.ico">
     <title>enroll applicants</title>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/materialize/css/materialize.min.css"/>
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/materialize/css/materialize-custom.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet"
+          href="${pageContext.request.contextPath}/assets/materialize/css/materialize.min.css"/>
+    <link type="text/css" rel="stylesheet"
+          href="${pageContext.request.contextPath}/assets/materialize/css/materialize-custom.css"
+          media="screen,projection"/>
 </head>
 
 <body class="orange lighten-5 flexbody">
@@ -33,20 +36,25 @@
                                 <h5 class="grey-text">Enroll applicants</h5>
                             </div>
                             <br>
-                            <form id="excel-form" method="post" enctype="multipart/form-data" action ="${pageContext.request.contextPath}/recruit/${recruitVo.id}/appreg">
+                            <form id="excel-form" method="post" enctype="multipart/form-data"
+                                  action="${pageContext.request.contextPath}/recruit/${recruitVo.id}/appreg">
                                 <div class="file-field input-field">
                                     <div class="btn green darken-3">
                                         Excel File
-                                        <input id= "excel-file"  name="excel-file" type="file">
+                                        <input id="excel-file" name="excel-file" type="file">
                                     </div>
                                     <div class="file-path-wrapper">
                                         <input class="file-path validate" type="text">
                                     </div>
                                 </div>
                                 <br>
+                                <div class="row center">
+                                    <button type="submit" class="btn brown white-text">submit</button>
+                                </div>
+
                             </form>
-                            </div>
-                            <div class="row center">
+                        </div>
+                        <div class="row center">
                             <table id="table-applist" class="striped">
                                 <thead>
                                 <tr>
@@ -55,10 +63,9 @@
                                 </tr>
                                 </thead>
                             </table>
-                            </div>
+                        </div>
                         <div class="row center">
                             <button type="submit" class="btn brown white-text">save</button>
-                        </div>
                         </div>
                     </div>
                 </div>
@@ -66,34 +73,36 @@
         </div>
     </div>
 </div>
+</div>
 
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/materialize/js/materialize.min.js"></script>
+<script type="text/javascript"
+        src="${pageContext.request.contextPath}/assets/materialize/js/materialize.min.js"></script>
 <script type="text/javascript">
-    $(function(){
-        $("#excel-file").on('change', function(){
-            var data = new FormData();
+    <%--$(function(){--%>
+    <%--$("#excel-file").on('change', function(){--%>
+    <%--var data = new FormData();--%>
 
-            var excelFile = new FormData(document.getElementById('uploadForm'));
-            if (form == ""){ return; }
-            $.ajax({
-                       url:"${pageContext.request.contextPath}/blog/${authUser.email}/uploadLogo",
-                       data: form,
-                       dataType: 'json',
-                       processData: false,
-                       contentType: false,
-                       type: "POST",
-                       success: function(response){
-                           console.log(response.data);
-                           $('#img-logoshow').attr('src', "${pageContext.request.contextPath}"+response.data);
-                       },
-                       error: function(jqXHR,status,error){
-                           console.error(status+":"+error);
-                       }
-                   });
-        });
-    });
+    <%--var excelFile = new FormData(document.getElementById('uploadForm'));--%>
+    <%--if (form == ""){ return; }--%>
+    <%--$.ajax({--%>
+    <%--url:"${pageContext.request.contextPath}/blog/${authUser.email}/uploadLogo",--%>
+    <%--data: form,--%>
+    <%--dataType: 'json',--%>
+    <%--processData: false,--%>
+    <%--contentType: false,--%>
+    <%--type: "POST",--%>
+    <%--success: function(response){--%>
+    <%--console.log(response.data);--%>
+    <%--$('#img-logoshow').attr('src', "${pageContext.request.contextPath}"+response.data);--%>
+    <%--},--%>
+    <%--error: function(jqXHR,status,error){--%>
+    <%--console.error(status+":"+error);--%>
+    <%--}--%>
+    <%--});--%>
+    <%--});--%>
+    <%--});--%>
 
 </script>
 </body>

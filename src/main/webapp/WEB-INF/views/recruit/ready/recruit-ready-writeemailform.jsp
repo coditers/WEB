@@ -33,11 +33,11 @@
                                 <h5 class="grey-text">Write email format</h5>
                             </div>
                             <br>
-                            <p class="grey-text">*지원자 이름은 'XXX'로 표기해 주십시오.</p>
-                            <form class="col s12" action ="" method="post">
+                            <p class="grey-text">*지원자 이름은 '#이름'으로 시험링크는 '#링크'로 표기해 주십시오. '#링크'는 메일에 반드시 포함되어야 합니다.</p>
+                            <form class="col s12" action ="${pageContext.request.contextPath}/recruit/${recruitId}/saveemail" method="post">
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <textarea id="textarea1" class="materialize-textarea" > 안녕하세요, XXX님. 이스트소프트입니다. 지원해 주셔서 감사합니다. 다음 링크로 시험을 시작해 주세요.</textarea>
+                                        <textarea name = "emailFormat" id="textarea1" class="materialize-textarea" > 안녕하세요, #이름님. 이스트소프트입니다. 지원해 주셔서 감사합니다. 다음 링크로 시험을 시작해 주세요.#링크</textarea>
                                         <label class="brown-text" for="textarea1">Email Format</label>
                                     </div>
                                     <div class="row center">

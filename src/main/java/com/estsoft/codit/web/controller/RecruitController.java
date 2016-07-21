@@ -73,6 +73,7 @@ public class RecruitController {
   @RequestMapping("/appreg")
   public String applicantregister(@PathVariable("recruitId") int id, @RequestParam("excel-file") MultipartFile file, Model model) {
 
+    System.out.println("=================fileupload Debug================");
     String filePath = recruitService.saveMultiPartFile(file);
     List<ApplicantVo> list = null;
 
@@ -167,10 +168,14 @@ public class RecruitController {
 
   @RequestMapping("/writeemailform")
   public String writeEmailForm(@PathVariable("recruitId") int id , Model model) {
-
     model.addAttribute("recruitVo", recruitService.getRecruitVo(id));
-
     return "recruit/ready/recruit-ready-writeemailform";
+  }
+
+  @RequestMapping("/saveemail")
+  public String saveEmail(@PathVariable("recruitId") int id , @RequestParam("emailFormat") String emailFormat) {
+    recruitService.saveEmail(id, emailFormat);
+    return "redirect:main";
   }
 
   @RequestMapping("/applicantstatform")
@@ -182,8 +187,6 @@ public class RecruitController {
 //    int applicantCorrectionRate = 0;
 //    applicantCorrectionRate= recruitService.calcApplicantCorrectionRate(applicantList, problemInfoList);
 //    // todo 전체 정답률
-
-
 
     model.addAttribute("applicantList", applicantList);
     model.addAttribute("problemInfoList", problemInfoList);
@@ -201,8 +204,6 @@ public class RecruitController {
     //todo 통과율
     List<ResultVo> resultList= recruitService.getResultList(applicantId, problemInfoId);
 
-    System.out.println("====DEBUG ajax view personal result====");
-    System.out.println(resultList);
     return resultList;
   }
 
