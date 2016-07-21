@@ -8,6 +8,7 @@ public class ApplicantVo {
   private String startTime;
   private String submitTime;
   private int recruitId;
+  private Boolean isFinished;
 
   public int getId() {
     return id;
@@ -65,6 +66,14 @@ public class ApplicantVo {
     this.recruitId = recruitId;
   }
 
+  public Boolean getFinished() {
+    return isFinished;
+  }
+
+  public void setFinished(Boolean finished) {
+    isFinished = finished;
+  }
+
   @Override
   public String toString() {
     return "ApplicantVo{" +
@@ -75,6 +84,7 @@ public class ApplicantVo {
         ", startTime='" + startTime + '\'' +
         ", submitTime='" + submitTime + '\'' +
         ", recruitId=" + recruitId +
+        ", isFinished=" + isFinished +
         '}';
   }
 }

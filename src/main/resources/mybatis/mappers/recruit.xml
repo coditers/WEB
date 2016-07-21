@@ -9,7 +9,8 @@
              title     AS title,
              from_date AS fromDate,
              to_date   AS toDate,
-             client_id AS clientId
+             client_id AS clientId,
+             email_format AS emailFormat
         FROM recruit
        WHERE id=#{recruitId }
        AND client_id=#{clientId}
@@ -22,7 +23,8 @@
              title     AS title,
              from_date AS fromDate,
              to_date   AS toDate,
-             client_id AS clientId
+             client_id AS clientId,
+             email_format AS emailFormat
         FROM recruit
         WHERE client_id = #{clientId}
     ]]>
@@ -33,7 +35,7 @@
     <![CDATA[
       INSERT
         INTO recruit
-      VALUES (NULL, #{title}, #{fromDate}, #{toDate}, ${clientId})
+      VALUES (NULL, #{title}, #{fromDate}, #{toDate}, ${clientId}, NULL)
     ]]>
     <selectKey keyProperty="id" resultType="int">
       SELECT LAST_INSERT_ID()
@@ -48,7 +50,8 @@
              title     AS title,
              from_date AS fromDate,
              to_date   AS toDate,
-             client_id AS clientId
+             client_id AS clientId,
+             email_format AS emailFormat
         FROM recruit
        WHERE id=#{id }
     ]]>

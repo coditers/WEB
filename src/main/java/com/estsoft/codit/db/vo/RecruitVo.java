@@ -6,6 +6,7 @@ public class RecruitVo {
   private String fromDate;
   private String toDate;
   private int clientId;
+  private String emailFormat;
 
   public int getId() {
     return id;
@@ -47,6 +48,14 @@ public class RecruitVo {
     this.clientId = clientId;
   }
 
+  public String getEmailFormat() {
+    return emailFormat;
+  }
+
+  public void setEmailFormat(String emailFormat) {
+    this.emailFormat = emailFormat;
+  }
+
   @Override
   public String toString() {
     return "RecruitVo{" +
@@ -55,6 +64,7 @@ public class RecruitVo {
         ", fromDate='" + fromDate + '\'' +
         ", toDate='" + toDate + '\'' +
         ", clientId=" + clientId +
+        ", emailFormat='" + emailFormat + '\'' +
         '}';
   }
 }
