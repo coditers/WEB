@@ -12,10 +12,9 @@ import org.springframework.web.multipart.MultipartFile;
 import java.text.SimpleDateFormat;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
-
-
-
+import java.util.Map;
 
 
 @Controller
@@ -159,11 +158,12 @@ public class RecruitController {
 
     List<ApplicantVo> applicantList = recruitService.getApplicantList( id );
     List<ProblemInfoVo> problemInfoList = recruitService.getProblemInfoList(id);
-    // todo 전체 정답률
 
-    System.out.println("=============applicant stat form==========");
-    System.out.println(applicantList);
-    System.out.println(problemInfoList);
+//    int applicantCorrectionRate = 0;
+//    applicantCorrectionRate= recruitService.calcApplicantCorrectionRate(applicantList, problemInfoList);
+//    // todo 전체 정답률
+
+
 
     model.addAttribute("applicantList", applicantList);
     model.addAttribute("problemInfoList", problemInfoList);
@@ -175,16 +175,18 @@ public class RecruitController {
   @ResponseBody
   public Object ajaxViewPersonalResult(@PathVariable("recruitId") int id,
                                 @RequestParam("applicantId") int applicantId,
-                                @RequestParam("testCaseId") int testCaseId,
-                                Model model) {
+                                @RequestParam("problemInfoId") int problemInfoId) {
     //todo 통과율
-    List<ResultVo> resultList= recruitService.getResultList(applicantId, testCaseId);
+    List<ResultVo> resultList= recruitService.getResultList(applicantId, problemInfoId);
 
-    return null;
+    System.out.println("====DEBUG ajax view personal result====");
+    System.out.println(resultList);
+    return resultList;
   }
 
   @RequestMapping("/problemstatform")
   public String problemStatForm() {
+
     return "recruit/started/recruit-started-probstatform";
   }
 

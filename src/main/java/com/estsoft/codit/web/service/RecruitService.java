@@ -73,8 +73,8 @@ public class RecruitService {
     return applicantRepository.getListByRecruitId(recruitId);
   }
 
-  public List<ResultVo> getResultList( int applicantId, int testCaseId ){
-    return resultRepository.getResultList( applicantId, testCaseId );
+  public List<ResultVo> getResultList( int applicantId, int problemInfoId ){
+    return resultRepository.getResultList( applicantId, problemInfoId );
   }
 
   public void setRecruitDate(int recruitId, String fromDate, String toDate){
@@ -98,6 +98,26 @@ public class RecruitService {
     return cartRepository.getListByRecruitId(recruitId).isEmpty() == false;
   }
 
+  public int calcApplicantCorrectionRate(int applicantId, List<ProblemInfoVo> probInfoList){
+
+      int correctionRate = 0;
+      int nTotalTestCase = 0;
+      for (ProblemInfoVo probVo : probInfoList){
+        List<ResultVo> resultList = getResultList(applicantId, probVo.getId());
+      }
+
+    return 12;
+  }
+  public int calcApplicantProblemCorrectionRate(int applicantId, int problemInfoId){
+
+    int correctionRate = 0;
+    int nTotalTestCase = 0;
+
+    List<ResultVo> resultList = getResultList(applicantId, problemInfoId);
+
+
+    return 12;
+  }
   public boolean isContained(int recruitId, int clientId){
 
     RecruitVo vo = recruitRepository.getByIdClientId(recruitId, clientId);

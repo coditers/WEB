@@ -18,11 +18,11 @@ public class ResultRepository {
     @Autowired
     SqlSession sqlSession;
 
-    public List<ResultVo> getResultList(int applicantId, int testCaseId){
+    public List<ResultVo> getResultList(int applicantId, int problemInfoId){
         Map<String, Integer> map = new HashMap<String, Integer>();
         map.put("applicantId", applicantId);
-        map.put("testCaseId", testCaseId);
+        map.put("problemInfoId", problemInfoId);
 
-        return null;//sqlSession.selectList("result.selectByIds", map);
+        return sqlSession.selectList("result.selectListByAppIdProbId", map);
     }
 }
