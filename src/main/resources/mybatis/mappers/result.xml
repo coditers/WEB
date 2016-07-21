@@ -3,17 +3,13 @@
 
 
 <mapper namespace="result">
-    <!--보류-->
-    <select id="selectByIds" parameterType="hashmap" resultType="resultvo">
+    <select id="selectListByAppIdProbId" parameterType="hashmap" resultType="resultvo">
     <![CDATA[
-        SELECT applicant_id as applicantId,
-                test_case_id as testCaseId,
-                correctness,
-                used_memory as usedMemory,
-                running_time as runningTime
-        FROM    result
+        SELECT rs.applicant_id, rs.test_case_id, rs.correctness, rs.used_memory, rs.running_time
+        FROM result rs, test_case tc
         WHERE applicant_id = #{applicantId}
-        AND test_case_id = #{testCaseId}
-        ]]>
+        AND rs.test_case_id = tc.id
+        AND tc.problem_info_id = #{problemInfoId}
+]]>
   </select>
 </mapper>
