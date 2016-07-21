@@ -44,9 +44,6 @@
                                     </div>
                                 </div>
                                 <br>
-                                <div class="row center">
-                                    <button type="submit" class="btn brown white-text">submit</button>
-                                </div>
                             </form>
                             </div>
                             <div class="row center">
@@ -57,12 +54,11 @@
                                     <th data-field="name">Email</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-
-                                <tr><td>"+this.name+"</td><td>"+this.email+"</td></tr>
-                                </tbody>
                             </table>
                             </div>
+                        <div class="row center">
+                            <button type="submit" class="btn brown white-text">save</button>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -74,5 +70,31 @@
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/materialize/js/materialize.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $("#excel-file").on('change', function(){
+            var data = new FormData();
+
+            var excelFile = new FormData(document.getElementById('uploadForm'));
+            if (form == ""){ return; }
+            $.ajax({
+                       url:"${pageContext.request.contextPath}/blog/${authUser.email}/uploadLogo",
+                       data: form,
+                       dataType: 'json',
+                       processData: false,
+                       contentType: false,
+                       type: "POST",
+                       success: function(response){
+                           console.log(response.data);
+                           $('#img-logoshow').attr('src', "${pageContext.request.contextPath}"+response.data);
+                       },
+                       error: function(jqXHR,status,error){
+                           console.error(status+":"+error);
+                       }
+                   });
+        });
+    });
+
+</script>
 </body>
 </html>

@@ -4,7 +4,7 @@
 
 <mapper namespace="applicant">
   <select id="selectListByRecruitId" parameterType="int" resultType="applicantvo">
-    <![CDATA[ SELECT id, name, email, ticket, start_time as startTime, submit_time as submitTime, recruit_id as recruitId, is_finished as isFinished
+    <![CDATA[ SELECT id, name, email, ticket, start_time as startTime, submit_time as submitTime, recruit_id as recruitId
               FROM applicant
               WHERE recruit_id = #{recruitId}]]>
   </select>
