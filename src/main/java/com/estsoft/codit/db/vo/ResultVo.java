@@ -6,9 +6,9 @@ package com.estsoft.codit.db.vo;
 public class ResultVo {
     private int applicantId;
     private int test_caseId;
-    boolean correctness;
-    int usedMemory;
-    int runningTime;
+    private boolean correctness;
+    private int usedMemory;
+    private int runningTime;
 
     public int getApplicantId() {
         return applicantId;

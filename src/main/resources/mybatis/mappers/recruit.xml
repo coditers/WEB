@@ -27,6 +27,7 @@
              email_format AS emailFormat
         FROM recruit
         WHERE client_id = #{clientId}
+        ORDER BY to_date DESC 
     ]]>
   </select>
 

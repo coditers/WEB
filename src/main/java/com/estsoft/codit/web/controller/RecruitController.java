@@ -3,6 +3,8 @@ package com.estsoft.codit.web.controller;
 import com.estsoft.codit.db.vo.*;
 import com.estsoft.codit.web.service.RecruitService;
 
+import com.estsoft.codit.web.util.ApplicantStatVo;
+import com.estsoft.codit.web.util.ProblemStatVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,9 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.text.SimpleDateFormat;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 @Controller
@@ -181,40 +181,32 @@ public class RecruitController {
   @RequestMapping("/applicantstatform")
   public String applicantStatForm(@PathVariable("recruitId") int id , Model model) {
 
-    List<ApplicantVo> applicantList = recruitService.getApplicantList( id );
-    List<ProblemInfoVo> problemInfoList = recruitService.getProblemInfoList(id);
+    List<ApplicantStatVo> applicantStatVoList = recruitService.getApplicantStatVoList(id);
+    List<ProblemInfoVo> problemInfoVoList = recruitService.getProblemInfoList(id);
 
-//    int applicantCorrectionRate = 0;
-//    applicantCorrectionRate= recruitService.calcApplicantCorrectionRate(applicantList, problemInfoList);
-//    // todo 전체 정답률
-
-    model.addAttribute("applicantList", applicantList);
-    model.addAttribute("problemInfoList", problemInfoList);
-    model.addAttribute("recruitVo", recruitService.getRecruitVo(id));
-
+    model.addAttribute("applicantStatList", applicantStatVoList);
+    model.addAttribute("problemInfoList", problemInfoVoList);
+    model.addAttribute("recruitId", id);
     return "recruit/started/recruit-started-appstatform";
   }
 
 
-  @RequestMapping("/ajax-viewpersonalresult")
+  @RequestMapping("/ajax-applicantresultdetail")
   @ResponseBody
-  public Object ajaxViewPersonalResult(@PathVariable("recruitId") int id,
+  public Object applicantResultDetail(@PathVariable("recruitId") int id,
                                 @RequestParam("applicantId") int applicantId,
                                 @RequestParam("problemInfoId") int problemInfoId) {
     //todo 통과율
     List<ResultVo> resultList= recruitService.getResultList(applicantId, problemInfoId);
-
+    System.out.println(resultList);
     return resultList;
   }
 
   @RequestMapping("/problemstatform")
-  public String problemStatForm() {
-
+  public String problemStatForm(@PathVariable("recruitId") int id , Model model) {
+    List<ProblemStatVo> problemStatVoList = recruitService.getProblemStatVoList(id);
+    model.addAttribute("problemStatList", problemStatVoList);
+    model.addAttribute("recruitId", id);
     return "recruit/started/recruit-started-probstatform";
-  }
-
-  @RequestMapping("/overallreportform")
-  public String overallReportForm() {
-    return "recruit/started/recruit-started-overallreportform";
   }
 }

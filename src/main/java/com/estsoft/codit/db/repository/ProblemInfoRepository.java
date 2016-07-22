@@ -18,7 +18,7 @@ public class ProblemInfoRepository {
   }
 
   public List<ProblemInfoVo> getProblemInfoList(int recruitId){
-    return sqlSession.selectList("probleminfo.selectByReqruitId", recruitId);
+    return sqlSession.selectList("probleminfo.selectListByReqruitId", recruitId);
   }
 
 }

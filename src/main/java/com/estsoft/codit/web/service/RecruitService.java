@@ -2,6 +2,8 @@ package com.estsoft.codit.web.service;
 
 import com.estsoft.codit.db.repository.*;
 import com.estsoft.codit.db.vo.*;
+import com.estsoft.codit.web.util.ApplicantStatVo;
+import com.estsoft.codit.web.util.ProblemStatVo;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -12,13 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.activation.DataHandler;
-import javax.activation.FileDataSource;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.*;
@@ -52,6 +50,9 @@ public class RecruitService {
     return problemInfoRepository.getList();
   }
 
+  public List<ProblemInfoVo> getProblemInfoList( int recruitId ){
+    return problemInfoRepository.getProblemInfoList( recruitId);
+  }
 
   public int insert(RecruitVo recruitVo) {
     return recruitRepository.insert(recruitVo);
@@ -65,12 +66,39 @@ public class RecruitService {
     cartRepository.insert( vo );
   }
 
-  public List<ProblemInfoVo> getProblemInfoList( int recruitId ){
-    return problemInfoRepository.getProblemInfoList(recruitId);
+  public List<ApplicantStatVo> getApplicantStatVoList(int recruitId){
+
+    List<ApplicantStatVo> applicantStatVoList = new ArrayList<ApplicantStatVo>();
+
+    List<ApplicantVo> applicantVoList = applicantRepository.getListByRecruitId(recruitId);
+    List<CartVo> cartVoList = cartRepository.getListByRecruitId(recruitId);
+
+    for( ApplicantVo applicantVo : applicantVoList){
+      ApplicantStatVo applicantStatVo = new ApplicantStatVo();
+      for(CartVo cartVo : cartVoList){
+        List<ResultVo> resultList =  resultRepository.getResultList( applicantVo.getId(), cartVo.getProblemInfoId());
+        int correctCnt = 0;
+        int totalCnt = 0;
+        for(ResultVo resultVo : resultList){
+
+          if(resultVo.isCorrectness() == true)
+            correctCnt++;
+
+          totalCnt++;
+        }
+        int problemScore = ( totalCnt == 0 ) ? 0 : correctCnt * 100 / totalCnt;
+        applicantStatVo.addScore(problemScore); //score of an applicant for a problem
+      }
+      applicantStatVo.setApplicantId(applicantVo.getId());
+      applicantStatVo.setApplicantName(applicantVo.getName());
+      applicantStatVo.calTotalScore();
+      applicantStatVoList.add(applicantStatVo);
+    }
+    return applicantStatVoList;
   }
 
-  public List<ApplicantVo> getApplicantList ( int  recruitId){
-    return applicantRepository.getListByRecruitId(recruitId);
+  public List<ProblemStatVo> getProblemStatVoList(int recruitId){
+    
   }
 
   public List<ResultVo> getResultList( int applicantId, int problemInfoId ){

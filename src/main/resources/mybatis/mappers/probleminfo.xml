@@ -7,8 +7,8 @@
     <![CDATA[ SELECT id, name, description, estimated_time as estimatedTime  FROM problem_info ]]>
   </select>
 
-  <select id="selectByReqruitId" resultType="int" parameterType="int">
-    <![CDATA[ SELECT  id, name, description, estimated_time as estimatedTime  FROM problem_info, cart  WHERE cart.recruit_id = #{recruitId} AND cart.problem_info_id = id]]>
+  <select id="selectListByReqruitId" resultType="probleminfovo" parameterType="int">
+    <![CDATA[ SELECT  id, name, description, estimated_time as estimatedTime  FROM problem_info, cart  WHERE cart.recruit_id = #{recruitId} AND cart.problem_info_id = id ORDER BY id]]>
   </select>
 
   <select id="selectById" resultType="probleminfovo" parameterType="int">

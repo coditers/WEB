@@ -38,15 +38,9 @@
                                 <thead>
                                 <tr>
                                     <th data-field="applicant name">Name</th>
-
-                                    <!-- todo 문제 이름 뿌려줄 것 -->
-                                    <!--
-                                    <c:forEach items = "${problemInfoList}" var = "vo">
-                                    <th data-field="problem">${vo.name}</th>
-                                    </c:forEach>-->
-                                    <th>prob1</th>
-                                    <th>prob2</th>
-                                    <th>prob3</th>
+                                    <c:forEach items="${problemInfoList}" var="vo">
+                                        <th data-field="problem">${vo.name }</th>
+                                    </c:forEach>
 
                                     <th>Total Score</th>
                                     <th>Details</th>
@@ -55,15 +49,14 @@
                                 </thead>
 
                                 <tbody>
-                                <c:forEach items = "${applicantList}" var = "applicantVo">
+                                <c:forEach items = "${applicantStatList}" var = "applicantStatVo">
                                     <tr>
-                                        <td>${applicantVo.name}</td>
-                                        <td>15</td>
-                                        <td>15 /td>
-                                        <td>30</td>
-                                        <td>60</td>
-
-                                        <td>-></td>
+                                        <td>${applicantStatVo.applicantName}</td>
+                                        <c:forEach items = "${applicantStatVo.problemScoreList}" var = "score">
+                                            <td>${score}</td>
+                                        </c:forEach>
+                                        <td>${applicantStatVo.totalScore}</td>
+                                        <td><a href="${pageContext.request.contextPath}/recruit/${recruitId}/ajax-applicantresultdetail">-></a></td>
                                         <td>ㅁ</td>
                                     </tr>
                                 </c:forEach>
