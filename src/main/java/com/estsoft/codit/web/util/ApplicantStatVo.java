@@ -62,7 +62,7 @@ public class ApplicantStatVo {
         totalScore = 0;
         for(int i : problemScoreList)
             totalScore +=i;
-
-        return totalScore/(problemScoreList.size());
+        totalScore /= problemScoreList.size();
+        return totalScore;
     }
 }

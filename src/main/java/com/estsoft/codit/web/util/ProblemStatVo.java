@@ -1,8 +1,5 @@
 package com.estsoft.codit.web.util;
 
-/**
- * Created by estsoft on 2016-07-22.
- */
 public class ProblemStatVo {
     String problemName;
     int avg;

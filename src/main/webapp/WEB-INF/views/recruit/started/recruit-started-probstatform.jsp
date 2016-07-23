@@ -46,16 +46,15 @@
                                 </thead>
 
                                 <tbody>
-                                <!--
-                                <c:forEach items = "${vo}" var = "vo">
+                                <c:forEach items = "${problemStatList}" var = "vo">
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>${vo.problemName}</td>
+                                        <td>${vo.avg}</td>
+                                        <td>${vo.stdDev}</td>
+                                        <td>${vo.max}</td>
+                                        <td>${vo.min}</td>
                                     </tr>
                                 </c:forEach>
-                                -->
                                 </tbody>
                             </table>
                         </div>
