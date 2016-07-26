@@ -4,11 +4,13 @@ package com.estsoft.codit.db.vo;
  * Created by estsoft on 2016-07-19.
  */
 public class ResultVo {
+
     private int applicantId;
     private int test_caseId;
     private boolean correctness;
     private int usedMemory;
     private int runningTime;
+
 
     public int getApplicantId() {
         return applicantId;
@@ -49,6 +51,7 @@ public class ResultVo {
     public void setRunningTime(int runningTime) {
         this.runningTime = runningTime;
     }
+
 
     @Override
     public String toString() {

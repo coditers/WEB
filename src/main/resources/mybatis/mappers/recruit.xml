@@ -3,6 +3,23 @@
 
 <mapper namespace="recruit">
 
+  <insert id="insert" parameterType="recruitvo">
+    <![CDATA[
+      INSERT
+        INTO recruit
+      VALUES (NULL,
+               #{title},
+               #{fromDate},
+               #{toDate},
+               #{clientId},
+               NULL)
+    ]]>
+    <selectKey keyProperty="id" resultType="int">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+  </insert>
+
+
   <select id="selectByIdClientId" resultType="recruitvo" parameterType="hashmap">
     <![CDATA[
       SELECT id        AS id,
@@ -31,20 +48,6 @@
     ]]>
   </select>
 
-
-  <insert id="insert" parameterType="recruitvo">
-    <![CDATA[
-      INSERT
-        INTO recruit
-      VALUES (NULL, #{title}, #{fromDate}, #{toDate}, ${clientId}, NULL)
-    ]]>
-    <selectKey keyProperty="id" resultType="int">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-  </insert>
-
-
-  <!--need to check-->
   <select id="selectById" resultType="recruitvo" parameterType="int">
     <![CDATA[
       SELECT id        AS id,
@@ -57,6 +60,7 @@
        WHERE id=#{id }
     ]]>
   </select>
+
 
   <update id="updateDate" parameterType = "hashmap">
     <![CDATA[ UPDATE recruit set from_date = #{fromDate}, to_date = #{toDate} WHERE id = #{recruitId} ]]>

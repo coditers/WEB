@@ -1,10 +1,12 @@
 package com.estsoft.codit.db.vo;
 
 public class ProblemInfoVo {
+
   private int id;
   private String name;
   private String description;
   private int estimatedTime;
+
 
   public int getId() {
     return id;
@@ -37,6 +39,7 @@ public class ProblemInfoVo {
   public void setEstimatedTime(int estimatedTime) {
     this.estimatedTime = estimatedTime;
   }
+
 
   @Override
   public String toString() {

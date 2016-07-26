@@ -5,11 +5,15 @@
 <mapper namespace="result">
     <select id="selectListByAppIdProbId" parameterType="hashmap" resultType="resultvo">
     <![CDATA[
-        SELECT rs.applicant_id as applicantId, rs.test_case_id as testCaseId, rs.correctness as correctness, rs.used_memory as usedMemory, rs.running_time as runningTime
+        SELECT rs.applicant_id as applicantId,
+                rs.test_case_id as testCaseId,
+                rs.correctness as correctness,
+                rs.used_memory as usedMemory,
+                rs.running_time as runningTime
         FROM result rs, test_case tc
         WHERE applicant_id = #{applicantId}
-        AND rs.test_case_id = tc.id
-        AND tc.problem_info_id = #{problemInfoId}
+          AND rs.test_case_id = tc.id
+          AND tc.problem_info_id = #{problemInfoId}
 ]]>
   </select>
 </mapper>

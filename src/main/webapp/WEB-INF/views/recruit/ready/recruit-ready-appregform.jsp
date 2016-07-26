@@ -36,8 +36,8 @@
                                 <h5 class="grey-text">Enroll applicants</h5>
                             </div>
                             <br>
-                            <form id="excel-form" method="post" enctype = "multipart/form-data" action="">
-                                <!-- ${pageContext.request.contextPath}/recruit/${recruitVo.id}/appreg-->
+                            <form id="excel-form" method="post" enctype="multipart/form-data"
+                                  <%--action="${pageContext.request.contextPath}/recruit/${recruitVo.id}/register-applicant">--%>
                                 <div class="file-field input-field">
                                     <div class="btn green darken-3">
                                         Excel File
@@ -84,7 +84,7 @@
             formData.append("excel-file", $("#excel-file")[0].files[0]);
             console.log('버튼눌림');
             $.ajax({
-                       url:"${pageContext.request.contextPath}/recruit/${recruitVo.id}/appreg",
+                       url:"${pageContext.request.contextPath}/recruit/${recruitVo.id}/register-applicant",
                        type: "POST",
                        data: formData,
                        dataType: 'json',

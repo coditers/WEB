@@ -2,7 +2,6 @@ package com.estsoft.codit.web.controller;
 
 import com.estsoft.codit.db.vo.ClientVo;
 import com.estsoft.codit.web.service.ClientService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,65 +23,67 @@ public class ClientController {
   @Autowired
   private ClientService clientService;
 
-  /** Forwards signupform.jsp */
   @RequestMapping("/signupform")
-  public String signupform() {
+  public String signupform() { return "client/signupform"; }
 
-    return "client/signupform";
-
-  }
 
   @RequestMapping(value = "/signup", method = RequestMethod.POST)
   public String signup(@ModelAttribute @Valid ClientVo clientVo, BindingResult result, Model model) {
 
+    //invalid clientVo
     if (result.hasErrors()) {
       model.addAllAttributes( result.getModel() );
       return "/client/signupform";
     }
 
-    clientService.signup(clientVo);
-    int id = clientVo.getId();
-    return "redirect:/client/signupsuccess/" + id;
+    //register client
+    clientService.registerClient(clientVo);
+    int clientId = clientVo.getId(); //after insertion, mybatis sets client id in clientVo
+
+    return "redirect:/client/signup-success/" + clientId;
   }
 
-  /**
-   * Checks whether the sign up process was succeeded or not. If it was succeeded,
-   * forwards 'signup-success.jsp' file to end-user, if failed, '@code signup-fail.jsp'.
-   */
-  @RequestMapping("/signupsuccess/{id}")
-  public String signupsuccess( @PathVariable("id") int id, Model model ) {
 
-    ClientVo clientVo = clientService.getVoById(id);
+  @RequestMapping("/signup-success/{id}")
+  public String signupsuccess( @PathVariable("id") int clientId, Model model ) {
 
-    model.addAttribute( "clientVo", clientVo );
+    ClientVo clientVo = clientService.getClientVoById(clientId);
 
     if (clientVo != null) {
+      model.addAttribute( "clientVo", clientVo );
       return "client/signup-success";
     } else {
       return "client/signup-fail";
     }
+
   }
 
-  /** Forwards signinform.jsp to user. */
+
   @RequestMapping("/signinform")
   public String signinform() {
     return "client/signinform";
   }
 
+
   @RequestMapping(value = "/signin", method = RequestMethod.POST)
   public String signin(@ModelAttribute ClientVo clientVo, HttpServletRequest request, Model model) {
-    clientVo = clientService.validsignin( clientVo );
-    // Check authenticate user
+
+    clientVo = clientService.getClientVoByEmailPassword( clientVo );
+
+    // authentication fail
     if(clientVo == null) {
-      // auth failed
-      model.addAttribute("auth", false); //jsp 에서 auth fail이면 다시 입력하라는 문구 출력
+      model.addAttribute("auth", false);
       return "client/signinform";
     }
-    //auth success
+
+    //authentication success!
+    //create session and set 'authClient' variable on session context
     HttpSession session = request.getSession(true);
     session.setAttribute("authClient", clientVo);
+
     return "redirect:/";
   }
+
 
   @RequestMapping("/signout")
   public String signout( HttpServletRequest request ) {

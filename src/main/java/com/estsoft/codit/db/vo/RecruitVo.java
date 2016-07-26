@@ -1,12 +1,14 @@
 package com.estsoft.codit.db.vo;
 
 public class RecruitVo {
+
   private int id;
   private String title;
   private String fromDate;
   private String toDate;
   private int clientId;
   private String emailFormat;
+
 
   public int getId() {
     return id;
@@ -55,6 +57,7 @@ public class RecruitVo {
   public void setEmailFormat(String emailFormat) {
     this.emailFormat = emailFormat;
   }
+
 
   @Override
   public String toString() {

@@ -3,8 +3,9 @@ package com.estsoft.codit.web.controller;
 import com.estsoft.codit.db.vo.*;
 import com.estsoft.codit.web.service.RecruitService;
 
-import com.estsoft.codit.web.util.ApplicantStatVo;
-import com.estsoft.codit.web.util.ProblemStatVo;
+import com.estsoft.codit.db.vo.ApplicantStatVo;
+import com.estsoft.codit.db.vo.ProblemStatVo;
+import com.estsoft.codit.web.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,48 +36,49 @@ public class RecruitController {
   @Autowired
   RecruitService recruitService;
 
+
   @RequestMapping("main")
-  public String main(@PathVariable("recruitId") int id, Model model) {
+  public String main(@PathVariable("recruitId") int recruitId, Model model) {
 
-    RecruitVo recruitVo = recruitService.getRecruitVo(id);
+    RecruitVo recruitVo = recruitService.getRecruitVo(recruitId);
 
-    //get server time
+    //Invalid access
+    if(recruitVo == null)
+      return "redirect:/";
+
+    //Get server time
     long time = System.currentTimeMillis();
     SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     String current_date = dayTime.format(new Date(time));
     model.addAttribute("recruitVo", recruitVo);
 
-    if (recruitVo.getFromDate() == null || current_date.compareTo(recruitVo.getFromDate()) < 0) {   //ready recruit
+    //before test
+    if (recruitVo.getFromDate() == null || current_date.compareTo(recruitVo.getFromDate()) < 0) {
 
       return "recruit/ready/recruit-ready-main";
 
-    } else if (current_date.compareTo(recruitVo.getFromDate()) > 0) {// expired or on-going recruit
+    // test started
+    } else if (current_date.compareTo(recruitVo.getFromDate()) > 0) {
+      if (current_date.compareTo(recruitVo.getToDate()) > 0) {
 
-      if (current_date.compareTo(recruitVo.getToDate()) > 0) {//expired recruit
-        //enable expired flag
       }
-
-
-
-       //3. on-going recruit
       return "recruit/started/recruit-started-main";
 
   } else {
       return "redirect:/";
     }
-
   }
 
   @RequestMapping("/appregform")
-  public String applicantregisterform(@PathVariable("recruitId") int id, Model model) {
-    model.addAttribute("recruitVo", recruitService.getRecruitVo(id));
+  public String applicantRegisterForm(@PathVariable("recruitId") int recruitId, Model model) {
+    model.addAttribute("recruitVo", recruitService.getRecruitVo(recruitId));
     return "recruit/ready/recruit-ready-appregform";
   }
 
   /**
    * get excel file and save parsed data as applicant into DB
    * */
-//  @RequestMapping("/appreg")
+//  @RequestMapping("/register-applicant")
 //  @ResponseBody
 //  public Map<String, Object> applicantregister(@PathVariable("recruitId") int id, MultipartFile file) {
 //
@@ -114,14 +116,22 @@ public class RecruitController {
     System.out.println("RecruitController 110");
     MultipartFile mpf = request.getFile(itr.next());
     System.out.println("RecruitController 112");
-    String filePath = recruitService.saveMultiPartFile(mpf);
+    String filePath = Util.saveMultiPartFile(mpf);
 
+//  @RequestMapping("/register-applicant")
+//  public String registerApplicant(@PathVariable("recruitId") int recruitId, @RequestParam("excel-file") MultipartFile file, Model model) {
+//
+//    String filePath = Util.saveMultiPartFile(file);
     List<ApplicantVo> list = null;
     Map<String, Object> map = new HashMap<String, Object>();
 
-    if (filePath != null) {
-      list = recruitService.parseExcel(filePath, id);
 
+    //success save multipart file
+    if(filePath == null) {
+      //todo save multipartfile fail error handle
+
+    }else{
+      list = recruitService.fetchApplicantListFromExcel(filePath, recruitId);
       if (list != null)
       recruitService.insertApplicantList(list);
       map.put("result", "success");
@@ -130,10 +140,14 @@ public class RecruitController {
     }
     System.out.println("RecruitController 127");
     return map;
+
+//    model.addAttribute("recruitVo", recruitService.getRecruitVo(recruitId));
+//    return "recruit/ready/recruit-ready-appregform";
+
   }
 
-  @RequestMapping(value = "setrecruitdate", method= RequestMethod.POST)
-  public String setRecruitDate(@PathVariable("recruitId") int id, @RequestParam("fromDate") String fromDate, @RequestParam("toDate") String toDate){
+  @RequestMapping(value = "set-recruitdate", method= RequestMethod.POST)
+  public String setRecruitDate(@PathVariable("recruitId") int recruitId, @RequestParam("fromDate") String fromDate, @RequestParam("toDate") String toDate){
 
     //get server time
     long time = System.currentTimeMillis();
@@ -144,26 +158,24 @@ public class RecruitController {
     if(fromDate.compareTo(toDate) > 0 || fromDate.compareTo(currentDate) < 0)
       return "redirect:main";
 
-    recruitService.setRecruitDate(id, fromDate, toDate);
+    recruitService.setRecruitDate(recruitId, fromDate, toDate);
     return "redirect:main";
   }
 
   /**
    * todo ajax 처리
    * */
-  @RequestMapping("sendticket")
+  @RequestMapping("send-ticket")
 //  @ResponseBody
-  public String sendTickets(@PathVariable("recruitId") int id, Model model){
+  public String sendTickets(@PathVariable("recruitId") int recruitId, Model model){
 
-    boolean applicantFlag = recruitService.isApplicantRegistered( id );
-    boolean dateSetFlag = recruitService.isRecruitDateSet( id );
-    boolean probSelectFlag = recruitService.isProblemSelected( id );
+    boolean applicantFlag = recruitService.isApplicantRegistered( recruitId );
+    boolean dateSetFlag = recruitService.isRecruitDateSet( recruitId );
+    boolean probSelectFlag = recruitService.isProblemSelected( recruitId );
 
 //    model.addAttribute("applicantFlag", applicantFlag);
 //    model.addAttribute("dateSetFlag", dateSetFlag);
 //    model.addAttribute("probSelectFlag", probSelectFlag);
-
-
 
 //    Map<String, Object> map = new HashMap<String, Object>();
 //    map.put("applicantFlag", applicantFlag);
@@ -171,19 +183,19 @@ public class RecruitController {
 //    map.put("probSelectFlag", probSelectFlag);
 
     if(applicantFlag == true && dateSetFlag == true && probSelectFlag == true)
-      recruitService.sendTickets(id);
+      recruitService.sendTickets(recruitId);
 //    return map;
     return "redirect:main";
   }
 
-  @RequestMapping("probselectform")
-  public String problemSelectForm( @PathVariable("recruitId") int id, Model model){
+  @RequestMapping("problem-selectform")
+  public String problemSelectForm( @PathVariable("recruitId") int recruitId, Model model){
 
     //view prob info
-    List<ProblemInfoVo> problemInfoVoList = recruitService.getProblemInfoVoList();
+    List<ProblemInfoVo> problemInfoVoList = recruitService.getAllProblemInfoList();
 
     //todo cart list view
-    RecruitVo recruitVo = recruitService.getRecruitVo(id);
+    RecruitVo recruitVo = recruitService.getRecruitVo(recruitId);
     model.addAttribute("recruitVo", recruitVo);
     model.addAttribute("problemInfoVoList", problemInfoVoList);
 
@@ -191,52 +203,52 @@ public class RecruitController {
   }
 
 
-  @RequestMapping("/selectproblem")
-  public String selectProblem(@PathVariable("recruitId") int id , Model model,  @RequestParam(value= "probIdList") int [] probIdList){
+  @RequestMapping("/select-problem")
+  public String selectProblem(@PathVariable("recruitId") int recruitId , Model model,  @RequestParam(value= "probIdList") int [] probIdList){
 
     //todo if carts are already stored delete carts.
 
     for ( int i : probIdList){
       CartVo vo = new CartVo();
       vo.setProblemInfoId( i );
-      vo.setRecruitId(id);
+      vo.setRecruitId(recruitId);
       recruitService.insertCart( vo );
     }
-    RecruitVo recruitVo = recruitService.getRecruitVo(id);
+    RecruitVo recruitVo = recruitService.getRecruitVo(recruitId);
     model.addAttribute("recruitVo", recruitVo);
     return "recruit/ready/recruit-ready-main";
   }
 
   //// TODO: 2016-07-20 emailform으로 들어가는 method를 짰습니다
 
-  @RequestMapping("/writeemailform")
-  public String writeEmailForm(@PathVariable("recruitId") int id , Model model) {
-    model.addAttribute("recruitVo", recruitService.getRecruitVo(id));
+  @RequestMapping("/write-emailform")
+  public String writeEmailForm(@PathVariable("recruitId") int recruitId , Model model) {
+    model.addAttribute("recruitVo", recruitService.getRecruitVo(recruitId));
     return "recruit/ready/recruit-ready-writeemailform";
   }
 
-  @RequestMapping("/saveemail")
-  public String saveEmail(@PathVariable("recruitId") int id , @RequestParam("emailFormat") String emailFormat) {
-    recruitService.saveEmail(id, emailFormat);
+  @RequestMapping("/save-email")
+  public String saveEmail(@PathVariable("recruitId") int recruitId , @RequestParam("emailFormat") String emailFormat) {
+    recruitService.saveEmailFormat(recruitId, emailFormat);
     return "redirect:main";
   }
 
   @RequestMapping("/applicantstatform")
-  public String applicantStatForm(@PathVariable("recruitId") int id , Model model) {
+  public String applicantStatForm(@PathVariable("recruitId") int recruitId , Model model) {
 
-    List<ApplicantStatVo> applicantStatVoList = recruitService.getApplicantStatVoList(id);
-    List<ProblemInfoVo> problemInfoVoList = recruitService.getProblemInfoList(id);
+    List<ApplicantStatVo> applicantStatVoList = recruitService.getApplicantStatList(recruitId);
+    List<ProblemInfoVo> problemInfoVoList = recruitService.getProblemInfoListByRecruitId(recruitId);
 
     model.addAttribute("applicantStatList", applicantStatVoList);
     model.addAttribute("problemInfoList", problemInfoVoList);
-    model.addAttribute("recruitId", id);
+    model.addAttribute("recruitId", recruitId);
     return "recruit/started/recruit-started-appstatform";
   }
 
 
   @RequestMapping("/ajax-applicantresultdetail")
   @ResponseBody
-  public Object applicantResultDetail(@PathVariable("recruitId") int id,
+  public Object applicantResultDetail(@PathVariable("recruitId") int recruitId,
                                 @RequestParam("applicantId") int applicantId,
                                 @RequestParam("problemInfoId") int problemInfoId) {
     //todo 통과율
@@ -246,10 +258,10 @@ public class RecruitController {
   }
 
   @RequestMapping("/problemstatform")
-  public String problemStatForm(@PathVariable("recruitId") int id , Model model) {
-    List<ProblemStatVo> problemStatVoList = recruitService.getProblemStatVoList(id);
+  public String problemStatForm(@PathVariable("recruitId") int recruitId , Model model) {
+    List<ProblemStatVo> problemStatVoList = recruitService.getProblemStatList(recruitId);
     model.addAttribute("problemStatList", problemStatVoList);
-    model.addAttribute("recruitId", id);
+    model.addAttribute("recruitId", recruitId);
     return "recruit/started/recruit-started-probstatform";
   }
 }

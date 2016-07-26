@@ -5,9 +5,12 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class ClientVo {
+
   private int id;
+
   @NotEmpty
   private String firstName;
+
   @NotEmpty
   private String lastName;
 
@@ -17,6 +20,7 @@ public class ClientVo {
 
   @NotEmpty
   private String password;
+
 
   public int getId() {
     return id;

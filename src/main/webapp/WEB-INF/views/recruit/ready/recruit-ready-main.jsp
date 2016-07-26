@@ -33,7 +33,7 @@
                             <div class="collection">
                                 <li id = "li-setperiods" class="collection-item bold"><i
                                         class="small material-icons">av_timer</i>Set periods:
-                                    <form id="form-selectdate" action="${pageContext.request.contextPath}/recruit/${recruitVo.id}/setrecruitdate" method = "POST">
+                                    <form id="form-selectdate" action="${pageContext.request.contextPath}/recruit/${recruitVo.id}/set-recruitdate" method = "POST">
                                     <input value="${recruitVo.fromDate}" name="fromDate" id= "fromDate" type="date" class="datepicker">
                                     ~
                                     <input value="${recruitVo.toDate}" name = "toDate" id= "toDate" type="date" class="datepicker">
@@ -45,12 +45,12 @@
                                     applicants
                                     <span class="badge" data-badge-caption="custom caption">0 enrolled</span>
                                 </a>
-                                <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/probselectform"
+                                <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/problem-selectform"
                                    class="collection-item bold "><i class="small material-icons">list</i>Select
                                     test problems
                                     <span class="badge" data-badge-caption="custom caption">0 selected </span>
                                 </a>
-                                <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/writeemailform" class="collection-item bold "><i
+                                <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/write-emailform" class="collection-item bold "><i
                                         class="small material-icons">email</i>Write email format</a>
                                 <a href="#!" class="collection-item bold "><i
                                         class="small material-icons">trending_flat</i>Try test</a>
@@ -83,7 +83,7 @@
                                             <br>
                                             <br>
                                             <div class="row left left-align">
-                                                <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/sendticket" class="waves-effect waves-light btn btn-block center-block brown text-white">
+                                                <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/send-ticket" class="waves-effect waves-light btn btn-block center-block brown text-white">
                                                     Yes, Send invitations!</a>
                                             </div>
                                         </div>
