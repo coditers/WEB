@@ -30,8 +30,10 @@
                             <h3>${recruitVo.title}</h3>
                         </div>
                         <div class="row">
-                            <p>Applying situation: </p>
-                            <p>Time remaining: </p>
+                            <h6>Applying situation: </h6>
+                            <h6 id ="h-counter"></h6>
+                            <h6 class="inline">Time remaining: </h6> <h5 id="h-timer" class="inline"></h5> <h6 class="inline">(until: ${recruitVo.toDate} )</h6>
+
                             <br>
                             <div class="collection">
                                 <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/applicantstatform"
@@ -50,5 +52,32 @@
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/materialize/js/materialize.min.js"></script>
+<script>
+
+    function TimeRemaining()
+    {
+        var r = document.getElementById('h-timer');
+
+        var now = new Date();
+        var st = "${recruitVo.toDate}";
+        var t = st.split(/[- :]/);
+        var end = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
+
+       //mysql format: 2016-07-27 00:00:00.0
+
+        var nt = now.getTime();
+        var et = end.getTime();
+
+        sec = parseInt(et - nt) / 1000;
+        day = parseInt(sec/60/60/24);
+        sec = (sec - (day * 60 * 60 * 24));
+        hour = parseInt(sec/60/60);
+        sec = (sec - (hour*60*60));
+        min = parseInt(sec/60);
+        sec = parseInt(sec-(min*60));
+        r.innerHTML = day+' days '+hour+' h '+min+' m '+sec+' s ';
+    }
+    setInterval(TimeRemaining,1000);
+</script>
 </body>
 </html>

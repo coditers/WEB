@@ -44,12 +44,12 @@
                                 </div>
                             </div>
                             <c:if test="${auth == false}">
-                                Incorrect identification - 나중에 디자인 해줘!
+                                <h6 class="red-text center-align">※Incorrect identification: Please enter a correct username and password.
                             </c:if>
                             <br>
                             <br>
                             <div class="row center ">
-                            <button type="submit" class="waves-effect waves-light btn btn-block center-block brown text-white">Submit</button>
+                             <button type="submit" class="waves-effect waves-light btn btn-block center-block brown text-white">Submit</button>
                             </div>
                         </form>
                     </div>

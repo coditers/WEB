@@ -62,11 +62,14 @@
                                     <input id="re-password" name="re-password" type="password" class="validate">
                                     <label for="password">Confirm password</label>
                                 </div>
+                                <div class="input-field col s12 offset-s1">
+                                    <h6 id='message'></h6>
+                                </div>
                             </div>
                             <br>
                             <br>
                             <div class="row center ">
-                                <button type="submit" class="waves-effect waves-light btn btn-block center-block brown text-white">Submit</button>
+                                <button id = "btn-submit" type="submit" class="waves-effect waves-light btn btn-block center-block brown text-white">Submit</button>
                             </div>
                         </form>
                     </div>
@@ -79,5 +82,17 @@
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/materialize/js/materialize.min.js"></script>
+<script>
+    $('#password, #re-password').on('keyup', function () {
+        var element = document.getElementById('btn-submit');
+
+        if ($('#password').val() == $('#re-password').val()) {
+            $('#message').html(' ');
+
+        } else
+            $('#message').html('*Please confirm password again').css('color', 'red');
+
+    });
+</script>
 </body>
 </html>
