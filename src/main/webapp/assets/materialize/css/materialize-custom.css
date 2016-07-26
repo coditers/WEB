@@ -2,7 +2,7 @@
 1. For all
 2. header
 3. main page
-4. card
+4. card (+cart)
 5. form & input
 6. collections
 7. icons
@@ -10,13 +10,13 @@
 9. li
 10. picker
 11. button
-12. iframe
-
+12. badge
 */
 
 /* 1. For all*/
 *{ font-family: "Segoe UI"}
 .bold{font-family: "Segoe UI Semibold"}
+.inline{display: inline;}
 
 
 /* 2. header*/
@@ -31,6 +31,13 @@
 
 /* 4. card*/
 #formcard{margin: 5rem auto 0 auto}
+#cart{
+    position: fixed;
+    bottom: 25%;
+    right: 10%;
+    width: 19rem;
+    height: 32rem;
+}
 
 
 /* 5. form*/
@@ -163,3 +170,18 @@
     margin-top: 0.4rem;
 }
 
+#btn-cartsave{
+    position: absolute;
+    left: 33%;
+    bottom: 0.5rem;
+}
+
+/*12. badge */
+#badge-applicants{
+    width: 3rem;
+    position: static;
+}
+#badge-problems{
+    width: 3rem;
+    position: static;
+}

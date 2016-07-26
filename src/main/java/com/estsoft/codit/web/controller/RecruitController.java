@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.text.SimpleDateFormat;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -52,7 +54,9 @@ public class RecruitController {
         //enable expired flag
       }
 
-      // 3. on-going recruit
+
+
+       //3. on-going recruit
       return "recruit/started/recruit-started-main";
 
   } else {
@@ -70,22 +74,60 @@ public class RecruitController {
   /**
    * get excel file and save parsed data as applicant into DB
    * */
+//  @RequestMapping("/appreg")
+//  @ResponseBody
+//  public Map<String, Object> applicantregister(@PathVariable("recruitId") int id, MultipartFile file) {
+//
+//    Iterator<String> itr = request.getFileNames();
+//    System.out.println("RecruitController 80");
+//    MultipartFile mpf = request.getFile(itr.next());
+//    System.out.println("RecruitController 82");
+//    String filePath = recruitService.saveMultiPartFile(mpf);
+//    String filePath = recruitService.saveMultiPartFile(file);
+//    System.out.println("RecruitController 84"+filePath);
+//
+//    List<ApplicantVo> list = null;
+//    Map<String, Object> map = new HashMap<String, Object>();
+//
+//    if(filePath != null) {
+//      list = recruitService.parseExcel(filePath, id);
+//      System.out.println("RecruitController 91: "+list.toString());
+//      if(list != null)
+//        recruitService.insertApplicantList(list);
+//        map.put("result", "success");
+//        map.put("data", list);
+//        System.out.println("RecruitController 96");
+//    }
+//    System.out.println("RecruitController 98");
+//    return map;
+//  }
+
+
+
   @RequestMapping("/appreg")
-  public String applicantregister(@PathVariable("recruitId") int id, @RequestParam("excel-file") MultipartFile file, Model model) {
+  @ResponseBody
+  public Map<String, Object> applicantregister(@PathVariable("recruitId") int id, MultipartHttpServletRequest request) {
 
-    String filePath = recruitService.saveMultiPartFile(file);
+    Iterator<String> itr = request.getFileNames();
+    System.out.println("RecruitController 110");
+    MultipartFile mpf = request.getFile(itr.next());
+    System.out.println("RecruitController 112");
+    String filePath = recruitService.saveMultiPartFile(mpf);
+
     List<ApplicantVo> list = null;
+    Map<String, Object> map = new HashMap<String, Object>();
 
-    if(filePath != null) {
+    if (filePath != null) {
       list = recruitService.parseExcel(filePath, id);
 
-      if(list != null)
-        recruitService.insertApplicantList(list);
-
-      model.addAttribute("applicantList", list);
+      if (list != null)
+      recruitService.insertApplicantList(list);
+      map.put("result", "success");
+      map.put("data", list);
+      System.out.println("RecruitController 125");
     }
-    model.addAttribute("recruitVo", recruitService.getRecruitVo(id));
-    return "recruit/ready/recruit-ready-appregform";
+    System.out.println("RecruitController 127");
+    return map;
   }
 
   @RequestMapping(value = "setrecruitdate", method= RequestMethod.POST)

@@ -33,22 +33,24 @@
                             <div class="collection">
                                 <li id = "li-setperiods" class="collection-item bold"><i
                                         class="small material-icons">av_timer</i>Set periods:
-<!-- todo
 
--->
                                     <form id="form-selectdate" action="${pageContext.request.contextPath}/recruit/${recruitVo.id}/setrecruitdate" method = "POST">
                                     <input value="${recruitVo.fromDate}" name="fromDate" id= "fromDate" type="date" class="datepicker">
                                     ~
                                     <input value="${recruitVo.toDate}" name = "toDate" id= "toDate" type="date" class="datepicker">
-                                    <button type="submit" id="btn-datesave" class="waves-effect waves-orange white btn-flat">save</button>
+                                    <button type="submit" id="btn-datesave" class="waves-effect waves-orange white btn-flat right-align">save</button>
                                     </form>
                                 </li>
                                 <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/appregform"
-                                   class="collection-item bold "><i class="small material-icons">perm_identity</i>Enroll
-                                    applicants</a>
+                                   class="collection-item bold"><i class="small material-icons">perm_identity</i>Enroll
+                                    applicants
+                                    <span class="badge" data-badge-caption="custom caption">0 enrolled</span>
+                                </a>
                                 <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/probselectform"
                                    class="collection-item bold "><i class="small material-icons">list</i>Select
-                                    test problems</a>
+                                    test problems
+                                    <span class="badge" data-badge-caption="custom caption">0 selected </span>
+                                </a>
                                 <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/writeemailform" class="collection-item bold "><i
                                         class="small material-icons">email</i>Write email format</a>
                                 <a href="#!" class="collection-item bold "><i
@@ -58,12 +60,39 @@
                         <br>
 
                         <div class="row center">
-                            <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/sendticket">
-                                <button class="btn-large waves-effect waves-light brown center"
-                                        type="submit" name="action">Send invitations!
+                                <a class="btn-large waves-effect waves-light brown center modal-trigger" href="#modal-confirm">Send invitations!
                                     <i class="material-icons right">send</i>
-                                </button>
-                            </a>
+                                </a>
+
+                            <!-- Modal Structure -->
+                            <div id="modal-confirm" class="modal">
+                                <div class="modal-content">
+                                    <h4>Are you sure want to submit this recruit as it is?</h4>
+                                    <div row>
+                                        <div class="col s6 offset-s3">
+                                            <div class="row left left-align">
+                                                <p>Title: ${recruitVo.title}
+                                                <br>Recruit Period: ${recruitVo.fromDate} - ${recruitVo.toDate}
+                                                <br>The number of applicants: xx
+                                                <br>Email Format: ${recruitVo.emailFormat}
+                                                </p>
+                                            </div>
+                                                <br>
+                                                <br>
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <div class="row left left-align">
+                                                <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/sendticket" class="waves-effect waves-light btn btn-block center-block brown text-white">
+                                                    Yes, Send invitations!</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -82,6 +111,9 @@
          selectYears: 15, // Creates a dropdown of 15 years to control year
          format: 'yyyy-mm-dd'
          });
+
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('.modal-trigger').leanModal();
     });
 </script>
 </body>

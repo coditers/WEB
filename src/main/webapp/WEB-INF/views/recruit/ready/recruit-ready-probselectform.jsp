@@ -20,6 +20,31 @@
 <div class="section no-pad-bot" id="index-banner">
     <br>
     <br>
+    <div id = "cart" class="card-panel white">
+        <div class="row">
+            <div class="col s10 offset-s1">
+                <h4><i class="small material-icons">shopping_cart</i>Cart</h4>
+            </div>
+            <table id="table-cart" class="bordered">
+                <thead>
+                <tr>
+                    <th>No</th>
+                    <th data-field="problem_name">Problem</th>
+                    <th data-field="estimated time">Time</th>
+                </tr>
+                </thead>
+
+            </table>
+            <br>
+            <br>
+            <div id="btn-cartsave" class="row center">
+                <button onclick="submitList()" class="btn brown white-text">Save</button>
+            </div>
+        </div>
+
+
+
+    </div>
     <div class="row">
         <div class="col s6 offset-s3">
             <div class="card-panel white">
@@ -36,6 +61,7 @@
                             <table>
                                 <thead>
                                 <tr>
+                                    <th>No</th>
                                     <th data-field="problem_name">Problem</th>
                                     <th data-field="estimated time">Time</th>
                                     <th data-field="description">Description</th>
@@ -45,20 +71,18 @@
 
                                 <tbody>
                                 <c:forEach items = "${problemInfoVoList}" var = "vo">
-                                <tr>
-                                    <td>${vo.name}</td>
-                                    <td>${vo.estimatedTime}min</td>
+                                <tr id="tr-${vo.id}">
+                                    <td id="td-no-${vo.id}">${vo.id}</td>
+                                    <td id="td-name-${vo.id}">${vo.name}</td>
+                                    <td id="td-time-${vo.id}">${vo.estimatedTime}min</td>
                                     <td>${vo.description}</td>
-                                    <td> <button id="${vo.id}" onclick="addOnList(${vo.id})" class="btn red darken-4 right btn-addtocart">+ add to cart</button> </td>
+                                    <td class="left"> <button id="${vo.id}" onclick="add_row(${vo.id})" class="btn red darken-4 right btn-addtocart">+ add to cart</button> </td>
                                 </tr>
                                 </c:forEach>
                                 </tbody>
                             </table>
                         </div>
                         <br>
-                        <div class="row center">
-                            <button onclick="submitList()" class="btn brown white-text">Save</button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -74,19 +98,53 @@
 
     var list = new List();
     //onclick problem tr, add and remove problem id into list
-    var addOnList = function( id ){
+
+    function add_row(id){
         if( list.isExist(id) == false){
             var element = document.getElementById(id);
             element.className = "btn disabled btn-addtocart";
             list.push(id);
             console.log( list.arr.join(","));
+
+            mytable = document.getElementById('table-cart');
+            row = mytable.insertRow(mytable.rows.length);
+            row.id='tr-cart'+id;
+            cell1 = row.insertCell(0);
+            cell2 = row.insertCell(1);
+            cell3 = row.insertCell(2);
+            cell1.innerHTML = document.getElementById('td-no-'+id).innerHTML;
+            cell2.innerHTML = document.getElementById('td-name-'+id).innerHTML;;
+            cell3.innerHTML = document.getElementById('td-time-'+id).innerHTML;;
+
         }else{
             var element = document.getElementById(id);
             element.className = "btn red darken-4 right btn-addtocart";
             list.eliminate(id);
             console.log( list.arr.join(","));
+
+            var drow = document.getElementById('tr-cart'+id);
+            mytable = document.getElementById('table-cart');
+            if(mytable.rows.length < 2) return;
+            //mytable.deleteRow(mytable.rows.length-1);
+            mytable.deleteRow(drow.rowIndex);
         }
     }
+
+
+//    var addOnList = function( id ){
+//        if( list.isExist(id) == false){
+//            var element = document.getElementById(id);
+//            element.className = "btn disabled btn-addtocart";
+//            list.push(id);
+//            console.log( list.arr.join(","));
+//
+//        }else{
+//            var element = document.getElementById(id);
+//            element.className = "btn red darken-4 right btn-addtocart";
+//            list.eliminate(id);
+//            console.log( list.arr.join(","));
+//        }
+//    }
 
     //dynamically generate form tag, and submit the problem-Id list
     var submitList = function(){

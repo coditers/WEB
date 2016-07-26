@@ -33,7 +33,8 @@
                                 <h5 class="grey-text">Enroll applicants</h5>
                             </div>
                             <br>
-                            <form id="excel-form" method="post" enctype="multipart/form-data" action ="${pageContext.request.contextPath}/recruit/${recruitVo.id}/appreg">
+                            <form id="excel-form" method="post" enctype = "multipart/form-data" action="">
+                                <!-- ${pageContext.request.contextPath}/recruit/${recruitVo.id}/appreg-->
                                 <div class="file-field input-field">
                                     <div class="btn green darken-3">
                                         Excel File
@@ -44,6 +45,9 @@
                                     </div>
                                 </div>
                                 <br>
+                                <div class="row center">
+                                    <button id="btn-submit" class="btn brown white-text" type="button">save</button>
+                                </div>
                             </form>
                             </div>
                             <div class="row center">
@@ -56,9 +60,7 @@
                                 </thead>
                             </table>
                             </div>
-                        <div class="row center">
-                            <button type="submit" class="btn brown white-text">save</button>
-                        </div>
+
                         </div>
                     </div>
                 </div>
@@ -71,30 +73,41 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/materialize/js/materialize.min.js"></script>
 <script type="text/javascript">
-    $(function(){
-        $("#excel-file").on('change', function(){
-            var data = new FormData();
+    $(document).ready(function(){
 
-            var excelFile = new FormData(document.getElementById('uploadForm'));
-            if (form == ""){ return; }
+        $("#btn-submit").click(function(){
+            var formData = new FormData();
+            formData.append("excel-file", $("#excel-file")[0].files[0]);
+            console.log('버튼눌림');
             $.ajax({
-                       url:"${pageContext.request.contextPath}/blog/${authUser.email}/uploadLogo",
-                       data: form,
+                       url:"${pageContext.request.contextPath}/recruit/${recruitVo.id}/appreg",
+                       type: "POST",
+                       data: formData,
                        dataType: 'json',
                        processData: false,
                        contentType: false,
-                       type: "POST",
-                       success: function(response){
-                           console.log(response.data);
-                           $('#img-logoshow').attr('src', "${pageContext.request.contextPath}"+response.data);
-                       },
-                       error: function(jqXHR,status,error){
-                           console.error(status+":"+error);
-                       }
-                   });
-        });
-    });
 
+                       success: function(response, textStatus){
+                           console.log(textStatus);
+                           console.log('왜안되지');
+                           console.log(response);
+                           console.log(response.result);
+
+                           console.log(response.data[0].name);
+                           var list = response.data;
+
+                           for(var i in list){
+                               $('#table-applist').append("<tr><td>"+list[i].name+"</td><td>"+list[i].email+"</td></tr>");
+                           }
+                       },
+                       error: function(request,status,error){
+                           console.log("errorfunction");
+                           console.log(status+":"+error);
+                           console.log("-->code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
+                       })
+                   });
+        return false;
+        });
 </script>
 </body>
 </html>
