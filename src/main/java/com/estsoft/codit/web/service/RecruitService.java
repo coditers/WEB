@@ -312,12 +312,12 @@ public class RecruitService {
             emailContent.replace("#이름", vo.getName());
             emailContent.replace("#링크", "127.0.0.1:8080/main");//"192.168.230.17:8080/?ticket=" + vo.getTicket() );
 
-            sendMail(vo.getEmail(), emailContent);
+            sendMail(vo.getEmail(), vo.getName(), emailContent);
         }
     }
 
     //todo convert to spring api, get message from user, content generateion function
-    private void sendMail(String toAddr, String content) {// String companyName
+    private void sendMail(String toAddr, String applicantName, String content) {// String companyName
 
         Properties props = System.getProperties();
         props.setProperty("mail.smtp.host", "localhost.localdomain");
@@ -329,7 +329,7 @@ public class RecruitService {
             msg.setFrom(new InternetAddress("noreply@codit.com", "codit"));
 //      InternetAddress[] address = {new InternetAddress(toAddr)};
 //      msg.setRecipients(Message.RecipientType.TO, address);
-            msg.addRecipient(Message.RecipientType.TO, new InternetAddress(toAddr, "joon-ho"));
+            msg.addRecipient(Message.RecipientType.TO, new InternetAddress(toAddr, applicantName));
             msg.setSubject("invitation from codit");
 //      MimeMultipart multipart = new MimeMultipart();
 //
