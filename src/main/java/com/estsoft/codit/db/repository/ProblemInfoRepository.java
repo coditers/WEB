@@ -13,12 +13,7 @@ public class ProblemInfoRepository {
   @Autowired
   private SqlSession sqlSession;
 
-  public List<ProblemInfoVo> getList(){
-    return sqlSession.selectList("probleminfo.selectAll");
-  }
-
-  public List<ProblemInfoVo> getProblemInfoList(int recruitId){
-    return sqlSession.selectList("probleminfo.selectListByReqruitId", recruitId);
-  }
+  public List<ProblemInfoVo> getList(){ return sqlSession.selectList("probleminfo.selectAll"); }
+  public List<ProblemInfoVo> getListByRecruitId(int recruitId){ return sqlSession.selectList("probleminfo.selectListByReqruitId", recruitId); }
 
 }

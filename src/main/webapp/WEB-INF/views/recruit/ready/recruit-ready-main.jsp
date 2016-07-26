@@ -33,7 +33,7 @@
                             <div class="collection">
                                 <li id = "li-setperiods" class="collection-item bold"><i
                                         class="small material-icons">av_timer</i>Set periods:
-                                    <form id="form-selectdate" action="${pageContext.request.contextPath}/recruit/${recruitVo.id}/setrecruitdate" method = "POST">
+                                    <form id="form-selectdate" action="${pageContext.request.contextPath}/recruit/${recruitVo.id}/set-recruitdate" method = "POST">
                                     <input value="${recruitVo.fromDate}" name="fromDate" id= "fromDate" type="date" class="datepicker">
                                     ~
                                     <input value="${recruitVo.toDate}" name = "toDate" id= "toDate" type="date" class="datepicker">
@@ -43,10 +43,10 @@
                                 <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/appregform"
                                    class="collection-item bold "><i class="small material-icons">perm_identity</i>Enroll
                                     applicants</a>
-                                <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/probselectform"
+                                <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/problem-selectform"
                                    class="collection-item bold "><i class="small material-icons">list</i>Select
                                     test problems</a>
-                                <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/writeemailform" class="collection-item bold "><i
+                                <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/write-emailform" class="collection-item bold "><i
                                         class="small material-icons">email</i>Write email format</a>
                                 <a href="#!" class="collection-item bold "><i
                                         class="small material-icons">trending_flat</i>Try test</a>
@@ -55,7 +55,7 @@
                         <br>
 
                         <div class="row center">
-                            <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/sendticket">
+                            <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/send-ticket">
                                 <button class="btn-large waves-effect waves-light brown center"
                                         type="submit" name="action">Send invitations!
                                     <i class="material-icons right">send</i>

@@ -1,4 +1,4 @@
-package com.estsoft.codit.web.util;
+package com.estsoft.codit.db.vo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,7 @@ import java.util.List;
  * Created by estsoft on 2016-07-22.
  */
 public class ApplicantStatVo {
+
     private int applicantId;
     private String applicantName;
     private List<Integer> problemScoreList;
@@ -57,6 +58,7 @@ public class ApplicantStatVo {
                 '}';
     }
 
+
     public void addScore(int score){ problemScoreList.add(score);}
     public int calTotalScore(){
         totalScore = 0;
@@ -65,4 +67,5 @@ public class ApplicantStatVo {
         totalScore /= problemScoreList.size();
         return totalScore;
     }
+
 }

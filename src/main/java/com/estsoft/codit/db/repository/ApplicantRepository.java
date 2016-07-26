@@ -13,20 +13,17 @@ import java.util.Map;
 
 @Repository
 public class ApplicantRepository {
+
   @Autowired
   private SqlSession sqlSession;
 
-  public List<ApplicantVo> getListByRecruitId( int recruitId){
-    return sqlSession.selectList("applicant.selectListByRecruitId", recruitId);
-  }
+  public List<ApplicantVo> getListByRecruitId( int recruitId){ return sqlSession.selectList("applicant.selectListByRecruitId", recruitId); }
 
-  public int insert( ApplicantVo vo ){
-    return sqlSession.insert("applicant.insert", vo);
-  }
-
+  public int  insert( ApplicantVo vo ){ return sqlSession.insert("applicant.insert", vo); }
   public void insertList( List<ApplicantVo> list){
     for( ApplicantVo vo : list){
       insert(vo);
     }
   }
+
 }

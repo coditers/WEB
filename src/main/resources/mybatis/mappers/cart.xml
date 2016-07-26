@@ -3,11 +3,15 @@
 
 <mapper namespace="cart">
   <insert id="insert" parameterType="cartvo">
-    <![CDATA[ insert into cart value(#{recruitId}, #{problemInfoId}); ]]>
+    <![CDATA[ INSERT
+              INTO cart
+              VALUE(#{recruitId},
+                     #{problemInfoId}); ]]>
   </insert>
 
   <select id="selectListByRecruitId" parameterType="int" resultType="cartvo">
-    <![CDATA[ SELECT recruit_id as recruitId, problem_info_id as problemInfoId
+    <![CDATA[ SELECT recruit_id as recruitId,
+                      problem_info_id as problemInfoId
               FROM cart
               WHERE recruit_id = #{recruitId}
               ORDER BY problem_info_id]]>

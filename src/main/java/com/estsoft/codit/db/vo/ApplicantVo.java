@@ -1,6 +1,7 @@
 package com.estsoft.codit.db.vo;
 
 public class ApplicantVo {
+
   private int id;
   private String name;
   private String email;
@@ -8,6 +9,7 @@ public class ApplicantVo {
   private String startTime;
   private String submitTime;
   private int recruitId;
+
 
   public int getId() {
     return id;
@@ -65,16 +67,18 @@ public class ApplicantVo {
     this.recruitId = recruitId;
   }
 
+
   @Override
   public String toString() {
     return "ApplicantVo{" +
-        "id=" + id +
-        ", name='" + name + '\'' +
-        ", email='" + email + '\'' +
-        ", ticket='" + ticket + '\'' +
-        ", startTime='" + startTime + '\'' +
-        ", submitTime='" + submitTime + '\'' +
-        ", recruitId=" + recruitId +
-        '}';
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", email='" + email + '\'' +
+            ", ticket='" + ticket + '\'' +
+            ", startTime='" + startTime + '\'' +
+            ", submitTime='" + submitTime + '\'' +
+            ", recruitId=" + recruitId +
+            '}';
   }
+
 }

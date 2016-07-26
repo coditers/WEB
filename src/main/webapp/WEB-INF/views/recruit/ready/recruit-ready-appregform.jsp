@@ -37,7 +37,7 @@
                             </div>
                             <br>
                             <form id="excel-form" method="post" enctype="multipart/form-data"
-                                  action="${pageContext.request.contextPath}/recruit/${recruitVo.id}/appreg">
+                                  action="${pageContext.request.contextPath}/recruit/${recruitVo.id}/register-applicant">
                                 <div class="file-field input-field">
                                     <div class="btn green darken-3">
                                         Excel File

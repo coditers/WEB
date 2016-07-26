@@ -93,7 +93,7 @@
 
         var formTag = document.createElement("form");
         formTag.method = "post";
-        formTag.action = "${pageContext.request.contextPath}/recruit/${recruitVo.id}/selectproblem";
+        formTag.action = "${pageContext.request.contextPath}/recruit/${recruitVo.id}/select-problem";
 
         for( var i = 0 ; i < list.arr.length; i++ ){
             var input = document.createElement("input");

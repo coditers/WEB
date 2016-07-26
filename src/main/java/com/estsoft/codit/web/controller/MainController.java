@@ -15,34 +15,48 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+
 @Controller
 public class MainController {
 
   @Autowired
   RecruitService recruitService;
 
-  //main
+  /**
+   * Forward Main Page
+   * */
   @RequestMapping("")
   public String index(HttpServletRequest request, Model model) {
-    ClientVo vo = null;
-    if(( vo = (ClientVo)(request.getSession().getAttribute("authClient"))) != null){
-      List<RecruitVo> recruitList = recruitService.getRecruitListByClientId( vo.getId() );
-      model.addAttribute("recruitList", recruitList);
+
+    ClientVo authClientVo = (ClientVo)(request.getSession().getAttribute("authClient"));
+
+    //logged in
+    if( authClientVo != null ){
+
+      List<RecruitVo> recruitVoList = recruitService.getRecruitListByClientId( authClientVo.getId() );
+      model.addAttribute("recruitVoList", recruitVoList);
+
       return "main/index_login";
-    }
+    }// logged out
     else
       return "main/index";
+
   }
 
+  /**
+   * @param recruitVo  only has title value.
+   */
   @Auth
-  @RequestMapping(value = "/makerecruit")//, method= RequestMethod.POST)
-  public String makeRecruit(HttpServletRequest request, @ModelAttribute RecruitVo recruitVo){
+  @RequestMapping(value = "/create-recruit")
+  public String CreateRecruit(HttpServletRequest request, @ModelAttribute RecruitVo recruitVo){
 
-    int id = ((ClientVo)(request.getSession().getAttribute("authClient"))).getId();
+    //Get Client ID
+    int authClientId = ((ClientVo)(request.getSession().getAttribute("authClient"))).getId();
 
-    recruitVo.setClientId(id);
-    recruitService.insert(recruitVo);
-    System.out.println("MainController 46: "+recruitVo.getTitle());
+    //set client and insert into DB
+    recruitVo.setClientId( authClientId );
+    recruitService.insertRecruitVo( recruitVo );
+
     return "redirect:/recruit/"+ recruitVo.getId() + "/main";
   }
 }

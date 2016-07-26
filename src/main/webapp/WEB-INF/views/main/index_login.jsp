@@ -48,7 +48,7 @@ line #51 modal의 버튼 누르면 action="${pageContext.request.contextPath}/ma
                                         <h4>Please input the title of recruitment</h4>
                                         <div class="row">
                                             <div class="col s6 offset-s3">
-                                                <form action="${pageContext.request.contextPath}/makerecruit" method="POST">
+                                                <form action="${pageContext.request.contextPath}/create-recruit" method="POST">
                                                     <div class="row">
                                                         <div class="input-field col s12">
                                                             <input name="title" id="title" type="text" value="2016 하반기 채용" >
@@ -74,7 +74,7 @@ line #51 modal의 버튼 누르면 action="${pageContext.request.contextPath}/ma
                         </div>
                         <div class="row">
                             <div class="collection">
-                                <c:forEach items="${recruitList }" var="vo">
+                                <c:forEach items="${recruitVoList }" var="vo">
                                     <a href="${pageContext.request.contextPath}/recruit/${vo.id}/main" class="collection-item bold">${vo.title}</a>
                                 </c:forEach>
                             </div>

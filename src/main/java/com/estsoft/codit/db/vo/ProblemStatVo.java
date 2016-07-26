@@ -1,11 +1,12 @@
-package com.estsoft.codit.web.util;
+package com.estsoft.codit.db.vo;
 
 public class ProblemStatVo {
-    String problemName;
-    int avg;
-    int stdDev;
-    int max;
-    int min;
+
+    private String problemName;
+    private int avg;
+    private int stdDev;
+    private int max;
+    private int min;
 
     public String getProblemName() {
         return problemName;

@@ -19,9 +19,12 @@ public class ResultRepository {
     SqlSession sqlSession;
 
     public List<ResultVo> getResultList(int applicantId, int problemInfoId){
+
+        //set query input parameter
         Map<String, Integer> map = new HashMap<String, Integer>();
         map.put("applicantId", applicantId);
         map.put("problemInfoId", problemInfoId);
+
         return sqlSession.selectList("result.selectListByAppIdProbId", map);
     }
 }

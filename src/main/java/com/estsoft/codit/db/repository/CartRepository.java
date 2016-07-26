@@ -10,14 +10,13 @@ import java.util.List;
 
 @Repository
 public class CartRepository {
+
   @Autowired
   private SqlSession sqlSession;
 
-  public int insert( CartVo vo){
-    return sqlSession.insert("cart.insert", vo);
-  }
 
-  public List<CartVo> getListByRecruitId( int recruitId ){
-    return sqlSession.selectList("cart.selectListByRecruitId", recruitId);
-  }
+  public int insert( CartVo vo){ return sqlSession.insert("cart.insert", vo); }
+
+  public List<CartVo> getListByRecruitId( int recruitId ){ return sqlSession.selectList("cart.selectListByRecruitId", recruitId); }
+
 }

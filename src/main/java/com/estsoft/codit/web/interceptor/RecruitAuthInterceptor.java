@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * recruit controller에 접근하는 모든 request가 지나는 interceptor
+ * interceptor which catches all requests to recruit controller.
+ * check the client is authorized or not to recruit page.
  */
 public class RecruitAuthInterceptor extends HandlerInterceptorAdapter {
 
@@ -20,28 +21,31 @@ public class RecruitAuthInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        //session이 있나?
+        //logged in user?
         HttpSession session = request.getSession();
         if( session == null ) {
             response.sendRedirect( request.getContextPath() + "/client/signinform" );
             return false;
         }
-        //login은 했나?
         ClientVo authUser = (ClientVo)session.getAttribute( "authClient" );
         if( authUser == null ) {
             response.sendRedirect( request.getContextPath() + "/client/signinform" );
             return false;
         }
 
-        //Recruit Id를 url로부터 추출
-        String url = request.getRequestURL().toString();
-        int index = url.indexOf("recruit/");
-        String recruitId = url.substring(index).split("/")[1];
 
+        //Fetch recruit id from url
+        String url          = request.getRequestURL().toString();
+        int recruitIdPos    = url.indexOf("recruit/");
+        String recruitId    = url.substring(recruitIdPos).split("/")[1];
+
+
+        //check the recruit id belongs to authClient's client id
         if(recruitService.isContained( Integer.parseInt(recruitId), authUser.getId() ) == false){
             response.sendRedirect( request.getContextPath() + "/");
             return false;
         }
+
         return true;
     }
 
