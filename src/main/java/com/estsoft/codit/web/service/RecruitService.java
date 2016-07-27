@@ -316,4 +316,10 @@ public class RecruitService {
         }
         return true;
     }
+
+    public int getApplicantCountByRecruitId(int recruitId) {
+        return applicantRepository.getCountByRecruitId(recruitId);
+
+    }
+
 }

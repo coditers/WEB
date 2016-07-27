@@ -26,4 +26,7 @@ public class ApplicantRepository {
     }
   }
 
+  public int getCountByRecruitId( int recruitId){
+    return sqlSession.selectOne("applicant.selectCountByRecruitId", recruitId);
+  }
 }
