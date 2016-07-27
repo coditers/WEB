@@ -108,25 +108,20 @@ public class RecruitController {
 
 
 
-  @RequestMapping("/appreg")
+  @RequestMapping("/register-applicant")
   @ResponseBody
-  public Map<String, Object> applicantregister(@PathVariable("recruitId") int id, MultipartHttpServletRequest request) {
+  public Map<String, Object> registerApplicant(@PathVariable("recruitId") int recruitId, MultipartHttpServletRequest request) {
 
     Iterator<String> itr = request.getFileNames();
-    System.out.println("RecruitController 110");
     MultipartFile mpf = request.getFile(itr.next());
-    System.out.println("RecruitController 112");
+
     String filePath = Util.saveMultiPartFile(mpf);
 
-//  @RequestMapping("/register-applicant")
-//  public String registerApplicant(@PathVariable("recruitId") int recruitId, @RequestParam("excel-file") MultipartFile file, Model model) {
-//
-//    String filePath = Util.saveMultiPartFile(file);
     List<ApplicantVo> list = null;
     Map<String, Object> map = new HashMap<String, Object>();
 
 
-    //success save multipart file
+    //multipart file save fail
     if(filePath == null) {
       //todo save multipartfile fail error handle
 
@@ -136,14 +131,8 @@ public class RecruitController {
       recruitService.insertApplicantList(list);
       map.put("result", "success");
       map.put("data", list);
-      System.out.println("RecruitController 125");
     }
-    System.out.println("RecruitController 127");
     return map;
-
-//    model.addAttribute("recruitVo", recruitService.getRecruitVo(recruitId));
-//    return "recruit/ready/recruit-ready-appregform";
-
   }
 
   @RequestMapping(value = "set-recruitdate", method= RequestMethod.POST)
