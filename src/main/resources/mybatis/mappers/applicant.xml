@@ -35,4 +35,11 @@
               FROM applicant
               WHERE recruit_id = #{recruitId}]]>
   </select>
+
+  <select id="selectSubmittedCountByRecruitId" parameterType="int" resultType="int">
+    <![CDATA[ SELECT count(*) as count
+              from applicant
+              where recruit_id = #{recruitId} and submit_time is not null]]>
+  </select>
+
 </mapper>

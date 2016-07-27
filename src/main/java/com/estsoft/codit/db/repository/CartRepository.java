@@ -19,4 +19,8 @@ public class CartRepository {
 
   public List<CartVo> getListByRecruitId( int recruitId ){ return sqlSession.selectList("cart.selectListByRecruitId", recruitId); }
 
+  public int getCountByRecruitId( int recruitId){
+    return sqlSession.selectOne("cart.selectCountByRecruitId", recruitId);
+  }
+
 }

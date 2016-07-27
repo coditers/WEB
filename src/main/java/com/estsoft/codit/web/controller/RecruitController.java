@@ -51,7 +51,8 @@ public class RecruitController {
     SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     String current_date = dayTime.format(new Date(time));
     model.addAttribute("recruitVo", recruitVo);
-    model.addAttribute("applicantCount", recruitService.getApplicantCountByRecruitId(id));
+    model.addAttribute("applicantCount", recruitService.getApplicantCountByRecruitId(recruitId));
+    model.addAttribute("problemCount", recruitService.getProblemCountByRecruitId(recruitId));
 
     //before test
     if (recruitVo.getFromDate() == null || current_date.compareTo(recruitVo.getFromDate()) < 0) {
@@ -63,6 +64,7 @@ public class RecruitController {
       if (current_date.compareTo(recruitVo.getToDate()) > 0) {
 
       }
+      model.addAttribute("submittedApplicantCount", recruitService.getSubmittedApplicantCountByRecruitId(recruitId));
       return "recruit/started/recruit-started-main";
 
   } else {
@@ -73,6 +75,7 @@ public class RecruitController {
   @RequestMapping("/appregform")
   public String applicantRegisterForm(@PathVariable("recruitId") int recruitId, Model model) {
     model.addAttribute("recruitVo", recruitService.getRecruitVo(recruitId));
+    model.addAttribute("applicantList", recruitService.getApplicantListByRecruitId(recruitId));
     return "recruit/ready/recruit-ready-appregform";
   }
 
@@ -188,6 +191,7 @@ public class RecruitController {
     RecruitVo recruitVo = recruitService.getRecruitVo(recruitId);
     model.addAttribute("recruitVo", recruitVo);
     model.addAttribute("problemInfoVoList", problemInfoVoList);
+    model.addAttribute("cartList", recruitService.getCartListByRecruitId(recruitId));
 
     return "recruit/ready/recruit-ready-probselectform";
   }
@@ -206,7 +210,7 @@ public class RecruitController {
     }
     RecruitVo recruitVo = recruitService.getRecruitVo(recruitId);
     model.addAttribute("recruitVo", recruitVo);
-    return "recruit/ready/recruit-ready-main";
+    return "redirect:main";
   }
 
   //// TODO: 2016-07-20 emailform으로 들어가는 method를 짰습니다

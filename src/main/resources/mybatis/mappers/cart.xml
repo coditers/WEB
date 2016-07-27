@@ -17,4 +17,10 @@
               ORDER BY problem_info_id]]>
   </select>
 
+  <select id="selectCountByRecruitId" parameterType="int" resultType="int">
+    <![CDATA[ SELECT count(*) as count
+              FROM cart
+              WHERE recruit_id = #{recruitId}]]>
+  </select>
+
 </mapper>
