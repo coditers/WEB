@@ -15,9 +15,21 @@ public class CartRepository {
   private SqlSession sqlSession;
 
 
-  public int insert( CartVo vo){ return sqlSession.insert("cart.insert", vo); }
+  public int insert(CartVo vo) {
+    return sqlSession.insert("cart.insert", vo);
+  }
 
-  public List<CartVo> getListByRecruitId( int recruitId ){ return sqlSession.selectList("cart.selectListByRecruitId", recruitId); }
+  public List<CartVo> getListByRecruitId(int recruitId) {
+    return sqlSession.selectList("cart.selectListByRecruitId", recruitId);
+  }
 
-  public void deleteByRecruitId(int recruitId){ sqlSession.delete("cart.deleteByRecruitId", recruitId); }
+
+  public void deleteByRecruitId(int recruitId) {
+    sqlSession.delete("cart.deleteByRecruitId", recruitId);
+  }
+
+  public int getCountByRecruitId( int recruitId){
+    return sqlSession.selectOne("cart.selectCountByRecruitId", recruitId);
+  }
+
 }

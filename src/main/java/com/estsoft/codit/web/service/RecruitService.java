@@ -341,9 +341,30 @@ public class RecruitService {
         return true;
     }
 
+
+    //아래 5 개 메소드 추가하였습니다 (7/27)
     public int getApplicantCountByRecruitId(int recruitId) {
         return applicantRepository.getCountByRecruitId(recruitId);
 
     }
+
+    public int getSubmittedApplicantCountByRecruitId(int recruitId) {
+        return applicantRepository.getSubmittedCountByRecruitId(recruitId);
+    }
+
+    public int getProblemCountByRecruitId(int recruitId) {
+        return cartRepository.getCountByRecruitId(recruitId);
+
+    }
+
+    public List<ApplicantVo> getApplicantListByRecruitId(int recruitId){
+        return applicantRepository.getListByRecruitId(recruitId);
+    }
+
+    public List<CartVo> getCartListByRecruitId(int recruitId){
+        return cartRepository.getListByRecruitId(recruitId);
+    }
+
+
 
 }

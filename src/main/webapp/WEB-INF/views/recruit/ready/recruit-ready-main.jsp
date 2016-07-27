@@ -48,7 +48,7 @@
                                 <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/problem-selectform"
                                    class="collection-item bold "><i class="small material-icons">list</i>Select
                                     test problems
-                                    <span class="badge" data-badge-caption="custom caption">0 selected </span>
+                                    <span class="badge" data-badge-caption="custom caption">${problemCount} selected </span>
                                 </a>
                                 <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/write-emailform" class="collection-item bold "><i
                                         class="small material-icons">email</i>Write email format</a>
@@ -72,7 +72,8 @@
                                             <div class="row left left-align">
                                                 <p>Title: ${recruitVo.title}
                                                 <br>Recruit Period: ${recruitVo.fromDate} - ${recruitVo.toDate}
-                                                <br>The number of applicants: xx
+                                                <br>The number of applicants: ${applicantCount}
+                                                <br>The number of selected problems: ${problemCount}
                                                 <br>Email Format: ${recruitVo.emailFormat}
                                                 </p>
                                             </div>

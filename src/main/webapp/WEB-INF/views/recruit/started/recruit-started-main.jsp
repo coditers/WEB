@@ -30,10 +30,12 @@
                             <h3>${recruitVo.title}</h3>
                         </div>
                         <div class="row">
-                            <h6>Applying situation: </h6>
-                            <h6 id ="h-counter"></h6>
+                            <h6 class="inline">Applying situation: </h6>
+                            <h5 class="inline">${submittedApplicantCount}/${applicantCount}</h5>
+                            <br>
+                            <br>
                             <h6 class="inline">Time remaining: </h6> <h5 id="h-timer" class="inline"></h5> <h6 class="inline">(until: ${recruitVo.toDate} )</h6>
-
+                            <br>
                             <br>
                             <div class="collection">
                                 <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/applicantstatform"
@@ -75,9 +77,16 @@
         sec = (sec - (hour*60*60));
         min = parseInt(sec/60);
         sec = parseInt(sec-(min*60));
-        r.innerHTML = day+' days '+hour+' h '+min+' m '+sec+' s ';
+
+        if(sec<0){
+            r.innerHTML = 'End';
+        }else{
+            r.innerHTML = day+' days '+hour+' h '+min+' m '+sec+' s ';
+        }
     }
+
     setInterval(TimeRemaining,1000);
+
 </script>
 </body>
 </html>
