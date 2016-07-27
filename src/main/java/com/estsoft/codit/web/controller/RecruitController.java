@@ -45,6 +45,7 @@ public class RecruitController {
     SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     String current_date = dayTime.format(new Date(time));
     model.addAttribute("recruitVo", recruitVo);
+    model.addAttribute("applicantCount", recruitService.getApplicantCountByRecruitId(id));
 
     if (recruitVo.getFromDate() == null || current_date.compareTo(recruitVo.getFromDate()) < 0) {   //ready recruit
 

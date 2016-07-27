@@ -15,4 +15,10 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
   </insert>
+
+  <select id="selectCountByRecruitId" parameterType="int" resultType="int">
+     <![CDATA[ SELECT count(*) as count
+              FROM applicant
+              WHERE recruit_id = #{recruitId}]]>
+  </select>
 </mapper>

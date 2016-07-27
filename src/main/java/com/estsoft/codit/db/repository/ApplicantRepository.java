@@ -29,4 +29,10 @@ public class ApplicantRepository {
       insert(vo);
     }
   }
+
+  public int getCountByRecruitId( int recruitId){
+    return sqlSession.selectOne("applicant.selectCountByRecruitId", recruitId);
+  }
+
+
 }

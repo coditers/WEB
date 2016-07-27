@@ -43,7 +43,7 @@
                                 <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/appregform"
                                    class="collection-item bold"><i class="small material-icons">perm_identity</i>Enroll
                                     applicants
-                                    <span class="badge" data-badge-caption="custom caption">0 enrolled</span>
+                                    <span class="badge" data-badge-caption="custom caption">${applicantCount} enrolled</span>
                                 </a>
                                 <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/probselectform"
                                    class="collection-item bold "><i class="small material-icons">list</i>Select
