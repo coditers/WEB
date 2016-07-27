@@ -36,7 +36,7 @@ public class RecruitService {
     ResultRepository resultRepository;
 
 
-    //Service associated with RecruitRepository
+    //Recruit
     public int              insertRecruitVo(RecruitVo recruitVo) { return recruitRepository.insert(recruitVo); }
     public RecruitVo        getRecruitVo(int id) { return recruitRepository.getById(id); }
     public List<RecruitVo>  getRecruitListByClientId(int clientId) { return recruitRepository.getListByClientId(clientId); }
@@ -44,17 +44,42 @@ public class RecruitService {
     public void             saveEmailFormat(int recruitId, String emailFormat) { recruitRepository.updateEmailFormat(recruitId, emailFormat); }
 
 
+    //ProblemInfo
     public List<ProblemInfoVo> getAllProblemInfoList() { return problemInfoRepository.getList(); }
     public List<ProblemInfoVo> getProblemInfoListByRecruitId( int recruitId ) { return problemInfoRepository.getListByRecruitId(recruitId); }
 
 
-    public void insertApplicantList(List<ApplicantVo> list) {
+    //Applicant
+    public void enrollApplicantList(List<ApplicantVo> list, int recruitId) {
+        if(isApplicantRegistered(recruitId))
+            applicantRepository.deleteByRecruitId(recruitId);
+
         applicantRepository.insertList(list);
     }
-    public void insertCart(CartVo vo) {
-        cartRepository.insert(vo);
-    }
+    public List<ApplicantVo> getApplicantListByRecruitId(int recruitId){ return applicantRepository.getListByRecruitId(recruitId); }
+
+
+    //Result
     public List<ResultVo> getResultList(int applicantId, int problemInfoId) { return resultRepository.getResultList(applicantId, problemInfoId); }
+
+
+    //Cart
+    /**
+     * insert cart which recruit_id is recruitId
+     * */
+    public void insertCartList(int recruitId, int[] probIdList){
+
+        if( isProblemSelected(recruitId)){
+            cartRepository.deleteByRecruitId(recruitId);
+        }
+
+        for ( int i : probIdList){
+            CartVo vo = new CartVo();
+            vo.setProblemInfoId( i );
+            vo.setRecruitId(recruitId);
+            cartRepository.insert( vo );
+        }
+    }
 
 
     /**
@@ -176,7 +201,6 @@ public class RecruitService {
 
         return false;
     }
-
 
 
     // TODO: 2016-06-29 Invalid Excel format handle

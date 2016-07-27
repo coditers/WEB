@@ -26,4 +26,7 @@ public class ApplicantRepository {
     }
   }
 
+  public void deleteByRecruitId( int recruitId ){
+    sqlSession.delete("applicant.deleteByRecruitId", recruitId);
+  }
 }

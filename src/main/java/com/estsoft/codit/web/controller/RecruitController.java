@@ -71,41 +71,13 @@ public class RecruitController {
 
   @RequestMapping("/appregform")
   public String applicantRegisterForm(@PathVariable("recruitId") int recruitId, Model model) {
+//todo!
+//    if(recruitService.isApplicantRegistered(recruitId))
+//      model.addAttribute("applicantList", recruitService.getApplicantListByRecruitId(recruitId));
+
     model.addAttribute("recruitVo", recruitService.getRecruitVo(recruitId));
     return "recruit/ready/recruit-ready-appregform";
   }
-
-  /**
-   * get excel file and save parsed data as applicant into DB
-   * */
-//  @RequestMapping("/register-applicant")
-//  @ResponseBody
-//  public Map<String, Object> applicantregister(@PathVariable("recruitId") int id, MultipartFile file) {
-//
-//    Iterator<String> itr = request.getFileNames();
-//    System.out.println("RecruitController 80");
-//    MultipartFile mpf = request.getFile(itr.next());
-//    System.out.println("RecruitController 82");
-//    String filePath = recruitService.saveMultiPartFile(mpf);
-//    String filePath = recruitService.saveMultiPartFile(file);
-//    System.out.println("RecruitController 84"+filePath);
-//
-//    List<ApplicantVo> list = null;
-//    Map<String, Object> map = new HashMap<String, Object>();
-//
-//    if(filePath != null) {
-//      list = recruitService.parseExcel(filePath, id);
-//      System.out.println("RecruitController 91: "+list.toString());
-//      if(list != null)
-//        recruitService.insertApplicantList(list);
-//        map.put("result", "success");
-//        map.put("data", list);
-//        System.out.println("RecruitController 96");
-//    }
-//    System.out.println("RecruitController 98");
-//    return map;
-//  }
-
 
 
   @RequestMapping("/register-applicant")
@@ -127,8 +99,10 @@ public class RecruitController {
 
     }else{
       list = recruitService.fetchApplicantListFromExcel(filePath, recruitId);
+
       if (list != null)
-      recruitService.insertApplicantList(list);
+        recruitService.enrollApplicantList(list, recruitId);
+
       map.put("result", "success");
       map.put("data", list);
     }
@@ -184,6 +158,9 @@ public class RecruitController {
     List<ProblemInfoVo> problemInfoVoList = recruitService.getAllProblemInfoList();
 
     //todo cart list view
+//    if(recruitService.isProblemSelected(recruitId))
+//      model.addAttribute("selectedProblemList", recruitService.getProblemInfoListByRecruitId(recruitId))
+
     RecruitVo recruitVo = recruitService.getRecruitVo(recruitId);
     model.addAttribute("recruitVo", recruitVo);
     model.addAttribute("problemInfoVoList", problemInfoVoList);
@@ -195,14 +172,8 @@ public class RecruitController {
   @RequestMapping("/select-problem")
   public String selectProblem(@PathVariable("recruitId") int recruitId , Model model,  @RequestParam(value= "probIdList") int [] probIdList){
 
-    //todo if carts are already stored delete carts.
+    recruitService.insertCartList(recruitId, probIdList);
 
-    for ( int i : probIdList){
-      CartVo vo = new CartVo();
-      vo.setProblemInfoId( i );
-      vo.setRecruitId(recruitId);
-      recruitService.insertCart( vo );
-    }
     RecruitVo recruitVo = recruitService.getRecruitVo(recruitId);
     model.addAttribute("recruitVo", recruitVo);
     return "recruit/ready/recruit-ready-main";

@@ -29,4 +29,10 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
   </insert>
+
+  <delete id="deleteByRecruitId" parameterType="int">
+    DELETE
+    FROM applicant
+    WHERE recruit_id = #{recruitId}
+  </delete>
 </mapper>
