@@ -26,12 +26,13 @@ public class ApplicantRepository {
     }
   }
 
-<<<<<<< HEAD
-  public int getCountByRecruitId( int recruitId){
+
+  public int getCountByRecruitId( int recruitId) {
     return sqlSession.selectOne("applicant.selectCountByRecruitId", recruitId);
-=======
+  }
+
   public void deleteByRecruitId( int recruitId ){
     sqlSession.delete("applicant.deleteByRecruitId", recruitId);
->>>>>>> b7b97d47ddfcc04b121efa16da7e9b79ff4e17c7
+
   }
 }

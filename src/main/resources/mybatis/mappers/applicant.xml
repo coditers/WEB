@@ -30,17 +30,17 @@
     </selectKey>
   </insert>
 
-<<<<<<< HEAD
+
   <select id="selectCountByRecruitId" parameterType="int" resultType="int">
      <![CDATA[ SELECT count(*) as count
               FROM applicant
               WHERE recruit_id = #{recruitId}]]>
   </select>
-=======
+
   <delete id="deleteByRecruitId" parameterType="int">
     DELETE
     FROM applicant
     WHERE recruit_id = #{recruitId}
   </delete>
->>>>>>> b7b97d47ddfcc04b121efa16da7e9b79ff4e17c7
+
 </mapper>
