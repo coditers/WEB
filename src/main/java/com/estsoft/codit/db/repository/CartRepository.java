@@ -19,4 +19,5 @@ public class CartRepository {
 
   public List<CartVo> getListByRecruitId( int recruitId ){ return sqlSession.selectList("cart.selectListByRecruitId", recruitId); }
 
+  public void deleteByRecruitId(int recruitId){ sqlSession.delete("cart.deleteByRecruitId", recruitId); }
 }

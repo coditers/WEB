@@ -17,4 +17,11 @@
               ORDER BY problem_info_id]]>
   </select>
 
+  <delete id="deleteByRecruitId" parameterType="int">
+    <![CDATA[
+              DELETE
+              FROM cart
+              WHERE recruit_id = #{recruitId}
+    ]]>
+  </delete>
 </mapper>
