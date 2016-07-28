@@ -304,7 +304,7 @@ public class RecruitService {
     private boolean sendMail(String toAddr, String applicantName, String content) {// String companyName
 
         Properties props = System.getProperties();
-        props.setProperty("mail.smtp.host", "localhost.localdomain");
+        props.setProperty("mail.smtp.host", "futures1");
 
         Session session = Session.getInstance(props, null);
 
