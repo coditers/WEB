@@ -26,6 +26,9 @@
     <div class="row">
         <div class="col s6 offset-s3">
             <div class="card-panel white">
+                <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/main">
+                    <button class="btn grey lighten-2 white-text">Back</button>
+                </a>
                 <div class="row">
                     <div class="col s8 offset-s2">
                         <div class="row center">
@@ -54,14 +57,26 @@
                             </form>
                         </div>
                         <div class="row center">
-                            <table id="table-applist" class="striped">
-                                <thead>
-                                <tr>
-                                    <th data-field="id">Name</th>
-                                    <th data-field="name">Email</th>
-                                </tr>
-                                </thead>
-                            </table>
+                            <div class = "col s10 offset-s1">
+                                <table class="striped">
+                                    <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th data-field="id">Name</th>
+                                        <th data-field="name">Email</th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody id = "table-applist">
+                                    <c:forEach items = "${applicantList}" var = "vo" varStatus="status">
+                                        <tr>
+                                            <td>${status.count}</td>
+                                            <td>${vo.name}</td>
+                                            <td>${vo.email}</td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -82,7 +97,6 @@
         $("#btn-submit").click(function(){
             var formData = new FormData();
             formData.append("excel-file", $("#excel-file")[0].files[0]);
-            console.log('버튼눌림');
             $.ajax({
                        url:"${pageContext.request.contextPath}/recruit/${recruitVo.id}/register-applicant",
                        type: "POST",
@@ -92,20 +106,15 @@
                        contentType: false,
 
                        success: function(response, textStatus){
-                           console.log(textStatus);
-                           console.log('왜안되지');
-                           console.log(response);
-                           console.log(response.result);
-
-                           console.log(response.data[0].name);
                            var list = response.data;
-
+                           $('#table-applist').empty();
+                           index = 1;
                            for(var i in list){
-                               $('#table-applist').append("<tr><td>"+list[i].name+"</td><td>"+list[i].email+"</td></tr>");
+                               $('#table-applist').append("<tr><td>"+index+"</td><td>"+list[i].name+"</td><td>"+list[i].email+"</td></tr>");
+                               index++;
                            }
                        },
                        error: function(request,status,error){
-                           console.log("errorfunction");
                            console.log(status+":"+error);
                            console.log("-->code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
                        })

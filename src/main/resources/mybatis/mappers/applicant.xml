@@ -30,9 +30,24 @@
     </selectKey>
   </insert>
 
+
+  <select id="selectCountByRecruitId" parameterType="int" resultType="int">
+     <![CDATA[ SELECT count(*) as count
+              FROM applicant
+              WHERE recruit_id = #{recruitId}]]>
+  </select>
+
   <delete id="deleteByRecruitId" parameterType="int">
     DELETE
     FROM applicant
     WHERE recruit_id = #{recruitId}
   </delete>
+
+  <select id="selectSubmittedCountByRecruitId" parameterType="int" resultType="int">
+    <![CDATA[ SELECT count(*) as count
+              from applicant
+              where recruit_id = #{recruitId} and submit_time is not null]]>
+  </select>
+
+
 </mapper>
