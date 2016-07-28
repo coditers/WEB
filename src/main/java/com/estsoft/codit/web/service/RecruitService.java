@@ -356,10 +356,10 @@ public class RecruitService {
         return cartRepository.getCountByRecruitId(recruitId);
 
     }
-
-    public List<ApplicantVo> getApplicantListByRecruitId(int recruitId){
-        return applicantRepository.getListByRecruitId(recruitId);
-    }
+//
+//    public List<ApplicantVo> getApplicantListByRecruitId(int recruitId){
+//        return applicantRepository.getListByRecruitId(recruitId);
+//    }
 
     public List<CartVo> getCartListByRecruitId(int recruitId){
         return cartRepository.getListByRecruitId(recruitId);

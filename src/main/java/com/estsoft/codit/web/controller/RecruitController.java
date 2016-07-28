@@ -74,9 +74,6 @@ public class RecruitController {
 
   @RequestMapping("/appregform")
   public String applicantRegisterForm(@PathVariable("recruitId") int recruitId, Model model) {
-//todo!
-//    if(recruitService.isApplicantRegistered(recruitId))
-//      model.addAttribute("applicantList", recruitService.getApplicantListByRecruitId(recruitId));
 
     model.addAttribute("recruitVo", recruitService.getRecruitVo(recruitId));
     model.addAttribute("applicantList", recruitService.getApplicantListByRecruitId(recruitId));
