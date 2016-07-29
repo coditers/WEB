@@ -54,7 +54,7 @@
   </bean>
 
   <!-- Auto Proxy -->
-  <aop:aspectj-autoproxy />
+  <!--<aop:aspectj-autoproxy />-->
 
   <!-- Introduction to application context
 

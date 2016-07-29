@@ -93,7 +93,7 @@
     </bean> -->
 
     <!-- Auto Proxy -->
-    <aop:aspectj-autoproxy/>
+    <!--<aop:aspectj-autoproxy/>-->
 
     <!-- 8. 멀티파트 리졸버 -->
     <bean id="multipartResolver"
