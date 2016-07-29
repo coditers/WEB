@@ -131,6 +131,10 @@
 
 }
 
+#modal-confirm{
+    padding-bottom: 2rem;
+}
+
 /*9. li*/
 #li-setperiods{
     list-style: none;
@@ -174,6 +178,14 @@
     position: absolute;
     left: 33%;
     bottom: 0.5rem;
+}
+
+.btn-detail{
+    width: 4rem;
+    height: 2rem;
+    font-size: 0.7rem;
+    padding: 0 0;
+    margin-top: 0rem;
 }
 
 /*12. badge */

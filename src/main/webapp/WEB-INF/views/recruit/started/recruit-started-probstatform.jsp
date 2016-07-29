@@ -37,22 +37,22 @@
                             <table>
                                 <thead>
                                 <tr>
-                                    <th>Problem</th>
-                                    <th>Average</th>
-                                    <th>Standard deviation</th>
-                                    <th>Max</th>
-                                    <th>Min</th>
+                                    <th class="center-align">Problem</th>
+                                    <th class="center-align">Average</th>
+                                    <th class="center-align">Standard deviation</th>
+                                    <th class="center-align">Max</th>
+                                    <th class="center-align">Min</th>
                                 </tr>
                                 </thead>
 
                                 <tbody>
                                 <c:forEach items = "${problemStatList}" var = "vo">
                                     <tr>
-                                        <td>${vo.problemName}</td>
-                                        <td>${vo.avg}</td>
-                                        <td>${vo.stdDev}</td>
-                                        <td>${vo.max}</td>
-                                        <td>${vo.min}</td>
+                                        <td class="center-align">${vo.problemName}</td>
+                                        <td class="center-align">${vo.avg}</td>
+                                        <td class="center-align">${vo.stdDev}</td>
+                                        <td class="center-align">${vo.max}</td>
+                                        <td class="center-align">${vo.min}</td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>

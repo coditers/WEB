@@ -159,13 +159,13 @@ public class RecruitController {
     List<ProblemInfoVo> problemInfoVoList = recruitService.getAllProblemInfoList();
 
     //todo cart list view
-//    if(recruitService.isProblemSelected(recruitId))
-//      model.addAttribute("selectedProblemList", recruitService.getProblemInfoListByRecruitId(recruitId))
+    if(recruitService.isProblemSelected(recruitId))
+    model.addAttribute("selectedProblemList", recruitService.getProblemInfoListByRecruitId(recruitId));
 
     RecruitVo recruitVo = recruitService.getRecruitVo(recruitId);
     model.addAttribute("recruitVo", recruitVo);
     model.addAttribute("problemInfoVoList", problemInfoVoList);
-    model.addAttribute("cartList", recruitService.getCartListByRecruitId(recruitId));
+    //model.addAttribute("cartList", recruitService.getCartListByRecruitId(recruitId));
 
     return "recruit/ready/recruit-ready-probselectform";
   }
@@ -204,6 +204,7 @@ public class RecruitController {
     model.addAttribute("applicantStatList", applicantStatVoList);
     model.addAttribute("problemInfoList", problemInfoVoList);
     model.addAttribute("recruitId", recruitId);
+    model.addAttribute("recruitVo", recruitService.getRecruitVo(recruitId));
     return "recruit/started/recruit-started-appstatform";
   }
 
@@ -224,6 +225,7 @@ public class RecruitController {
     List<ProblemStatVo> problemStatVoList = recruitService.getProblemStatList(recruitId);
     model.addAttribute("problemStatList", problemStatVoList);
     model.addAttribute("recruitId", recruitId);
+    model.addAttribute("recruitVo", recruitService.getRecruitVo(recruitId));
     return "recruit/started/recruit-started-probstatform";
   }
 }

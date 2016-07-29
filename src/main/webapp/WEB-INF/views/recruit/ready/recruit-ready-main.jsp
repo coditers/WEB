@@ -59,7 +59,7 @@
                         <br>
 
                         <div class="row center">
-                                <a class="btn-large waves-effect waves-light brown center modal-trigger" href="#modal-confirm">Send invitations!
+                                <a id = "btn-sendInvitations" class="btn-large waves-effect waves-light brown center modal-trigger" href="#modal-confirm">Send invitations!
                                     <i class="material-icons right">send</i>
                                 </a>
 
@@ -69,26 +69,25 @@
                                     <h4>Are you sure want to submit this recruit as it is?</h4>
                                     <div row>
                                         <div class="col s6 offset-s3">
-                                            <div class="row left left-align">
-                                                <p>Title: ${recruitVo.title}
-                                                <br>Recruit Period: ${recruitVo.fromDate} - ${recruitVo.toDate}
-                                                <br>The number of applicants: ${applicantCount}
-                                                <br>The number of selected problems: ${problemCount}
-                                                <br>Email Format: ${recruitVo.emailFormat}
-                                                </p>
+                                            <div class="row">
+                                                <div id = "modal-p-content" class="row left left-align">
+                                                    <p>Title: ${recruitVo.title}
+                                                    <br>Recruit Period: ${recruitVo.fromDate} - ${recruitVo.toDate}
+                                                    <br>The number of applicants: ${applicantCount}
+                                                    <br>The number of selected problems: ${problemCount}
+                                                    <br>Email Format: ${recruitVo.emailFormat}
+                                                        <br>
+                                                        <span id = "modal-span-content"></span>
+                                                    </p>
+                                                </div>
                                             </div>
-                                                <br>
-                                                <br>
-                                            <br>
-                                            <br>
-                                            <br>
-                                            <br>
-                                            <div class="row left left-align">
-                                                <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/send-ticket" class="waves-effect waves-light btn btn-block center-block brown text-white">
-                                                    Yes, Send invitations!</a>
+                                            <div class="center">
+                                                <a id = "modal-a-sendInvitations" href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/send-ticket" >
+                                                    <button id = "modal-btn-sendInvitations" class="waves-effect waves-light btn btn-block center-block brown text-white" >Yes, Send invitations!</button></a>
                                             </div>
                                         </div>
                                     </div>
+                                    <br>
                                 </div>
 
                             </div>
@@ -105,15 +104,53 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/materialize/js/materialize.min.js"></script>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
         $('.datepicker').pickadate({
-         selectMonths: true, // Creates a dropdown to control month
-         selectYears: 15, // Creates a dropdown of 15 years to control year
-         format: 'yyyy-mm-dd'
-         });
+                                       selectMonths: true, // Creates a dropdown to control month
+                                       selectYears: 15, // Creates a dropdown of 15 years to control year
+                                       format: 'yyyy-mm-dd'
+                                   });
 
         // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
         $('.modal-trigger').leanModal();
+
+        //If one of (fromDate, toDate, applicantCount, problemCount, emailFormat) is null or zero, client cannot send invitations.
+        //handling
+
+        $('#btn-sendInvitations').click(function () {
+
+            $('#modal-span-content').empty();
+
+            var fromDate = "${recruitVo.fromDate}";
+            var toDate =  "${recruitVo.toDate}";
+            var applicantCount = "${applicantCount}";
+            var problemCount = "${problemCount}";
+            var emailFormat = "${recruitVo.emailFormat}";
+
+            var message = "";
+
+            if(fromDate == ""){ message += "*Please set the start date."; }
+            if(toDate == ""){ message += "<br>*Please set the closing date."; }
+            if(applicantCount == "0"){ message += "<br>*Please enroll applicants."; }
+            if(problemCount == "0"){ message += "<br>*Please select test problems."; }
+            if(emailFormat == ""){ message += "<br>*Please save email format.\n"; }
+
+            var button = document.getElementById('modal-btn-sendInvitations');
+            console.log(button);
+
+            if(message == ""){
+
+                button.className = "waves-effect waves-light btn btn-block center-block brown text-white";
+                button.disabled = false;
+                console.log('message is empty');
+            }else{
+                $('#modal-span-content').append("<br>"+message).css('color', 'red');
+                button.className = "btn disabled";
+                button.disabled = true;
+                console.log('message is not empty');
+            }
+
+        })
     });
 </script>
 </body>
