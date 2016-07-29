@@ -37,12 +37,12 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
       <version>${org.springframework-version}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>commons-logging</groupId>
-          <artifactId>commons-logging</artifactId>
-        </exclusion>
-      </exclusions>
+      <!--<exclusions>-->
+        <!--<exclusion>-->
+          <!--<groupId>commons-logging</groupId>-->
+          <!--<artifactId>commons-logging</artifactId>-->
+        <!--</exclusion>-->
+      <!--</exclusions>-->
     </dependency>
 
     <!-- Spring MVC -->
@@ -156,17 +156,17 @@
     </dependency>
 
     <!-- logging -->
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>jcl-over-slf4j</artifactId>     <!-- jcl을 slf4j로 넘겨주는 라이브러리 -->
-      <version>${jcloverslf4j.version}</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.slf4j</groupId>-->
+      <!--<artifactId>jcl-over-slf4j</artifactId>     &lt;!&ndash; jcl을 slf4j로 넘겨주는 라이브러리 &ndash;&gt;-->
+      <!--<version>${jcloverslf4j.version}</version>-->
+    <!--</dependency>-->
 
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-      <version>${logback.version}</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>ch.qos.logback</groupId>-->
+      <!--<artifactId>logback-classic</artifactId>-->
+      <!--<version>${logback.version}</version>-->
+    <!--</dependency>-->
 
     <!--Excel Library-->
     <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
