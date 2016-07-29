@@ -37,27 +37,29 @@
                             <table>
                                 <thead>
                                 <tr>
-                                    <th data-field="applicant name">Name</th>
+                                    <th data-field="applicant name" class="center-align">Name</th>
                                     <c:forEach items="${problemInfoList}" var="vo">
-                                        <th data-field="problem">${vo.name }</th>
+                                        <th data-field="problem" class="center-align">${vo.name }</th>
                                     </c:forEach>
 
-                                    <th>Total Score</th>
-                                    <th>Details</th>
-                                    <th>Print</th>
+                                    <th class="center-align">Total Score</th>
+                                    <th class="center-align">Details</th>
+                                    <th class="center-align">Print</th>
                                 </tr>
                                 </thead>
 
                                 <tbody>
                                 <c:forEach items = "${applicantStatList}" var = "applicantStatVo">
-                                    <tr>
-                                        <td>${applicantStatVo.applicantName}</td>
+                                    <tr class="center-align center">
+                                        <td class="center-align">${applicantStatVo.applicantName}</td>
                                         <c:forEach items = "${applicantStatVo.problemScoreList}" var = "score">
-                                            <td>${score}</td>
+                                            <td class="center-align">${score}</td>
                                         </c:forEach>
-                                        <td>${applicantStatVo.totalScore}</td>
-                                        <td><a href="${pageContext.request.contextPath}/recruit/${recruitId}/ajax-applicantresultdetail">-></a></td>
-                                        <td>ㅁ</td>
+                                        <td class="center-align">${applicantStatVo.totalScore}</td>
+                                        <td class="center-align"><a href="${pageContext.request.contextPath}/recruit/${recruitId}/ajax-applicantresultdetail">
+                                            <button class="btn small green darken-4 btn-detail">details</button>
+                                        </a></td>
+                                        <td class="center-align">ㅁ</td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
