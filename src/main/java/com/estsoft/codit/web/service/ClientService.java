@@ -14,6 +14,7 @@ public class ClientService {
 
   //Get ClientVo Methods
   public ClientVo getClientVoById(int clientId)                   { return clientRepository.get( clientId ); }
+  public ClientVo getClientVoByEmail(String email) {return clientRepository.getByEmail(email); }
   public ClientVo getClientVoByEmailPassword( ClientVo clientVo ) { return clientRepository.getByEmailPassword( clientVo ); }
 
   //Insert ClientVo method

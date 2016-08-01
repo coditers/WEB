@@ -36,10 +36,14 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="input-field col s12">
+                                <div class="input-field col s10">
                                     <input id="email" type="email" name="email" class="validate">
                                     <label for="email">Company Email</label>
                                     <h6 id = "p-email"></h6>
+                                    <h6 id = "p-checkEmail"></h6>
+                                </div>
+                                <div class="input-field col s2">
+                                    <button id="btn-checkEmail" type="button" class = "btn green darken-3">Check</button>
                                 </div>
                             </div>
                             <div class="row">
@@ -90,10 +94,43 @@
 
         var flag_corp_name = false;
         var flag_email = false;
+        var flag_checkEmail = false;
         var flag_first_name = false;
         var flag_last_name = false;
         var flag_password = false;
         var flag_re_password = false;
+
+
+        //btn-checkEmail눌렷을 때
+        $('#btn-checkEmail').on('click', function() {
+            var email = $('#email').val();
+            console.log(email);
+            if (email=="") return;
+            $.ajax({
+                       url:"${pageContext.request.contextPath}/client/checkemail?email="+email,
+                       type: "get",
+                       dataType: "json",
+                       data:"",
+                       success: function(response){
+                           if(response.result !="success"){
+                               return;
+                           }
+                           if(response.data == false){
+                               $('#p-checkEmail').html('This email already exists. Please use another one.').css('color', 'red');
+                               $("#email").val("").focus();
+                               return;
+                           }else {
+                               $('#p-checkEmail').html('You can use this email.').css('color', 'green');
+                               flag_checkEmail = true;
+                               return;
+                           }
+                       },
+                       error: function(jqXHR,status,error){
+                           console.log(status+":"+error);
+                       }
+                   });
+        });
+
 
         $('#btn-submit').on('click', function(){
 
@@ -103,6 +140,8 @@
 
             if($('#email').val() == ""){ $('#p-email').html('Please input company email').css('color', 'red'); }
             else{ $('#p-email').empty(); flag_email = true; }
+
+            if(flag_checkEmail == false){ $('#p-checkEmail').html('Please check email for duplication').css('color', 'red'); }
 
             if($('#first-name').val() == ""){ $('#p-first-name').html('Please input first name').css('color', 'red'); }
             else{ $('#p-first-name').empty(); flag_first_name = true;}
@@ -116,7 +155,7 @@
             if($('#re-password').val() == "" || $('#password').val() != $('#re-password').val() ){ $('#p-re-password').html('Please confirm your password').css('color', 'red'); }
             else{ $('#p-re-password').empty(); flag_re_password = true; }
 
-            if(flag_corp_name==true && flag_email == true && flag_first_name ==true && flag_last_name==true && flag_password==true && flag_re_password ==true){
+            if(flag_corp_name==true && flag_email == true &&flag_checkEmail==true && flag_first_name ==true && flag_last_name==true && flag_password==true && flag_re_password ==true){
                 $('#signform').submit();
             }
         })

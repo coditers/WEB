@@ -24,6 +24,18 @@
     ]]>
   </select>
 
+  <select id="selectByEmail" resultType="clientvo" parameterType="String">
+    <![CDATA[
+      SELECT id AS id,
+             first_name AS firstName,
+             last_name AS lastName,
+             email AS email,
+             password AS password
+        FROM client
+       WHERE email = #{email}
+    ]]>
+  </select>
+
   <select id="selectByEmailPassword" resultType="clientvo" parameterType="clientvo">
     <![CDATA[
       SELECT id AS id,

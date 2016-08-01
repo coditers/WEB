@@ -188,6 +188,11 @@
     margin-top: 0rem;
 }
 
+#btn-checkEmail{
+    width: 7rem;
+    padding: 0 0;
+    }
+
 /*12. badge */
 #badge-applicants{
     width: 3rem;
