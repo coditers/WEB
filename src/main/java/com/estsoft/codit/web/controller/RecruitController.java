@@ -165,7 +165,7 @@ public class RecruitController {
     RecruitVo recruitVo = recruitService.getRecruitVo(recruitId);
     model.addAttribute("recruitVo", recruitVo);
     model.addAttribute("problemInfoVoList", problemInfoVoList);
-    //model.addAttribute("cartList", recruitService.getCartListByRecruitId(recruitId));
+    model.addAttribute("cartList", recruitService.getCartListByRecruitId(recruitId));
 
     return "recruit/ready/recruit-ready-probselectform";
   }
