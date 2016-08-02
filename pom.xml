@@ -191,11 +191,10 @@
 
   </dependencies>
 
-  <build>
+  <!--<build>-->
 
     <build>
-      <testSourceDirectory>src/main/test</testSourceDirectory>
-      <plugins>
+       <plugins>
         <plugin>
           <artifactId>maven-eclipse-plugin</artifactId>
           <version>2.9</version>
@@ -271,5 +270,5 @@
         <!--</plugin>-->
       <!--</plugins>-->
 
-  </build>
+  <!--</build>-->
 </project>
