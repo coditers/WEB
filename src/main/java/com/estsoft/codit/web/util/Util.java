@@ -20,7 +20,8 @@ public class Util {
      * @return succss : file path, fail : null
      */
     public static String saveMultiPartFile(MultipartFile file) {
-
+        String s = System.getProperty("user.dir");
+        System.out.println("\n\n\n\n\n\npwd :=====>  " + s);
         if (file.isEmpty() == false) {
 
             String fileOriginalName = file.getOriginalFilename();
