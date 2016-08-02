@@ -11,7 +11,7 @@ import java.util.Calendar;
 public class Util {
 
     //!** directory path in server environment
-    private static final String FILE_SAVE_PATH = "./webapps-codit-web/multipartData/";
+    private static final String FILE_SAVE_PATH = "/futures/tomcat7/webapps-codit-web/multipartData/";
 //    private static final String FILE_SAVE_PATH = "C:/temp/";
 
 
@@ -20,8 +20,7 @@ public class Util {
      * @return succss : file path, fail : null
      */
     public static String saveMultiPartFile(MultipartFile file) {
-        String s = System.getProperty("user.dir");
-        System.out.println("\n\n\n\n\n\npwd :=====>  " + s);
+
         if (file.isEmpty() == false) {
 
             String fileOriginalName = file.getOriginalFilename();
