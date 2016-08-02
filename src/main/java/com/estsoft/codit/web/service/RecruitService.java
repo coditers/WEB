@@ -4,6 +4,7 @@ import com.estsoft.codit.db.repository.*;
 import com.estsoft.codit.db.vo.*;
 import com.estsoft.codit.db.vo.ApplicantStatVo;
 import com.estsoft.codit.db.vo.ProblemStatVo;
+import com.estsoft.codit.web.util.MailSender;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -291,55 +292,59 @@ public class RecruitService {
         RecruitVo recruitVo = recruitRepository.getById(recruitId);
         String emailFormat = recruitVo.getEmailFormat();
 
+
+
         //Customize email format and send mail.
         for (ApplicantVo vo : applicantList) {
             String emailContent = null;
             emailContent = emailFormat.replace("#이름", vo.getName());
-            emailContent = emailContent.replace("#링크", "http://222.239.250.207:8888/?ticket=" + vo.getTicket() );
+            emailContent = emailContent.replace("#링크", "http://222.239.250.207:8888/?ticket=" + vo.getTicket() + " ");
+            emailContent = emailContent.replace("\n", "<br>" );
             //todo mail send fail log or handle
-            sendMail(vo.getEmail(), vo.getName(), emailContent);
+            MailSender mailSender = new MailSender(vo.getEmail(), vo.getName(), emailContent);
+            mailSender.run();
         }
     }
 
-    private boolean sendMail(String toAddr, String applicantName, String content) {// String companyName
-
-        Properties props = System.getProperties();
-        props.setProperty("mail.smtp.host", "localhost.localdomain");
-
-        Session session = Session.getInstance(props, null);
-
-        try {
-            MimeMessage msg = new MimeMessage(session);
-            msg.setFrom(new InternetAddress("noreply@codit.com", "codit"));
-//      InternetAddress[] address = {new InternetAddress(toAddr)};
-//      msg.setRecipients(Message.RecipientType.TO, address);
-            msg.addRecipient(Message.RecipientType.TO, new InternetAddress(toAddr, applicantName));
-            msg.setSubject("invitation from codit");
-//      MimeMultipart multipart = new MimeMultipart();
+//    private boolean sendMail(String toAddr, String applicantName, String content) {// String companyName
 //
-//      MimeBodyPart part = new MimeBodyPart();
-//      part.setContent( "<a href>"+ content + "</a>", "text/html; charset=utf-8");
-//      multipart.addBodyPart(part);
-
-//      part = new MimeBodyPart();
-//      FileDataSource fds = new FileDataSource("파일 경로");
-//      part.setDataHandler(new DataHandler(fds));
-//      part.setFileName("파일명");
-//      multipart.addBodyPart(part);
-
-//      msg.setContent(multipart);
-            msg.setContent(content, "text/html; charset=utf-8");
-
-            Transport.send(msg);
-        } catch( UnsupportedEncodingException ex){
-            ex.printStackTrace();
-            return false;
-        } catch (MessagingException ex) {
-            ex.printStackTrace();
-            return false;
-        }
-        return true;
-    }
+//        Properties props = System.getProperties();
+//        props.setProperty("mail.smtp.host", "localhost.localdomain");
+//
+//        Session session = Session.getInstance(props, null);
+//
+//        try {
+//            MimeMessage msg = new MimeMessage(session);
+//            msg.setFrom(new InternetAddress("noreply@codit.com", "codit"));
+////      InternetAddress[] address = {new InternetAddress(toAddr)};
+////      msg.setRecipients(Message.RecipientType.TO, address);
+//            msg.addRecipient(Message.RecipientType.TO, new InternetAddress(toAddr, applicantName));
+//            msg.setSubject("invitation from codit");
+////      MimeMultipart multipart = new MimeMultipart();
+////
+////      MimeBodyPart part = new MimeBodyPart();
+////      part.setContent( "<a href>"+ content + "</a>", "text/html; charset=utf-8");
+////      multipart.addBodyPart(part);
+//
+////      part = new MimeBodyPart();
+////      FileDataSource fds = new FileDataSource("파일 경로");
+////      part.setDataHandler(new DataHandler(fds));
+////      part.setFileName("파일명");
+////      multipart.addBodyPart(part);
+//
+////      msg.setContent(multipart);
+//            msg.setContent(content, "text/html; charset=utf-8");
+//
+//            Transport.send(msg);
+//        } catch( UnsupportedEncodingException ex){
+//            ex.printStackTrace();
+//            return false;
+//        } catch (MessagingException ex) {
+//            ex.printStackTrace();
+//            return false;
+//        }
+//        return true;
+//    }
 
 
     //아래 5 개 메소드 추가하였습니다 (7/27)
