@@ -249,7 +249,7 @@
           <artifactId>maven-war-plugin</artifactId>
           <version>2.4</version>
           <configuration>
-            <warSourceDirectory>webapp</warSourceDirectory>
+            <warSourceDirectory>webapps</warSourceDirectory>
           </configuration>
         </plugin>
       </plugins>
