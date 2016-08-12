@@ -19,8 +19,6 @@
     <org.springframework-version>4.3.0.RELEASE</org.springframework-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <!--<jcloverslf4j.version>1.7.6</jcloverslf4j.version>-->
-    <!--<logback.version>1.1.1</logback.version>-->
   </properties>
   <profiles>
     <profile>
@@ -44,21 +42,6 @@
           </plugin>
         </plugins>
       </build>
-      <dependencies>
-        <!-- Servlet -->
-        <dependency>
-          <groupId>javax.servlet</groupId>
-          <artifactId>servlet-api</artifactId>
-          <version>2.5</version>
-          <scope>provided</scope>
-        </dependency>
-        <dependency>
-          <groupId>javax.servlet.jsp</groupId>
-          <artifactId>jsp-api</artifactId>
-          <version>2.1</version>
-          <scope>provided</scope>
-        </dependency>
-      </dependencies>
     </profile>
   </profiles>
 
@@ -69,12 +52,6 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
       <version>${org.springframework-version}</version>
-      <!--<exclusions>-->
-        <!--<exclusion>-->
-          <!--<groupId>commons-logging</groupId>-->
-          <!--<artifactId>commons-logging</artifactId>-->
-        <!--</exclusion>-->
-      <!--</exclusions>-->
     </dependency>
 
     <!-- Spring MVC -->
@@ -89,12 +66,6 @@
       <version>${org.springframework-version}</version>
     </dependency>
 
-    <!-- Spring AOP -->
-    <!--<dependency>-->
-      <!--<groupId>org.springframework</groupId>-->
-      <!--<artifactId>spring-aop</artifactId>-->
-      <!--<version>4.3.0.RELEASE</version>-->
-    <!--</dependency>-->
 
 
     <!-- MySQL JDBC Driver -->
@@ -187,19 +158,6 @@
       <version>2.4</version>
     </dependency>
 
-    <!-- logging -->
-    <!--<dependency>-->
-      <!--<groupId>org.slf4j</groupId>-->
-      <!--<artifactId>jcl-over-slf4j</artifactId>     &lt;!&ndash; jcl을 slf4j로 넘겨주는 라이브러리 &ndash;&gt;-->
-      <!--<version>${jcloverslf4j.version}</version>-->
-    <!--</dependency>-->
-
-    <!--<dependency>-->
-      <!--<groupId>ch.qos.logback</groupId>-->
-      <!--<artifactId>logback-classic</artifactId>-->
-      <!--<version>${logback.version}</version>-->
-    <!--</dependency>-->
-
     <!--Excel Library-->
     <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
     <dependency>
@@ -220,18 +178,25 @@
       <artifactId>mail</artifactId>
       <version>1.4</version>
     </dependency>
-    <!--&lt;!&ndash; Spring framework &ndash;&gt;-->
-    <!--<dependency>-->
-      <!--<groupId>org.springframework</groupId>-->
-      <!--<artifactId>spring</artifactId>-->
-      <!--<version>2.5.6</version>-->
-    <!--</dependency>-->
+
+    <!-- Servlet -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+      <version>2.5</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet.jsp</groupId>
+      <artifactId>jsp-api</artifactId>
+      <version>2.1</version>
+      <scope>provided</scope>
+    </dependency>
 
 
   </dependencies>
 
   <!--<build>-->
-
     <build>
        <plugins>
         <plugin>
@@ -290,21 +255,4 @@
         </plugin>
       </plugins>
     </build>
-    <!-- Tomcat plugin -->
-
-      <!--<plugins>-->
-        <!--<plugin>-->
-          <!--<groupId>org.apache.tomcat.maven</groupId>-->
-          <!--<artifactId>tomcat7-maven-plugin</artifactId>-->
-          <!--<version>2.2</version>-->
-          <!--<configuration>-->
-            <!--<url>http://localhost:9999/manager/text</url>-->
-            <!--<server>TomcatServer</server>-->
-            <!--<path>/</path>-->
-            <!--<update>true</update>-->
-          <!--</configuration>-->
-        <!--</plugin>-->
-      <!--</plugins>-->
-
-  <!--</build>-->
 </project>
