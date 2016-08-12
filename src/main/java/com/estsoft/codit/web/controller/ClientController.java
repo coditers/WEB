@@ -84,36 +84,4 @@ public class ClientController {
     return "client/signinform";
   }
 
-
-  @RequestMapping(value = "/signin", method = RequestMethod.POST)
-  public String signin(@ModelAttribute ClientVo clientVo, HttpServletRequest request, Model model) {
-
-    clientVo = clientService.getClientVoByEmailPassword( clientVo );
-
-    // authentication fail
-    if(clientVo == null) {
-      model.addAttribute("auth", false);
-      return "client/signinform";
-    }
-
-    //authentication success!
-    //create session and set 'authClient' variable on session context
-    HttpSession session = request.getSession(true);
-    session.setAttribute("authClient", clientVo);
-
-    return "redirect:/";
-  }
-
-
-  @RequestMapping("/signout")
-  public String signout( HttpServletRequest request ) {
-
-    HttpSession session = request.getSession();
-
-    if( session != null){
-      session.removeAttribute( "authUser" );
-      session.invalidate();
-    }
-    return "redirect:/";
-  }
 }

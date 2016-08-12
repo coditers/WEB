@@ -3,6 +3,7 @@ package com.estsoft.codit.web.controller;
 import com.estsoft.codit.db.vo.ClientVo;
 import com.estsoft.codit.db.vo.RecruitVo;
 import com.estsoft.codit.web.annotation.Auth;
+import com.estsoft.codit.web.annotation.AuthClient;
 import com.estsoft.codit.web.service.RecruitService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,21 +26,14 @@ public class MainController {
    * Forward Main Page
    * */
   @RequestMapping("")
-  public String index(HttpServletRequest request, Model model) {
-
-    ClientVo authClientVo = (ClientVo)(request.getSession().getAttribute("authClient"));
-
-    //logged in
-    if( authClientVo != null ){
-
-      List<RecruitVo> recruitVoList = recruitService.getRecruitListByClientId( authClientVo.getId() );
-      model.addAttribute("recruitVoList", recruitVoList);
-
-      return "main/index_login";
-    }// logged out
-    else
+  public String index(@AuthClient ClientVo authClient, Model model) {
+    //인증 안한 경우
+    if(authClient==null){
       return "main/index";
-
+    }
+    List<RecruitVo> recruitVoList = recruitService.getRecruitListByClientId( authClient.getId() );
+    model.addAttribute("recruitVoList", recruitVoList);
+    return "main/index_login";
   }
 
   /**

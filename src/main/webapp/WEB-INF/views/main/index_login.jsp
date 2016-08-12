@@ -75,7 +75,7 @@ line #51 modal의 버튼 누르면 action="${pageContext.request.contextPath}/ma
                         <div class="row">
                             <div class="collection">
                                 <c:forEach items="${recruitVoList }" var="vo">
-                                    <a href="${pageContext.request.contextPath}/recruit/${vo.id}/main" class="collection-item bold">${vo.title}</a>
+                                    <a href="${pageContext.request.contextPath}/recruit/${vo.id}" class="collection-item bold">${vo.title}</a>
                                 </c:forEach>
                             </div>
                         </div>
