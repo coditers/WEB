@@ -22,7 +22,10 @@
               ORDER BY id]]>
   </select>
 
-  <!--<select id="selectById" resultType="probleminfovo" parameterType="int">-->
-    <!--<![CDATA[  SELECT id, name, description, estimated_time as estimatedTime  FROM problem_info WHERE id=#{id } ]]>-->
-  <!--</select>-->
+  <insert id="insert" parameterType="probleminfovo">
+    <![CDATA[ insert into problem_info value(null, #{name}, #{description}, #{estimatedTime}); ]]>
+    <selectKey keyProperty="id" resultType="int">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+  </insert>
 </mapper>

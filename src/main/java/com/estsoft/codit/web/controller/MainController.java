@@ -50,6 +50,6 @@ public class MainController {
     recruitVo.setClientId( authClientId );
     recruitService.insertRecruitVo( recruitVo );
 
-    return "redirect:/recruit/"+ recruitVo.getId() + "/main";
+    return "redirect:/recruit/"+ recruitVo.getId();
   }
 }

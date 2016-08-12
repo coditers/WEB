@@ -243,6 +243,9 @@ public class RecruitController {
           @RequestParam("skeleton-code-java") String skeletonCodeJava,
           @RequestParam("skeleton-code-python") String skeletonCodePython) {
 
+    String[] skeletonCodeList = {skeletonCodeC, skeletonCodeJava, skeletonCodePython};
+    recruitService.addProblem(problemInfoVo, skeletonCodeList);
+
     return "redirect:/recruit/"+recruitId+"/problem-selectform";
   }
 

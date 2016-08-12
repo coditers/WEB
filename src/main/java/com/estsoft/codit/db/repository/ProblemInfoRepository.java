@@ -15,5 +15,8 @@ public class ProblemInfoRepository {
 
   public List<ProblemInfoVo> getList(){ return sqlSession.selectList("probleminfo.selectAll"); }
   public List<ProblemInfoVo> getListByRecruitId(int recruitId){ return sqlSession.selectList("probleminfo.selectListByReqruitId", recruitId); }
+  public void insert(ProblemInfoVo problemInfoVo){
+    sqlSession.insert("probleminfo.insert", problemInfoVo);
+  }
 
 }

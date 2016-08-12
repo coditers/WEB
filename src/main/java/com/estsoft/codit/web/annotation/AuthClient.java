@@ -1,4 +1,4 @@
-package com.estsoft.codit.web.Annotation;
+package com.estsoft.codit.web.annotation;
 
 
 import java.lang.annotation.ElementType;
