@@ -25,8 +25,7 @@ public class AuthLoginInterceptor extends HandlerInterceptorAdapter {
     HttpSession session = request.getSession(true);
 
     // authentication fail
-    if(authClient.getId() == 0) {
-      session.setAttribute("auth", false );
+    if(authClient==null) {
       response.sendRedirect( "/client/signinform" );
       return false;
     }

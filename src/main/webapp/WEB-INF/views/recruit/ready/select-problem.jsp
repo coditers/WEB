@@ -81,6 +81,10 @@
                                 </c:forEach>
                                 </tbody>
                             </table>
+                            <a href="/recruit/${recruitVo.id}/add-problem">
+                            <button class="btn-floating btn-large waves-effect waves-light orange darken-3 right modal-trigger" data-target="modal1">
+                                <i class="material-icons">add</i></button>
+                            </a>
                         </div>
                         <br>
                     </div>
