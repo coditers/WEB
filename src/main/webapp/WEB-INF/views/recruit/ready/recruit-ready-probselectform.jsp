@@ -75,7 +75,7 @@
                                     <td id="td-no-${vo.id}">${status.count}</td>
                                     <td id="td-name-${vo.id}">${vo.name}</td>
                                     <td id="td-time-${vo.id}">${vo.estimatedTime}min</td>
-                                    <td>${vo.description}</td>
+                                    <td>${fn:replace(vo.description, fn:substring(vo.description, 100, fn:length(vo.description)), '...')}</td>
                                     <td class="left"> <button id="${vo.id}" onclick="add_row(${vo.id})" class="btn red darken-4 right btn-addtocart">+ add to cart</button> </td>
                                 </tr>
                                 </c:forEach>
