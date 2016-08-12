@@ -267,7 +267,7 @@ public class RecruitService {
                         }
                     }
                     applicantVo.setRecruitId(recruitId);
-                    applicantVo.setTicket(applicantVo.getEmail()); //// TODO: 2016-06-29 any good method?
+                    applicantVo.setTicket(recruitId + applicantVo.getEmail()); //// TODO: 2016-06-29 any good method?
 
                     //add applicantVo into list
                     list.add(applicantVo);
@@ -299,7 +299,7 @@ public class RecruitService {
             String emailContent = null;
             emailContent = emailFormat.replace("#이름", vo.getName());
             emailContent = emailContent.replace("#링크", "http://222.239.250.207:8888/?ticket=" + vo.getTicket() + " ");
-            emailContent = emailContent.replace("\n", "<br>" );
+            emailContent = emailContent.replaceAll("\n", "<br>" );
             //todo mail send fail log or handle
             MailSender mailSender = new MailSender(vo.getEmail(), vo.getName(), emailContent);
             mailSender.run();

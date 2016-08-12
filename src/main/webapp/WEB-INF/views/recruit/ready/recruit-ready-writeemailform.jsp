@@ -37,7 +37,14 @@
                             <form class="col s12" action ="${pageContext.request.contextPath}/recruit/${recruitId}/save-email" method="post">
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <textarea name = "emailFormat" id="textarea1" class="materialize-textarea" > 안녕하세요, #이름님. 이스트소프트입니다. 지원해 주셔서 감사합니다. 다음 링크로 시험을 시작해 주세요.#링크</textarea>
+                                        <c:choose>
+                                            <c:when test="${ not empty recruitVo.emailFormat}">
+                                                <textarea name = "emailFormat" id="textarea1" class="materialize-textarea" > ${recruitVo.emailFormat} </textarea>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <textarea name = "emailFormat" id="textarea1" class="materialize-textarea" > 안녕하세요, #이름님. 이스트소프트입니다. 지원해 주셔서 감사합니다. 다음 링크로 시험을 시작해 주세요.#링크</textarea>
+                                            </c:otherwise>
+                                        </c:choose>
                                         <label class="brown-text" for="textarea1">Email Format</label>
                                     </div>
                                     <div class="row center">
@@ -57,5 +64,11 @@
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/materialize/js/materialize.min.js"></script>
+<script>
+    var fillEmailFormat = function() {
+        var mailTextArea = document.getElementById();
+    }
+</script>
+
 </body>
 </html>

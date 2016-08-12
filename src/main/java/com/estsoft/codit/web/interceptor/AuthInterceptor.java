@@ -1,7 +1,7 @@
 package com.estsoft.codit.web.interceptor;
 
 import com.estsoft.codit.db.vo.ClientVo;
-import com.estsoft.codit.web.Annotation.Auth;
+import com.estsoft.codit.web.annotation.Auth;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
