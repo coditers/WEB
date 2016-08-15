@@ -86,4 +86,9 @@
         <!-- defaultEncoding -->
         <property name="defaultEncoding" value="utf-8"/>
     </bean>
+
+
+    <!-- the mvc resources tag does the magic -->
+    <mvc:resources mapping="/assets/materialize/**" location="http://222.239.250.207/codit/materialize/" />
+    <mvc:resources mapping="/assets/ace/**" location="http://222.239.250.207/codit/ace/" />
 </beans>

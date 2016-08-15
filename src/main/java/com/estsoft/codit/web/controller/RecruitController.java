@@ -149,7 +149,7 @@ public class RecruitController {
     if (applicantFlag == true && dateSetFlag == true && probSelectFlag == true)
       recruitService.sendTickets(recruitId);
 //    return map;
-    return "redirect:main";
+    return "redirect:/recruit/" + recruitId;
   }
 
   @RequestMapping("problem-selectform")
@@ -178,7 +178,7 @@ public class RecruitController {
 
     RecruitVo recruitVo = recruitService.getRecruitVo(recruitId);
     model.addAttribute("recruitVo", recruitVo);
-    return "redirect:main";
+    return "redirect:/recruit/" + recruitId;
   }
 
   //// TODO: 2016-07-20 emailform으로 들어가는 method를 짰습니다
@@ -192,7 +192,7 @@ public class RecruitController {
   @RequestMapping("/save-email")
   public String saveEmail(@PathVariable("recruitId") int recruitId, @RequestParam("emailFormat") String emailFormat) {
     recruitService.saveEmailFormat(recruitId, emailFormat);
-    return "redirect:main";
+    return "redirect:/recruit/" + recruitId;
   }
 
   @RequestMapping("/applicantstatform")
