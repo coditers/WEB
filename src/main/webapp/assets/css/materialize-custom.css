@@ -1,8 +1,9 @@
 /*
-1. For all : checked
-2. header :checked
-3. card :checked
-5. form & input :checked
+1. For all
+2. header
+3. main page
+4. card (+cart)
+5. form & input
 6. collections
 7. icons
 8. modal
@@ -10,24 +11,39 @@
 10. picker
 11. button
 12. badge
-13. ide
 */
 
 /* 1. For all*/
-*{ font-family: "Segoe UI";  }
+*{ font-family: "Segoe UI"}
 .bold{font-family: "Segoe UI Semibold"}
-.inline{display: inline;
-}
+.inline{display: inline;}
 
 
 /* 2. header*/
-#logo{margin: 7px 0; width: auto; height: 50px;}
+#sublogo{margin: 7px 0; width: 50px; height: auto;}
 
 
-/* 3. card*/
+/* 3. main page*/
+#catchphrase{color: #c3614d}
+#mainlogo{margin-left: 7rem; width: 600px; height: auto;}
+#center-firstblock{ margin-top: 8%;}
+
+
+/* 4. card*/
 #formcard{margin: 5rem auto 0 auto}
+#cart{
+    position: fixed;
+    bottom: 25%;
+    right: 10%;
+    width: 19rem;
+    height: 32rem;
+}
+
 
 /* 5. form*/
+#signform{margin-right: auto; margin-left: auto;}
+#form-selectdate{display: inline}
+
 .input-field input[type=text]:focus + label {
     color: #c3614d;
 }
@@ -143,7 +159,6 @@
 }
 
 /* 11. button */
-
 #btn-datesave{
     width: 4rem;
     height: 2rem;
@@ -187,20 +202,3 @@
     width: 3rem;
     position: static;
 }
-
-/* 13. ide */
-* {
-    margin: 0;
-    padding: 0;
-}
-.btn-workboard {
-    display: inline-block;
-}
-.selectable > * {
-    display: none;
-}
-
-#body-wrapper{ height: 100vh; }
-#navbar{height: 100%; }
-#workboard{height: 70%; }
-#terminal{ height: 30%; }
