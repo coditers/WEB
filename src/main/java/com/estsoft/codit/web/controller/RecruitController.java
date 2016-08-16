@@ -6,6 +6,10 @@ import com.estsoft.codit.web.service.RecruitService;
 import com.estsoft.codit.db.vo.ApplicantStatVo;
 import com.estsoft.codit.db.vo.ProblemStatVo;
 import com.estsoft.codit.web.util.Util;
+
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.text.SimpleDateFormat;
 
@@ -208,7 +213,7 @@ public class RecruitController {
     return "recruit/started/app-stat";
   }
 
-
+  
   @RequestMapping("/ajax-applicantresultdetail")
   @ResponseBody
   public Object applicantResultDetail(@PathVariable("recruitId") int recruitId,
