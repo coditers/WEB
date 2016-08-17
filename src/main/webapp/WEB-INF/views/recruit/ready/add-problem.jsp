@@ -15,6 +15,31 @@
     <link type="text/css" rel="stylesheet"
           href="${pageContext.request.contextPath}/assets/css/materialize-custom.css"
           media="screen,projection"/>
+    <script src="${pageContext.request.contextPath }/assets/ace/ace.js" type="text/javascript"
+            charset="utf-8"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        $(function () {
+            var editor1 = ace.edit("editor-1");
+            var editor2  = ace.edit("editor-2");
+            var editor3 = ace.edit("editor-3");
+            editor1.setTheme("ace/theme/monokai");
+            editor2.setTheme("ace/theme/monokai");
+            editor3.setTheme("ace/theme/monokai");
+            editor1.getSession().setMode("ace/mode/c_cpp");
+            editor2.getSession().setMode("ace/mode/java");
+            editor3.getSession().setMode("ace/mode/python");
+            $('#btn-submit').submit(function(event) {
+                var code1 = editor1.getValue();
+                $("#input1").val(code1);
+                var code2 = editor2.getValue();
+                $("#input2").val(code2);
+                var code3 = editor3.getValue();
+                $("#input3").val(code3);
+                return true;
+            });
+        })
+    </script>
 </head>
 <body class="orange lighten-5 flexbody">
 <jsp:include page="/WEB-INF/views/include/header_light.jsp"></jsp:include>
@@ -34,25 +59,32 @@
                             <div class="row">
                                 <h5 class="grey-text">Add custom problem</h5>
                             </div>
-                            <p class="grey-text">*블라블라</p>
-                            <form class="col s12" action ="${pageContext.request.contextPath}/recruit/${recruitId}/add-problem" method="post">
+                            <p class="grey-text">*유의사항: 소스코드의 파일이름은 task.c, task.java, task.py로 정해져 있습니다. 특히 java의 경우 메인 클래스 이름은 Task로 해야 합니다.</p>
+                            <form id="btn-submit" class="col s12" action ="${pageContext.request.contextPath}/recruit/${recruitId}/add-problem" method="post">
                                 <div class="row">
-                                    <textarea name="name" id="textarea1" class="materialize-textarea">문제 제목을 입력하세요</textarea>
                                     <label class="brown-text" for="textarea1">Problem title</label>
-                                    <textarea name="description" id="textarea2" class="materialize-textarea">문제 설명을 입력하세요</textarea>
-                                    <label class="brown-text" for="textarea1">Problem description</label>
-                                    <input type="text" name="estimatedTime">
+                                    <input name="name" id="textarea1" class="materialize-textarea"/>
+
+                                    <label class="brown-text" for="textarea2">Problem description</label>
+                                    <input name="description" id="textarea2" class="materialize-textarea"/>
+
                                     <label class="brown-text">estimated time</label>
-                                    <textarea name="skeleton-code-c" id="textarea3" class="materialize-textarea">#include &lt;stdio.h&gt;&#13;&#10;int main(){&#13;&#10;&nbsp;&nbsp;&nbsp;&nbsp;printf(&quot;hello world&quot;;&#13;&#10;}</textarea>
-                                    <label class="brown-text" for="textarea3">C skeleton-code</label>
-                                    <textarea name="skeleton-code-java" id="textarea4" class="materialize-textarea">public class Task{&#13;&#10;&nbsp;&nbsp;&nbsp;&nbsp;public static void main(String[] args) {&#13;&#10System.out.println(&quot;Hello World&quot;);&#13;&#10&nbsp;&nbsp;&nbsp;&nbsp;}&#13;&#10}</textarea>
-                                    <label class="brown-text" for="textarea4">java skeleton-code</label>
-                                    <textarea name="skeleton-code-python" id="textarea5" class="materialize-textarea">#TODO</textarea>
-                                    <label class="brown-text" for="textarea5">python skeleton-code</label>
+                                    <input type="text" name="estimatedTime"/>
+
+                                    <label class="brown-text" for="editor-1">C skeleton-code</label>
+                                    <input id="input1" type="hidden" name="skeleton-code-c"/>
+                                    <div id="editor-1" style="height:500px" >#include &lt;stdio.h&gt;&#13;&#10;int main(){&#13;&#10;    printf(&quot;hello world&quot;;&#13;&#10;}</div>
+
+                                    <label class="brown-text" for="editor-2">java skeleton-code</label>
+                                    <input id="input2" type="hidden" name="skeleton-code-java"/>
+                                    <div id="editor-2" style="height:500px">public class Task{&#13;&#10;    public static void main(String[] args) {&#13;&#10System.out.println(&quot;Hello World&quot;);&#13;&#10;    }&#13;&#10;}</div>
+
+                                    <label class="brown-text" for="editor-3">python skeleton-code</label>
+                                    <input id="input3" type="hidden" name="skeleton-code-python"/>
+                                    <div id="editor-3" style="height:500px">print(&quot;hello world&quot;)</div>
                                 </div>
                                 <div class="row center">
                                     <button type="submit" class="btn brown white-text">submit</button>
-                                </div>
                                 </div>
                             </form>
                         </div>

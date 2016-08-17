@@ -26,7 +26,7 @@
     <div class="row">
         <div class="col s6 offset-s3">
             <div class="card-panel white">
-                <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/main">
+                <a href="${pageContext.request.contextPath}/recruit/${recruitVo.id}/">
                     <button class="btn grey lighten-2 white-text">Back</button>
                 </a>
                 <div class="row">
