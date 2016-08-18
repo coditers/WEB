@@ -5,11 +5,12 @@ import com.estsoft.codit.web.service.RecruitService;
 
 import com.estsoft.codit.db.vo.ApplicantStatVo;
 import com.estsoft.codit.db.vo.ProblemStatVo;
+import com.estsoft.codit.web.util.JasperReportUtil;
 import com.estsoft.codit.web.util.Util;
+import net.sf.jasperreports.engine.JREmptyDataSource;
 
-import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
+import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,8 +42,10 @@ public class RecruitController {
   @Autowired
   RecruitService recruitService;
 
+  @Autowired
+  BasicDataSource dataSource;
 
-  @RequestMapping("")
+   @RequestMapping("")
   public String main(@PathVariable("recruitId") int recruitId, Model model) {
 
     RecruitVo recruitVo = recruitService.getRecruitVo(recruitId);
@@ -213,16 +216,12 @@ public class RecruitController {
     return "recruit/started/app-stat";
   }
 
-  
-  @RequestMapping("/ajax-applicantresultdetail")
-  @ResponseBody
-  public Object applicantResultDetail(@PathVariable("recruitId") int recruitId,
-                                      @RequestParam("applicantId") int applicantId,
-                                      @RequestParam("problemInfoId") int problemInfoId) {
-    //todo 통과율
-    List<ResultVo> resultList = recruitService.getResultList(applicantId, problemInfoId);
-    System.out.println(resultList);
-    return resultList;
+
+  @RequestMapping("/applicantresultdetail")
+  public ModelAndView applicantResultDetail(@PathVariable("recruitId") int recruitId,
+                                      @RequestParam("applicantId") int applicantId) {
+
+    return new ModelAndView("multiformat-view", JasperReportUtil.render(recruitId, applicantId));
   }
 
   @RequestMapping("/problemstatform")

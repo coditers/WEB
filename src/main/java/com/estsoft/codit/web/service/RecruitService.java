@@ -40,6 +40,7 @@ public class RecruitService {
   ProblemRepository problemRepository;
 
 
+
   //Recruit
   public int insertRecruitVo(RecruitVo recruitVo) {
     return recruitRepository.insert(recruitVo);
@@ -412,6 +413,4 @@ public class RecruitService {
       problemRepository.insert(problemVo);
     }
   }
-
-
 }

@@ -3,6 +3,7 @@
        xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:beans="http://www.springframework.org/schema/c"
        xsi:schemaLocation="
        http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
@@ -87,6 +88,11 @@
         <property name="defaultEncoding" value="utf-8"/>
     </bean>
 
+    <!-- pdf생성 시 필요한 jaspers-views.xml등록 -->
+    <bean id="viewMappings" class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
+        <property name="basename" value="jasperreports-views" />
+        <property name="order" value="0" />
+    </bean>
 
     <!-- the mvc resources tag does the magic -->
     <mvc:resources mapping="/assets/materialize/**" location="http://222.239.250.207/codit/materialize/" />
