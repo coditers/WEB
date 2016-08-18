@@ -11,8 +11,10 @@
     <link rel="icon" href="${pageContext.request.contextPath}/assets/icon/0630_favicon_beige.ico">
     <title>report: by problems</title>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/materialize/css/materialize.min.css"/>
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/materialize-custom.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet"
+          href="${pageContext.request.contextPath}/assets/materialize/css/materialize.min.css"/>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/materialize-custom.css"
+          media="screen,projection"/>
 </head>
 
 <body class="orange lighten-5 flexbody">
@@ -46,7 +48,7 @@
                                 </thead>
 
                                 <tbody>
-                                <c:forEach items = "${problemStatList}" var = "vo">
+                                <c:forEach items="${problemStatList}" var="vo">
                                     <tr>
                                         <td class="center-align">${vo.problemName}</td>
                                         <td class="center-align">${vo.avg}</td>
@@ -68,7 +70,8 @@
 
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/materialize/js/materialize.min.js"></script>
+<script type="text/javascript"
+        src="${pageContext.request.contextPath}/assets/materialize/js/materialize.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/List.js"></script>
 </body>
 </html>

@@ -3,9 +3,6 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:aop="http://www.springframework.org/schema/aop"
-       xmlns:p="http://www.springframework.org/schema/p"
-
        xsi:schemaLocation="
        http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -13,8 +10,6 @@
        http://www.w3.org/2001/XMLSchema-instance.xsd
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd
-       http://www.springframework.org/schema/aop
-       http://www.springframework.org/schema/aop/spring-aop.xsd
        ">
 
 
@@ -52,44 +47,4 @@
   <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
     <constructor-arg index="0" ref="sqlSessionFactory" />
   </bean>
-
-  <!-- Auto Proxy -->
-  <!--<aop:aspectj-autoproxy />-->
-
-  <!-- Introduction to application context
-
-  [DEFAULT]
-  >> beans xmlns="http://www.springframework.org/schema/beans"   <<
-  >>       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" <<
-  First of all, we need the main bean namespace since we are using XML to define
-  our bean definitions.
-
-  >> xmlns:context="http://www.springframework.org/schema/context" <<
-  We need the context namespace since we are using it to define <context:annotation-config />
-
-  >> xsi:schemaLocation="                                              <<
-  >> http://www.springframework.org/schema/beans                       <<
-  >> http://www.springframework.org/schema/beans/spring-beans.xsd      <<
-  >> http://www.springframework.org/schema/context                     <<
-  >> http://www.springframework.org/schema/context/spring-context.xsd" <<
-  This define the schema location for name spaces defined above.
-
-  [NO USAGE YET]
-  http://www.springframework.org/schema/aop
-  http://www.springframework.org/schema/aop/spring-aop.xsd
-  http://www.springframework.org/schema/jee
-  http://www.springframework.org/schema/jee/spring-jee.xsd
-  http://www.springframework.org/schema/lang
-  http://www.springframework.org/schema/lang/spring-lang.xsd
-  http://www.springframework.org/schema/tx
-  http://www.springframework.org/schema/tx/spring-tx.xsd
-  http://www.springframework.org/schema/util
-  http://www.springframework.org/schema/util/spring-util.xsd
-  http://www.springframework.org/schema/data/mongo
-  http://www.springframework.org/schema/data/mongo/spring-mongo-1.1.xsd
-  http://www.springframework.org/schema/task
-  http://www.springframework.org/schema/task/spring-task-3.0.xsd
-
--->
-
 </beans>

@@ -41,10 +41,9 @@
         </mvc:message-converters>
 
 
-
         <!-- argument resolver -->
         <mvc:argument-resolvers>
-            <bean class="com.estsoft.codit.web.resolver.AuthClientHandlerMethodArgumentResolver" />
+            <bean class="com.estsoft.codit.web.resolver.AuthClientHandlerMethodArgumentResolver"/>
         </mvc:argument-resolvers>
 
     </mvc:annotation-driven>
@@ -57,7 +56,7 @@
         <property name="order" value="1"/>
     </bean>
 
-    <!-- Interceptors-->
+    <!--4 Interceptors-->
     <mvc:interceptors>
 
         <mvc:interceptor>
@@ -65,12 +64,12 @@
             <bean class="com.estsoft.codit.web.interceptor.AuthInterceptor"/>
         </mvc:interceptor>
         <mvc:interceptor>
-            <mvc:mapping path="/client/signin" />
-            <bean class="com.estsoft.codit.web.interceptor.AuthLoginInterceptor" />
+            <mvc:mapping path="/client/signin"/>
+            <bean class="com.estsoft.codit.web.interceptor.AuthLoginInterceptor"/>
         </mvc:interceptor>
         <mvc:interceptor>
-            <mvc:mapping path="/client/signout" />
-            <bean class="com.estsoft.codit.web.interceptor.AuthLogoutInterceptor" />
+            <mvc:mapping path="/client/signout"/>
+            <bean class="com.estsoft.codit.web.interceptor.AuthLogoutInterceptor"/>
         </mvc:interceptor>
         <mvc:interceptor>
             <mvc:mapping path="/recruit/**"/>
@@ -79,7 +78,7 @@
 
     </mvc:interceptors>
 
-    <!-- 8. 멀티파트 리졸버 -->
+    <!--5. 멀티파트 리졸버 -->
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <!-- 최대업로드 가능한 바이트크기 -->
@@ -88,13 +87,13 @@
         <property name="defaultEncoding" value="utf-8"/>
     </bean>
 
-    <!-- pdf생성 시 필요한 jaspers-views.xml등록 -->
+    <!--6 pdf생성 시 필요한 jaspers-views.xml등록 -->
     <bean id="viewMappings" class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
-        <property name="basename" value="jasperreports-views" />
-        <property name="order" value="0" />
+        <property name="basename" value="jasperreports-views"/>
+        <property name="order" value="0"/>
     </bean>
 
-    <!-- the mvc resources tag does the magic -->
-    <mvc:resources mapping="/assets/materialize/**" location="http://localhost/static/materialize/" />
-    <mvc:resources mapping="/assets/ace/**" location="http://localhost/static/ace/" />
+    <!--7 the mvc resources tag does the magic -->
+    <mvc:resources mapping="/assets/materialize/**" location="http://localhost/static/materialize/"/>
+    <mvc:resources mapping="/assets/ace/**" location="http://localhost/static/ace/"/>
 </beans>

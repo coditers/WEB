@@ -59,7 +59,7 @@
                             <div class="row">
                                 <h5 class="grey-text">Add custom problem</h5>
                             </div>
-                            <p class="grey-text">*유의사항: 소스코드의 파일이름은 task.c, task.java, task.py로 정해져 있습니다. 특히 java의 경우 메인 클래스 이름은 Task로 해야 합니다.</p>
+                            <p class="grey-text">*caution: source code file name must be task.c, task.java, task.py. Especially, main class name of java source code must be "Task"</p>
                             <form id="btn-submit" class="col s12" action ="${pageContext.request.contextPath}/recruit/${recruitId}/add-problem" method="post">
                                 <div class="row">
                                     <label class="brown-text" for="textarea1">Problem title</label>

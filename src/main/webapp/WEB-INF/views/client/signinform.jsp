@@ -9,13 +9,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="icon" href="${pageContext.request.contextPath}/assets/icon/0630_favicon_beige.ico">
-    <title>sign in
-
-
-    </title>
+    <title>sign in</title>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/materialize/css/materialize.min.css"/>
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/materialize-custom.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet"
+          href="${pageContext.request.contextPath}/assets/materialize/css/materialize.min.css"/>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/materialize-custom.css"
+          media="screen,projection"/>
 </head>
 
 <body class="orange lighten-5 flexbody">
@@ -30,7 +29,7 @@
                 <br>
                 <div class="row">
                     <div class="col s8 offset-s2">
-                        <form id="signform" action = "${pageContext.request.contextPath}/client/signin" method = "POST">
+                        <form id="signform" action="${pageContext.request.contextPath}/client/signin" method="POST">
                             <div class="row">
                                 <div class="input-field col s12">
                                     <input name="email" id="email" type="email" class="validate">
@@ -44,13 +43,17 @@
                                 </div>
                             </div>
                             <c:if test="${auth == false}">
-                                <h6 class="red-text center-align">※Incorrect identification: Please enter a correct username and password.
-                            </c:if>
-                            <br>
-                            <br>
-                            <div class="row center ">
-                             <button type="submit" class="waves-effect waves-light btn btn-block center-block brown text-white">Submit</button>
-                            </div>
+                            <h6 class="red-text center-align">※Incorrect identification: Please enter a correct username
+                                and password.
+                                </c:if>
+                                <br>
+                                <br>
+                                <div class="row center ">
+                                    <button type="submit"
+                                            class="waves-effect waves-light btn btn-block center-block brown text-white">
+                                        Submit
+                                    </button>
+                                </div>
                         </form>
                     </div>
                 </div>
@@ -61,6 +64,7 @@
 
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/materialize/js/materialize.min.js"></script>
+<script type="text/javascript"
+        src="${pageContext.request.contextPath}/assets/materialize/js/materialize.min.js"></script>
 </body>
 </html>

@@ -3,8 +3,6 @@
 line #51 modal의 버튼 누르면 action="${pageContext.request.contextPath}/makerecruit" method="POST" 으로 넘어가게 해두었습니다~
 
 
-
-
 -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -19,8 +17,10 @@ line #51 modal의 버튼 누르면 action="${pageContext.request.contextPath}/ma
     <link rel="icon" href="${pageContext.request.contextPath}/assets/icon/0630_favicon_beige.ico">
     <title>main</title>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/materialize/css/materialize.min.css"/>
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/materialize-custom.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet"
+          href="${pageContext.request.contextPath}/assets/materialize/css/materialize.min.css"/>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/materialize-custom.css"
+          media="screen,projection"/>
 </head>
 
 <body class="orange lighten-5 flexbody">
@@ -37,7 +37,8 @@ line #51 modal의 버튼 누르면 action="${pageContext.request.contextPath}/ma
                         <div class="row center">
                             <div class="collection">
                                 <div id="new-recruit" class="collection-item bold orange accent-1">Add new recruitment!
-                                    <button class="btn-floating btn-large waves-effect waves-light orange darken-3 right modal-trigger" data-target="modal1">
+                                    <button class="btn-floating btn-large waves-effect waves-light orange darken-3 right modal-trigger"
+                                            data-target="modal1">
                                         <i class="material-icons">add</i></button>
                                 </div>
                                 <!-- Modal Structure -->
@@ -48,10 +49,12 @@ line #51 modal의 버튼 누르면 action="${pageContext.request.contextPath}/ma
                                         <h4>Please input the title of recruitment</h4>
                                         <div class="row">
                                             <div class="col s6 offset-s3">
-                                                <form action="${pageContext.request.contextPath}/create-recruit" method="POST">
+                                                <form action="${pageContext.request.contextPath}/create-recruit"
+                                                      method="POST">
                                                     <div class="row">
                                                         <div class="input-field col s12">
-                                                            <input name="title" id="title" type="text" value="2016 하반기 채용" >
+                                                            <input name="title" id="title" type="text"
+                                                                   value="2016 하반기 채용">
                                                         </div>
                                                     </div>
                                                     <br>
@@ -75,7 +78,8 @@ line #51 modal의 버튼 누르면 action="${pageContext.request.contextPath}/ma
                         <div class="row">
                             <div class="collection">
                                 <c:forEach items="${recruitVoList }" var="vo">
-                                    <a href="${pageContext.request.contextPath}/recruit/${vo.id}" class="collection-item bold">${vo.title}</a>
+                                    <a href="${pageContext.request.contextPath}/recruit/${vo.id}"
+                                       class="collection-item bold">${vo.title}</a>
                                 </c:forEach>
                             </div>
                         </div>
@@ -89,9 +93,10 @@ line #51 modal의 버튼 누르면 action="${pageContext.request.contextPath}/ma
 
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/materialize/js/materialize.min.js"></script>
+<script type="text/javascript"
+        src="${pageContext.request.contextPath}/assets/materialize/js/materialize.min.js"></script>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
         $('.modal-trigger').leanModal();
     });

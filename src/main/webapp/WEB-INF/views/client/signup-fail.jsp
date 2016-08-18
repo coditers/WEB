@@ -11,8 +11,10 @@
     <link rel="icon" href="${pageContext.request.contextPath}/assets/icon/0630_favicon_beige.ico">
     <title>sign up: fail</title>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/materialize/css/materialize.min.css"/>
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/materialize-custom.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet"
+          href="${pageContext.request.contextPath}/assets/materialize/css/materialize.min.css"/>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/materialize-custom.css"
+          media="screen,projection"/>
 </head>
 
 <body class="orange lighten-5 flexbody">
@@ -29,13 +31,17 @@
                 <div class="row center">
                     <div class="col s3 center offset-s3">
                         <a href="${pageContext.request.contextPath}">
-                        <button class="waves-effect waves-light btn btn-block center-block brown text-white">Go to main</button>
-                            </a>
+                            <button class="waves-effect waves-light btn btn-block center-block brown text-white">Go to
+                                main
+                            </button>
+                        </a>
                     </div>
                     <div class="col s3 center ">
                         <a href="${pageContext.request.contextPath}/client/signupform">
-                        <button class="waves-effect waves-light btn btn-block center-block brown text-white">Sign up</button>
-                            </a>
+                            <button class="waves-effect waves-light btn btn-block center-block brown text-white">Sign
+                                up
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -45,6 +51,7 @@
 
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/materialize/js/materialize.min.js"></script>
+<script type="text/javascript"
+        src="${pageContext.request.contextPath}/assets/materialize/js/materialize.min.js"></script>
 </body>
 </html>

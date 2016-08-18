@@ -11,8 +11,10 @@
     <link rel="icon" href="${pageContext.request.contextPath}/assets/icon/0630_favicon_beige.ico">
     <title>report: applicants details</title>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/materialize/css/materialize.min.css"/>
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/materialize-custom.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet"
+          href="${pageContext.request.contextPath}/assets/materialize/css/materialize.min.css"/>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/materialize-custom.css"
+          media="screen,projection"/>
 </head>
 
 <body class="orange lighten-5 flexbody">
@@ -30,9 +32,7 @@
                             <h3>${recruitVo.title}</h3>
                         </div>
                         <div class="row">
-                                <p>아무렇게나 뿌리고 싶은꺼 뿌리세요ㅎㅎ</p>
-
-
+                            <p>아무렇게나 뿌리고 싶은꺼 뿌리세요ㅎㅎ</p>
                         </div>
                     </div>
                 </div>
@@ -43,6 +43,7 @@
 
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/materialize/js/materialize.min.js"></script>
+<script type="text/javascript"
+        src="${pageContext.request.contextPath}/assets/materialize/js/materialize.min.js"></script>
 </body>
 </html>

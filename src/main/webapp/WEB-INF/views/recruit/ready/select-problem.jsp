@@ -105,7 +105,6 @@
         array_selected.push("${item.problemInfoId}")
     </c:forEach>
 
-    console.log(array_selected);
 
     var list = new List(); //cart list
 
@@ -115,8 +114,6 @@
             var ele = document.getElementById(id);
             ele.className = "btn disabled btn-addtocart";
             list.push(id);
-            console.log(list.arr.join(","));
-
             mytable = document.getElementById('table-cart');
             row = mytable.insertRow(mytable.rows.length);
             row.id = 'tr-cart' + id;
@@ -164,23 +161,7 @@
             mytable.deleteRow(drow.rowIndex);
         }
     }
-
-
-//    var addOnList = function( id ){
-//        if( list.isExist(id) == false){
-//            var element = document.getElementById(id);
-//            element.className = "btn disabled btn-addtocart";
-//            list.push(id);
-//            console.log( list.arr.join(","));
-//
-//        }else{
-//            var element = document.getElementById(id);
-//            element.className = "btn red darken-4 right btn-addtocart";
-//            list.eliminate(id);
-//            console.log( list.arr.join(","));
-//        }
-//    }
-
+    
     //dynamically generate form tag, and submit the problem-Id list
     var submitList = function(){
 
