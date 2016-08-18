@@ -131,7 +131,7 @@ public class RecruitController {
       return "redirect:/recruit/" + recruitId;
 
     recruitService.setRecruitDate(recruitId, fromDate, toDate);
-    return "recruit/" + recruitId;
+    return "redirect:/recruit/" + recruitId;
   }
 
   /**
