@@ -73,11 +73,11 @@
 
                                     <label class="brown-text" for="editor-1">C skeleton-code</label>
                                     <input id="input1" type="hidden" name="skeleton-code-c"/>
-                                    <div id="editor-1" style="height:500px" >#include &lt;stdio.h&gt;&#13;&#10;int main(){&#13;&#10;    printf(&quot;hello world&quot;;&#13;&#10;}</div>
+                                    <div id="editor-1" style="height:500px" >#include &lt;stdio.h&gt;&#10;&#9;int main(){&#10;&#9;printf(&quot;hello world&quot;;&#10;&#9;}</div>
 
                                     <label class="brown-text" for="editor-2">java skeleton-code</label>
                                     <input id="input2" type="hidden" name="skeleton-code-java"/>
-                                    <div id="editor-2" style="height:500px">public class Task{&#13;&#10;    public static void main(String[] args) {&#13;&#10System.out.println(&quot;Hello World&quot;);&#13;&#10;    }&#13;&#10;}</div>
+                                    <div id="editor-2" style="height:500px">public class Task{&#10;&#9;public static void main(String[] args) {&#10;&#9;System.out.println(&quot;Hello World&quot;);&#10;&#9;}&#10;&#9;}</div>
 
                                     <label class="brown-text" for="editor-3">python skeleton-code</label>
                                     <input id="input3" type="hidden" name="skeleton-code-python"/>

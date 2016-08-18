@@ -11,8 +11,7 @@ import java.util.Calendar;
 public class Util {
 
     //!** directory path in server environment
-    private static final String FILE_SAVE_PATH = "/futures/tomcat7/webapps-codit-web/multipartData/";
-//    private static final String FILE_SAVE_PATH = "C:/temp/";
+    private static final String FILE_SAVE_PATH = "/home/joonho/www/codit/multipartData/";
 
 
     /**
