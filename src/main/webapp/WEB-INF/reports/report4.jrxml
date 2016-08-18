@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report4" language="groovy" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9ffa8eec-9d5c-4727-979e-d7210e6bca6c">
+	<property name="ireport.zoom" value="1.464100000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="ds1_information" uuid="c17e94c7-ff5f-404d-9df7-dfef7f720120">
+		<parameter name="ID_RECRUIT" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="ID_APPLICANT" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT recruit.title as recruit_title, applicant.name as name, applicant.email as email, timestampdiff(minute, applicant.start_time, applicant.submit_time) as timeused
+FROM recruit, applicant
+WHERE recruit.id=$P{ID_RECRUIT} AND applicant.id=$P{ID_APPLICANT};]]>
+		</queryString>
+		<field name="recruit_title" class="java.lang.String"/>
+		<field name="name" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="email" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="timeused" class="java.lang.Long"/>
+	</subDataset>
+	<subDataset name="ds2_totscore" uuid="6023407d-b47a-475f-9407-133932d01618">
+		<parameter name="ID_APPLICANT" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT (SELECT count(*) from result where applicant_id=$P{ID_APPLICANT} AND correctness =1)/(select count(*) from result where applicant_id=$P{ID_APPLICANT})*100 as totscore;]]>
+		</queryString>
+		<field name="totscore" class="java.math.BigDecimal"/>
+	</subDataset>
+	<subDataset name="ds3_tottime" uuid="db1cc12e-0584-4882-aa23-39a7ccb9850a">
+		<parameter name="ID_RECRUIT" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT SUM(estimated_time) as tottime FROM (SELECT * from problem_info, cart where cart.recruit_id= $P{ID_RECRUIT} AND problem_info.id = cart.problem_info_id) problemforrecruit;]]>
+		</queryString>
+		<field name="tottime" class="java.math.BigDecimal"/>
+	</subDataset>
+	<subDataset name="dataset1" uuid="0deee89b-359c-4ab1-8499-86573f9861c4"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\sun\\Documents\\1차프로젝트\\ireportFiles\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ID_RECRUIT" class="java.lang.Integer"/>
+	<parameter name="ID_APPLICANT" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CONTEXT" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT problem.problem_info_id as problem_id, problem_info.name as problem_name, problem_info.description as problem_description, problem_info.estimated_time as problem_eachtime,
+       language.name as language,
+       source_code.id as source_code_id, source_code.code as sourcecode
+FROM cart, problem_info, problem, source_code, language,
+  (select max(source_code.id) as id from source_code where source_code.applicant_id = $P{ID_APPLICANT} GROUP BY source_code.problem_id) as last_sourcecode
+WHERE cart.recruit_id=$P{ID_RECRUIT} AND source_code.applicant_id=$P{ID_APPLICANT}
+AND cart.problem_info_id = problem_info.id
+AND problem_info.id = problem.problem_info_id
+AND problem.id=source_code.problem_id
+AND problem.language_id=language.id
+AND source_code.id = last_sourcecode.id
+ORDER BY problem.problem_info_id;]]>
+	</queryString>
+	<field name="problem_id" class="java.lang.Integer"/>
+	<field name="problem_name" class="java.lang.String"/>
+	<field name="problem_description" class="java.lang.String"/>
+	<field name="problem_eachtime" class="java.lang.Integer"/>
+	<field name="language" class="java.lang.String"/>
+	<field name="source_code_id" class="java.lang.Integer"/>
+	<field name="sourcecode" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="54" splitType="Stretch">
+			<componentElement>
+				<reportElement x="0" y="0" width="228" height="52" uuid="6bf1c405-b422-4434-ab6b-7d0e1ed9fae0"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="ds1_information" uuid="c536808a-2caf-49a9-a045-88c100aa8ce5">
+						<datasetParameter name="ID_RECRUIT">
+							<datasetParameterExpression><![CDATA[$P{ID_RECRUIT}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="ID_APPLICANT">
+							<datasetParameterExpression><![CDATA[$P{ID_APPLICANT}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="52" width="228">
+						<textField>
+							<reportElement x="0" y="0" width="228" height="33" uuid="96d6f0b1-3f9e-4cff-a3ef-6dcb5761fb34"/>
+							<textElement textAlignment="Justified" verticalAlignment="Middle">
+								<font size="24" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="75" y="33" width="153" height="16" uuid="5ec2ade3-93c1-493c-9fe5-091bcf6fc425"/>
+							<textElement textAlignment="Justified" verticalAlignment="Middle">
+								<font size="9"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="0" y="33" width="75" height="16" uuid="07d9e06e-bd54-4835-8b5b-5a638be53a55"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font size="9"/>
+							</textElement>
+							<text><![CDATA[Applicant email:]]></text>
+						</staticText>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<line>
+				<reportElement x="0" y="52" width="572" height="1" uuid="2e5f2c2c-2015-439d-a103-1f9e36bb1a1b"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</line>
+			<image>
+				<reportElement x="518" y="-1" width="54" height="24" uuid="c66c2a30-8623-4f44-95c7-4275a16b485a"/>
+				<imageExpression><![CDATA[$P{CONTEXT}+"0629_LOGO_FINAL_brown.gif"]]></imageExpression>
+			</image>
+			<componentElement>
+				<reportElement x="433" y="24" width="137" height="15" uuid="131e1473-06d5-486b-a816-e6115480a8a6"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="ds1_information" uuid="7246aeb3-4f3b-408c-ba6d-f9521c56aaf4">
+						<datasetParameter name="ID_RECRUIT">
+							<datasetParameterExpression><![CDATA[$P{ID_RECRUIT}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="ID_APPLICANT">
+							<datasetParameterExpression><![CDATA[$P{ID_APPLICANT}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="15" width="137">
+						<textField>
+							<reportElement x="0" y="1" width="137" height="14" uuid="94993f4f-83f5-4d26-8ce9-c229180847e9"/>
+							<textElement textAlignment="Right">
+								<font size="8" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{recruit_title}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<rectangle radius="10">
+				<reportElement mode="Opaque" x="233" y="4" width="190" height="18" forecolor="#DBDBDB" backcolor="#DBDBDB" uuid="bee6704b-6d1d-4899-a79f-73f947742a1c"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement mode="Opaque" x="233" y="27" width="190" height="18" forecolor="#DBDBDB" backcolor="#DBDBDB" uuid="1d57b343-58e9-49c9-a200-4c2ddeb2c2ad"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="243" y="4" width="35" height="18" uuid="9694a3d4-7cb5-46ff-94ea-fd0f6540899f"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Score:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="243" y="27" width="60" height="18" uuid="34ff0188-5d24-4774-8090-d3954a63a679"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Time Used:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="321" y="4" width="13" height="18" uuid="aebeeb56-b796-4677-b224-9ee4c1829a0c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[of]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="337" y="4" width="28" height="18" uuid="62f64b1e-113d-430b-962c-6a2fd11415a5"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[100]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="328" y="27" width="37" height="18" uuid="3169aab1-cef9-4608-af62-179c1e8e3fe5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[min of]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="399" y="27" width="21" height="18" uuid="3c3cece4-a260-4de2-8dfb-0959ff7d8113"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[min]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="303" y="27" width="25" height="18" uuid="ded225be-d3a6-45e0-9075-1196bf402c2b"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="ds1_information" uuid="75887f71-c7d1-49c8-928e-8977cd5675b0">
+						<datasetParameter name="ID_RECRUIT">
+							<datasetParameterExpression><![CDATA[$P{ID_RECRUIT}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="ID_APPLICANT">
+							<datasetParameterExpression><![CDATA[$P{ID_APPLICANT}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="18" width="25">
+						<textField>
+							<reportElement x="0" y="0" width="25" height="18" uuid="2dff6778-806a-40b4-882f-96b24aa5f755"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{timeused}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<textField pattern="yyyy/MM/dd">
+				<reportElement x="433" y="39" width="135" height="13" uuid="98842aa2-3ab9-4320-8758-697371c1592d"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="278" y="4" width="42" height="18" uuid="60ec95d5-ef29-4c60-b679-4b609acc7519"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="ds2_totscore" uuid="9830e6e9-e46c-4d28-98dc-f5cadb964469">
+						<datasetParameter name="ID_APPLICANT">
+							<datasetParameterExpression><![CDATA[$P{ID_APPLICANT}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="18" width="42">
+						<textField pattern="###0.0">
+							<reportElement x="0" y="1" width="42" height="17" uuid="24ace237-cc9a-4032-9d40-4e357e9ef4c4"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{totscore}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement x="365" y="27" width="34" height="18" uuid="38bb75c1-b3dd-4a26-86ac-bd8b5242b674"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="ds3_tottime" uuid="b398891a-cd34-487e-894d-1a4ea921b098">
+						<datasetParameter name="ID_RECRUIT">
+							<datasetParameterExpression><![CDATA[$P{ID_RECRUIT}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="18" width="34">
+						<textField>
+							<reportElement x="0" y="0" width="34" height="18" uuid="6ed91016-c17c-4178-8fb3-c0c9be7f5c61"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{tottime}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="44" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="5" y="22" width="280" height="21" isPrintWhenDetailOverflows="true" uuid="0dfa283c-7295-4a23-92ec-fa1dcfc7e6de"/>
+				<textElement>
+					<font pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{problem_description}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="292" y="22" width="280" height="21" uuid="65c2131e-4439-4857-a1e2-9d9db7ffc5e9"/>
+				<textElement>
+					<font pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sourcecode}]]></textFieldExpression>
+			</textField>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="2" width="285" height="20" forecolor="#FFFFFF" backcolor="#E7E7E7" uuid="49a6c5a7-a908-4ebc-94cf-d06861b46c5b"/>
+				<staticText>
+					<reportElement x="0" y="0" width="49" height="20" uuid="3e1b4353-8779-4f06-a8b9-21a480682611"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Problem]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="287" y="2" width="285" height="20" forecolor="#FFFFFF" backcolor="#E7E7E7" uuid="95626b6b-cf9d-40d0-a62f-7fdd4530a4d9"/>
+				<staticText>
+					<reportElement x="0" y="0" width="68" height="20" uuid="754126c3-d229-43c7-9567-473a59223b69"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font isItalic="true"/>
+					</textElement>
+					<text><![CDATA[ Source Code]]></text>
+				</staticText>
+			</frame>
+			<textField>
+				<reportElement x="50" y="2" width="10" height="20" uuid="8206ec95-8c9f-4b09-97fa-1a6d32d516bf"/>
+				<textElement verticalAlignment="Middle">
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="2" width="215" height="20" uuid="7698b46a-1a7f-4245-9e92-75f9ab679d37"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{problem_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="63" y="2" width="4" height="20" uuid="67bfea84-9dbb-4a7d-964c-2eb7bfa58d15"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isItalic="true"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="357" y="2" width="4" height="20" uuid="9833eed7-cb98-4c64-8c7f-334a48590631"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isItalic="true"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="364" y="2" width="55" height="20" uuid="8c998767-0fd9-4647-a1ad-1c12c312551b"/>
+				<textElement verticalAlignment="Middle">
+					<font isItalic="false"/>
+				</textElement>
+				<text><![CDATA[language: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="420" y="2" width="148" height="20" uuid="d54c8f76-3bcc-44ee-8d26-a5d3800eb995"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{language}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="33">
+			<subreport>
+				<reportElement isPrintRepeatedValues="false" x="0" y="1" width="572" height="30" uuid="1985625e-1822-456b-afa9-df82446ca97a"/>
+				<subreportParameter name="ID_PROBLEM">
+					<subreportParameterExpression><![CDATA[$F{problem_id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ID_APPLICANT">
+					<subreportParameterExpression><![CDATA[$P{ID_APPLICANT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{CONTEXT} + "subreport1.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="452" y="0" width="80" height="20" uuid="a0e3e4c2-18d3-453a-a8b2-e21d97d97dcb"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="532" y="0" width="40" height="20" uuid="fa254b70-5bfb-496e-9876-62880c9a8719"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

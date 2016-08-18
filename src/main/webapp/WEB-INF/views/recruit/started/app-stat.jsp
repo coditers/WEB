@@ -44,7 +44,6 @@
 
                                     <th class="center-align">Total Score</th>
                                     <th class="center-align">Details</th>
-                                    <th class="center-align">Print</th>
                                 </tr>
                                 </thead>
 
@@ -56,10 +55,9 @@
                                             <td class="center-align">${score}</td>
                                         </c:forEach>
                                         <td class="center-align">${applicantStatVo.totalScore}</td>
-                                        <td class="center-align"><a href="${pageContext.request.contextPath}/recruit/${recruitId}/ajax-applicantresultdetail">
+                                        <td class="center-align"><a href="${pageContext.request.contextPath}/recruit/${recruitId}/applicantresultdetail?applicantId=${applicantStatVo.applicantId}">
                                             <button class="btn small green darken-4 btn-detail">details</button>
                                         </a></td>
-                                        <td class="center-align">ㅁ</td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
