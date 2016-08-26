@@ -237,7 +237,6 @@ public class RecruitService {
   }
 
 
-  // TODO: 2016-06-29 Invalid Excel format handle
   public List<ApplicantVo> fetchApplicantListFromExcel(String filePath, int recruitId) {
 
     FileInputStream fis = null;
@@ -300,7 +299,7 @@ public class RecruitService {
             }
           }
           applicantVo.setRecruitId(recruitId);
-          applicantVo.setTicket(recruitId + applicantVo.getEmail()); //// TODO: 2016-06-29 any good method?
+          applicantVo.setTicket(recruitId + applicantVo.getEmail());
 
           //add applicantVo into list
           list.add(applicantVo);
@@ -316,10 +315,11 @@ public class RecruitService {
   /**
    * send tickets to applicants belong to recruit.
    **/
-  public void sendTickets(int recruitId) {
+  public List<ApplicantVo> sendTickets(int recruitId) {
 
     //Get applicant list to send mail
     List<ApplicantVo> applicantList = applicantRepository.getListByRecruitId(recruitId);
+    List<ApplicantVo> mailSendFailList = new ArrayList<ApplicantVo>();
 
     //Get EmailFormat
     RecruitVo recruitVo = recruitRepository.getById(recruitId);
@@ -329,54 +329,20 @@ public class RecruitService {
     //Customize email format and send mail.
     for (ApplicantVo vo : applicantList) {
       String emailContent = null;
-      emailContent = emailFormat.replace("#이름", vo.getName());
-      emailContent = emailContent.replace("#링크", "http://222.239.250.207:8888/?ticket=" + vo.getTicket() + " ");
+      emailContent = emailFormat.replace("#name", vo.getName());
+      emailContent = emailContent.replace("#link", "http://222.239.250.207:8888/?ticket=" + vo.getTicket() + " ");
       emailContent = emailContent.replaceAll("\n", "<br>");
-      //todo mail send fail log or handle
+
       MailSender mailSender = new MailSender(vo.getEmail(), vo.getName(), emailContent);
       mailSender.run();
+
+      if( mailSender.isSendFail() )
+        mailSendFailList.add(vo);
+
     }
+    return mailSendFailList;
   }
 
-//    private boolean sendMail(String toAddr, String applicantName, String content) {// String companyName
-//
-//        Properties props = System.getProperties();
-//        props.setProperty("mail.smtp.host", "localhost.localdomain");
-//
-//        Session session = Session.getInstance(props, null);
-//
-//        try {
-//            MimeMessage msg = new MimeMessage(session);
-//            msg.setFrom(new InternetAddress("noreply@codit.com", "codit"));
-////      InternetAddress[] address = {new InternetAddress(toAddr)};
-////      msg.setRecipients(Message.RecipientType.TO, address);
-//            msg.addRecipient(Message.RecipientType.TO, new InternetAddress(toAddr, applicantName));
-//            msg.setSubject("invitation from codit");
-////      MimeMultipart multipart = new MimeMultipart();
-////
-////      MimeBodyPart part = new MimeBodyPart();
-////      part.setContent( "<a href>"+ content + "</a>", "text/html; charset=utf-8");
-////      multipart.addBodyPart(part);
-//
-////      part = new MimeBodyPart();
-////      FileDataSource fds = new FileDataSource("파일 경로");
-////      part.setDataHandler(new DataHandler(fds));
-////      part.setFileName("파일명");
-////      multipart.addBodyPart(part);
-//
-////      msg.setContent(multipart);
-//            msg.setContent(content, "text/html; charset=utf-8");
-//
-//            Transport.send(msg);
-//        } catch( UnsupportedEncodingException ex){
-//            ex.printStackTrace();
-//            return false;
-//        } catch (MessagingException ex) {
-//            ex.printStackTrace();
-//            return false;
-//        }
-//        return true;
-//    }
 
 
   //아래 5 개 메소드 추가하였습니다 (7/27)
@@ -393,10 +359,6 @@ public class RecruitService {
     return cartRepository.getCountByRecruitId(recruitId);
 
   }
-//
-//    public List<ApplicantVo> getApplicantListByRecruitId(int recruitId){
-//        return applicantRepository.getListByRecruitId(recruitId);
-//    }
 
   public List<CartVo> getCartListByRecruitId(int recruitId) {
     return cartRepository.getListByRecruitId(recruitId);

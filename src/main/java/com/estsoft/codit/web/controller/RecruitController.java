@@ -6,8 +6,7 @@ import com.estsoft.codit.web.service.RecruitService;
 import com.estsoft.codit.db.vo.ApplicantStatVo;
 import com.estsoft.codit.db.vo.ProblemStatVo;
 import com.estsoft.codit.web.util.JasperReportUtil;
-import com.estsoft.codit.web.util.Util;
-import net.sf.jasperreports.engine.JREmptyDataSource;
+import com.estsoft.codit.web.util.MultipartFileUtil;
 
 
 import org.apache.commons.dbcp.BasicDataSource;
@@ -96,7 +95,7 @@ public class RecruitController {
     Iterator<String> itr = request.getFileNames();
     MultipartFile mpf = request.getFile(itr.next());
 
-    String filePath = Util.saveMultiPartFile(mpf);
+    String filePath = MultipartFileUtil.saveMultiPartFile(mpf);
 
     List<ApplicantVo> list = null;
     Map<String, Object> map = new HashMap<String, Object>();
@@ -104,8 +103,7 @@ public class RecruitController {
 
     //multipart file save fail
     if (filePath == null) {
-      //todo save multipartfile fail error handle
-
+      System.out.println("[Error] MultipartFile save fail");
     } else {
       list = recruitService.fetchApplicantListFromExcel(filePath, recruitId);
 
@@ -135,28 +133,21 @@ public class RecruitController {
   }
 
   /**
-   * todo ajax 처리
+   *
    */
   @RequestMapping("send-ticket")
-//  @ResponseBody
   public String sendTickets(@PathVariable("recruitId") int recruitId, Model model) {
 
     boolean applicantFlag = recruitService.isApplicantRegistered(recruitId);
     boolean dateSetFlag = recruitService.isRecruitDateSet(recruitId);
     boolean probSelectFlag = recruitService.isProblemSelected(recruitId);
 
-//    model.addAttribute("applicantFlag", applicantFlag);
-//    model.addAttribute("dateSetFlag", dateSetFlag);
-//    model.addAttribute("probSelectFlag", probSelectFlag);
-
-//    Map<String, Object> map = new HashMap<String, Object>();
-//    map.put("applicantFlag", applicantFlag);
-//    map.put("dateSetFlag", dateSetFlag);
-//    map.put("probSelectFlag", probSelectFlag);
-
+    List<ApplicantVo> mailSendFailList = null;
     if (applicantFlag == true && dateSetFlag == true && probSelectFlag == true)
-      recruitService.sendTickets(recruitId);
-//    return map;
+      mailSendFailList = recruitService.sendTickets(recruitId);
+
+    model.addAttribute("mailSendFailList", mailSendFailList);
+
     return "redirect:/recruit/" + recruitId;
   }
 
@@ -166,7 +157,6 @@ public class RecruitController {
     //view prob info
     List<ProblemInfoVo> problemInfoVoList = recruitService.getAllProblemInfoList();
 
-    //todo cart list view
     if (recruitService.isProblemSelected(recruitId))
       model.addAttribute("selectedProblemList", recruitService.getProblemInfoListByRecruitId(recruitId));
 

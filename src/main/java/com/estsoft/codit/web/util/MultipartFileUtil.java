@@ -8,7 +8,7 @@ import java.util.Calendar;
 /**
  * Created by estsoft on 2016-07-26.
  */
-public class Util {
+public class MultipartFileUtil {
 
     //!** directory path in server environment
     private static final String FILE_SAVE_PATH = "/home/joonho/www/codit/multipartData/";

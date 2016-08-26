@@ -33,7 +33,7 @@
                                 <h5 class="grey-text">Write email format</h5>
                             </div>
                             <br>
-                            <p class="grey-text">*please mark applicant's name as '#이름', test link as '#링크'. '#링크' must be included in mail</p>
+                            <p class="grey-text">*please mark applicant's name as '#name', test link as '#link'. '#link' must be included in mail</p>
                             <form class="col s12" action ="${pageContext.request.contextPath}/recruit/${recruitId}/save-email" method="post">
                                 <div class="row">
                                     <div class="input-field col s12">
@@ -42,7 +42,7 @@
                                                 <textarea name = "emailFormat" id="textarea1" class="materialize-textarea" > ${recruitVo.emailFormat} </textarea>
                                             </c:when>
                                             <c:otherwise>
-                                                <textarea name = "emailFormat" id="textarea1" class="materialize-textarea" > Hello, #이름. Thank you for apply for our company. You can start test by following link #링크</textarea>
+                                                <textarea name = "emailFormat" id="textarea1" class="materialize-textarea" > Hello, #name. Thank you for apply for our company. You can start test by following link #link</textarea>
                                             </c:otherwise>
                                         </c:choose>
                                         <label class="brown-text" for="textarea1">Email Format</label>
