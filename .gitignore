@@ -111,3 +111,8 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 pom-*.xml
+
+
+# materialize, ace
+src/main/webapp/assets/materialize
+src/main/webapp/assets/ace

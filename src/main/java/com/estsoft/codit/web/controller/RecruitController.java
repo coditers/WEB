@@ -242,6 +242,4 @@ public class RecruitController {
 
     return "redirect:/recruit/"+recruitId+"/problem-selectform";
   }
-
-
 }

@@ -93,7 +93,4 @@
         <property name="order" value="0"/>
     </bean>
 
-    <!--7 the mvc resources tag does the magic -->
-    <mvc:resources mapping="/assets/materialize/**" location="http://localhost/static/materialize/"/>
-    <mvc:resources mapping="/assets/ace/**" location="http://localhost/static/ace/"/>
 </beans>

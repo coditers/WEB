@@ -32,8 +32,8 @@
   <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
     <property name="driverClassName" value="com.mysql.jdbc.Driver" />
     <property name="url" value="jdbc:mysql://localhost:3306/codit" />
-    <property name="username" value="codit" />
-    <property name="password" value="codit1234" />
+    <property name="username" value="root" />
+    <property name="password" value="!@qlxmelql!@" />
     <property name="connectionProperties" value="useUnicode=yes;characterEncoding=utf8;"/>
   </bean>
 

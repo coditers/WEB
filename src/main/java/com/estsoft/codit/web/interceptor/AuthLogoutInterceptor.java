@@ -14,7 +14,7 @@ public class AuthLogoutInterceptor  extends HandlerInterceptorAdapter {
       session.removeAttribute( "authClient" );
       session.invalidate();
     }
-    response.sendRedirect("/");
+    response.sendRedirect("/web");
     return false;
   }
 }

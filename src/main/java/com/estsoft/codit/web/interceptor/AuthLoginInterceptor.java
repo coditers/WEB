@@ -26,14 +26,14 @@ public class AuthLoginInterceptor extends HandlerInterceptorAdapter {
 
     // authentication fail
     if(authClient==null) {
-      response.sendRedirect( "/client/signinform" );
+      response.sendRedirect( "/web/client/signinform" );
       return false;
     }
 
     //authentication success!
     //create session and set 'authClient' variable on session context
     session.setAttribute("authClient", authClient);
-    response.sendRedirect( "/" );
+    response.sendRedirect( "/web" );
     return false;
   }
 }

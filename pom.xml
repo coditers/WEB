@@ -260,10 +260,10 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>tomcat-maven-plugin</artifactId>
                 <configuration>
-                    <url>http://192.168.22.76:9999/manager/text</url>
-                    <path>/</path>
+                    <url>http://115.68.116.248/manager/text</url>
+                    <path>/web</path>
                     <username>admin</username>
-                    <password>vbcjtm2016</password>
+                    <password>!@qlxmxhazot!@</password>
                 </configuration>
             </plugin>
 

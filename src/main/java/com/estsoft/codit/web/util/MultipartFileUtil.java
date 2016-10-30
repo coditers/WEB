@@ -11,7 +11,7 @@ import java.util.Calendar;
 public class MultipartFileUtil {
 
     //!** directory path in server environment
-    private static final String FILE_SAVE_PATH = "/home/joonho/www/codit/multipartData/";
+    private static final String FILE_SAVE_PATH = "/home/webmaster/codit/multipartData/";
 
 
     /**
